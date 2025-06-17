@@ -9,7 +9,7 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [advantagesVisible, setAdvantagesVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const advantagesRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
 
@@ -150,7 +150,7 @@ export default function Home() {
       observer.disconnect();
       projectsObserver.disconnect();
     };
-  }, []);
+  }, [terminalLines.length]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -290,7 +290,7 @@ export default function Home() {
           </div>
 
           {/* Projects Grid */}
-          <div className="space-y-12 sm:space-y-16 lg:space-y-20">
+          <div className="space-y-20 sm:space-y-24 lg:space-y-32">
             {projects.map((project, index) => (
               <div
                 key={project.id}
