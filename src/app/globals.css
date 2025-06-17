@@ -80,6 +80,37 @@ body {
   100% { opacity: 0.3; }
 }
 
+@keyframes projectSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes projectSlideInReverse {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -108,18 +139,56 @@ body {
   animation: terminal 2s ease-in-out infinite;
 }
 
+.animate-project-slide-in {
+  animation: projectSlideIn 0.8s ease-out forwards;
+}
+
+.animate-project-slide-in-reverse {
+  animation: projectSlideInReverse 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 /* Адаптивные стили */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  
+  /* Мобильная оптимизация */
+  .project-card {
+    margin-bottom: 2rem;
+  }
+  
+  .project-image-clickable {
+    height: 16rem;
+  }
 }
 
-@media (min-width: 641px) and (max-width: 1024px) {
+@media (min-width: 641px) and (max-width: 768px) {
   .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+  
+  /* Планшетная оптимизация */
+  .project-image-clickable {
+    height: 18rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Ноутбучная оптимизация */
+  .project-image-clickable {
+    height: 20rem;
   }
 }
 
@@ -128,49 +197,66 @@ body {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+  
+  /* Десктопная оптимизация */
+  .project-image-clickable {
+    height: 100%;
+  }
 }
 
 /* Улучшенная типографика для мобильных */
 @media (max-width: 640px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.1;
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     line-height: 1.2;
   }
   
   p {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.6;
+  }
+  
+  .terminal-text {
+    font-size: 0.75rem;
   }
 }
 
 /* Оптимизация для планшетов */
 @media (min-width: 641px) and (max-width: 1024px) {
   h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     line-height: 1.1;
   }
   
   h2 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     line-height: 1.2;
+  }
+  
+  .terminal-text {
+    font-size: 0.875rem;
   }
 }
 
 /* Оптимизация для десктопов */
 @media (min-width: 1025px) {
   h1 {
-    font-size: 4.5rem;
+    font-size: 4rem;
     line-height: 1.1;
   }
   
   h2 {
     font-size: 3rem;
     line-height: 1.2;
+  }
+  
+  .terminal-text {
+    font-size: 1rem;
   }
 }
 
@@ -183,4 +269,47 @@ body {
   .group:hover .shadow-lg {
     box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
   }
+}
+
+/* Отключение hover эффектов на мобильных */
+@media (max-width: 768px) {
+  .project-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .project-card:hover .project-image-clickable {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .group:hover {
+    box-shadow: none;
+  }
+}
+
+/* Стили для проектов */
+.project-card {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+}
+
+/* Стили для кликабельных картинок */
+.project-image-clickable {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-image-clickable {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+}
+
+/* Градиентные эффекты */
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 255, 136, 0.05) 100%);
 }
