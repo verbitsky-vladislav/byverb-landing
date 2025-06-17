@@ -97,7 +97,7 @@ body {
 }
 
 .animate-scroll {
-  animation: scroll 30s linear infinite;
+  animation: scroll 8s linear infinite;
 }
 
 .animate-glow {
@@ -171,5 +171,16 @@ body {
   h2 {
     font-size: 3rem;
     line-height: 1.2;
+  }
+}
+
+/* Hover эффекты для десктопа */
+@media (min-width: 1025px) {
+  .group:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+  }
+  
+  .group:hover .shadow-lg {
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
   }
 }
