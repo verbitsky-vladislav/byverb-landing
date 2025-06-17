@@ -28,127 +28,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* Плавные анимации */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.33%);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--accent);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent);
-  }
-}
-
-@keyframes terminal {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-@keyframes projectSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes projectSlideInReverse {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-fade-in-scale {
-  animation: fadeInScale 0.6s ease-out forwards;
-}
-
-.animate-scroll-left {
-  transition: all 1s ease-in-out;
-}
-
-.animate-scroll-left:hover {
-  animation-play-state: paused;
-}
-
-.animate-scroll {
-  animation: scroll 8s linear infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-terminal {
-  animation: terminal 2s ease-in-out infinite;
-}
-
-.animate-project-slide-in {
-  animation: projectSlideIn 0.8s ease-out forwards;
-}
-
-.animate-project-slide-in-reverse {
-  animation: projectSlideInReverse 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+/* Базовые переходы */
+.transition-colors {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Адаптивные стили */
@@ -180,7 +67,7 @@ body {
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) {
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -189,18 +76,6 @@ body {
   /* Ноутбучная оптимизация */
   .project-image-clickable {
     height: 20rem;
-  }
-}
-
-@media (min-width: 1025px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  /* Десктопная оптимизация */
-  .project-image-clickable {
-    height: 100%;
   }
 }
 
