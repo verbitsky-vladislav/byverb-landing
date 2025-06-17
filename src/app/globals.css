@@ -30,6 +30,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Плавные анимации */
@@ -52,6 +53,15 @@ body {
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
   }
 }
 
@@ -78,10 +88,88 @@ body {
   animation: fadeInScale 0.6s ease-out forwards;
 }
 
+.animate-scroll-left {
+  transition: all 1s ease-in-out;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
 }
 
 .animate-terminal {
   animation: terminal 2s ease-in-out infinite;
+}
+
+/* Адаптивные стили */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Улучшенная типографика для мобильных */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Оптимизация для планшетов */
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+}
+
+/* Оптимизация для десктопов */
+@media (min-width: 1025px) {
+  h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
 }
