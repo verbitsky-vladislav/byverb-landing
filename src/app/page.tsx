@@ -14,6 +14,7 @@ export default function Home() {
   const [imageLoadStates, setImageLoadStates] = useState<{[key: number]: boolean}>({});
   const advantagesRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
+  
 
   const terminalLines = [
     '> npm install success',
