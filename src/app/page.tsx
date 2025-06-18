@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { Zap, Target, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
+import { Zap, Target, TrendingUp, CheckCircle, ArrowRight, ExternalLink, Bot, FileText, Globe, Star, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -23,24 +23,24 @@ export default function Home() {
 
   const advantages = useMemo(() => [
     {
-      title: 'Быстро',
-      description: 'От идеи до запуска за неделю. Быстрее, чем ты успеешь сказать "вау"!',
-      icon: Zap
+      icon: Zap,
+      title: "Быстрая разработка",
+      description: "Создаем сайты и приложения в кратчайшие сроки без потери качества"
     },
     {
-      title: 'Качественно',
-      description: 'Код чище, чем твоя совесть. Дизайн - просто огонь!',
-      icon: Target
+      icon: Target,
+      title: "Точное попадание",
+      description: "Каждый проект решает конкретные бизнес-задачи и приносит результат"
     },
     {
-      title: 'Результат',
-      description: 'Не просто сайт, а машина для печати денег. Проверено!',
-      icon: TrendingUp
+      icon: TrendingUp,
+      title: "Рост и развитие",
+      description: "Помогаем бизнесу расти с помощью современных технологий"
     },
     {
-      title: 'Гарантия',
-      description: '100% результат или твои деньги обратно. Никаких "но"!',
-      icon: CheckCircle
+      icon: CheckCircle,
+      title: "Гарантия качества",
+      description: "Тестируем каждый проект и обеспечиваем стабильную работу"
     }
   ], []);
 
@@ -112,6 +112,40 @@ export default function Home() {
       solution: 'Разработал адаптивный сайт с каталогом услуг, системой отзывов, онлайн-калькулятором стоимости, интеграцией с мессенджерами и автоматическими уведомлениями',
       result: '250+ довольных клиентов в месяц, увеличение заявок на 250%, средний чек вырос на 40%. Время обработки заявок сократилось с 2 часов до 15 минут',
       technologies: ['Next.js', 'Vercel', 'Telegram API', 'WhatsApp API', 'Tailwind CSS']
+    }
+  ], []);
+
+  // Mini products data
+  const miniProducts = useMemo(() => [
+    {
+      icon: Bot,
+      iconColor: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      title: "Telegram-боты",
+      description: "Автоматизация бизнес-процессов, рассылки, обработка заявок",
+      price: "от 15 000 ₽",
+      features: ["Автоматизация", "Интеграции", "Поддержка"],
+      animationDelay: "0.2s"
+    },
+    {
+      icon: FileText,
+      iconColor: "text-purple-500",
+      bgColor: "bg-purple-500/10",
+      title: "Шаблоны сайтов",
+      description: "Готовые решения для быстрого запуска бизнеса в интернете",
+      price: "от 8 000 ₽",
+      features: ["Адаптивность", "SEO-оптимизация", "Документация"],
+      animationDelay: "0.4s"
+    },
+    {
+      icon: Globe,
+      iconColor: "text-green-500",
+      bgColor: "bg-green-500/10",
+      title: "Лендинги",
+      description: "Высококонверсионные страницы для увеличения продаж",
+      price: "от 12 000 ₽",
+      features: ["Конверсия", "Аналитика", "A/B тестирование"],
+      animationDelay: "0.6s"
     }
   ], []);
 
@@ -334,6 +368,117 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Mini Products Section */}
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-green-500/3 pointer-events-none" />
+        
+        {/* Animated Background Elements */}
+        <div className="absolute top-20 right-10 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-green-500/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-green-500/8 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-green-500/6 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s' }} />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
+              Готовые решения{' '}
+              <span className="text-green-500 animate-pulse">byverb_</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              Выберите готовое решение или закажите индивидуальную разработку
+            </p>
+          </div>
+
+          {/* Products Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {miniProducts.map((product, index) => (
+              <div
+                key={product.title}
+                className="group relative bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 transition-all duration-500 hover:border-gray-600 hover:bg-gray-900/80 cursor-pointer hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 flex flex-col h-full overflow-hidden"
+                style={{ animationDelay: product.animationDelay }}
+              >
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-500/10 to-transparent rounded-2xl" />
+                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-gray-500/20 rounded-full animate-ping" style={{ animationDelay: `${index * 0.2}s` }} />
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-gray-500/30 rounded-full animate-pulse" style={{ animationDelay: `${index * 0.3}s` }} />
+                </div>
+
+                {/* Icon */}
+                <div className={`relative z-10 w-12 h-12 ${product.bgColor} rounded-2xl flex items-center justify-center mb-4 group-hover:bg-gray-500/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                  <div className="relative">
+                    {React.createElement(product.icon, { 
+                      className: `w-6 h-6 ${product.iconColor} transition-all duration-500 group-hover:scale-110 group-hover:text-gray-300` 
+                    })}
+                    {/* Floating particles around icon */}
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-gray-500/60 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }} />
+                    <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-gray-500/40 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 flex-1">
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-gray-300 transition-colors duration-500 group-hover:translate-x-1">
+                    {product.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4 group-hover:text-gray-300 transition-colors duration-500 group-hover:translate-x-1">
+                    {product.description}
+                  </p>
+                  
+                  {/* Features */}
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-2">
+                      {product.features.map((feature, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center gap-1 px-2 py-1 bg-gray-800/50 text-xs text-gray-300 rounded-lg group-hover:bg-gray-800/70 transition-all duration-300 group-hover:scale-105"
+                        >
+                          <CheckCircle className="w-3 h-3 text-gray-400" />
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Price and CTA */}
+                <div className="relative z-10 flex items-center justify-between mt-auto">
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-white group-hover:text-gray-300 transition-colors duration-500">{product.price}</div>
+                    <div className="text-xs text-gray-400">Срок: 3-7 дней</div>
+                  </div>
+                  <button className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 border border-gray-700 text-white text-sm font-bold rounded-xl hover:bg-gray-700/50 hover:border-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-gray-500/25 group">
+                    <span>Заказать</span>
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </button>
+                </div>
+
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gray-600/30 transition-all duration-500" />
+                
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gray-500/0 via-gray-500/5 to-gray-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer" />
+                
+                {/* Moving gradient overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-gray-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-8 sm:mt-12">
+            <button 
+              onClick={() => projectsRef.current?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-green-500 text-black font-bold rounded-xl hover:bg-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25 group"
+            >
+              <span>Посмотреть проекты</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section ref={projectsRef} className="py-16 sm:py-24 lg:py-32 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -349,7 +494,7 @@ export default function Home() {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
+          <div className="space-y-12 sm:space-y-16 lg:space-y-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
