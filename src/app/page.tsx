@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
-import { Zap, Target, TrendingUp, CheckCircle, ArrowRight, ExternalLink, Bot, FileText, Globe, Star, Sparkles, ShoppingCart, MessageSquare, CreditCard, Headphones, Briefcase, BookOpen, Palette, Settings } from 'lucide-react';
+import { Zap, Target, TrendingUp, CheckCircle, ArrowRight, Bot, FileText, Globe, ShoppingCart, Briefcase, BookOpen, Palette, Settings } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -904,9 +904,11 @@ export default function Home() {
             <div className="text-center mb-8">
               <div className="relative inline-block group">
                 <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-green-500/20 shadow-2xl shadow-green-500/10 group-hover:border-green-500/40 transition-all duration-500 group-hover:scale-105 mx-auto mb-4">
-                  <img 
+                  <Image 
                     src="/avatar.svg" 
                     alt="Аватар Владислава Вербицкого, byverb_" 
+                    width={160}
+                    height={160}
                     className="w-full h-full object-cover"
                   />
                 </div>
