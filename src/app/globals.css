@@ -103,6 +103,15 @@ html {
   }
 }
 
+@keyframes continuousShimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-12deg);
+  }
+}
+
 @keyframes borderGlow {
   0%, 100% {
     border-color: rgba(0, 255, 136, 0.3);
@@ -260,11 +269,12 @@ html {
 
 /* Hover эффекты для десктопа */
 @media (min-width: 1025px) {
-  .group:hover {
+  /* Убираем глобальное зеленое свечение, чтобы не перекрывать кастомные цвета карточек */
+  /* .group:hover {
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
   }
   
   .group:hover .shadow-lg {
     box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
-  }
+  } */
 }
