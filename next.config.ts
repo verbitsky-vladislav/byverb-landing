@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
-// const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
-  /* config options here */
     basePath: "",
     reactStrictMode: true,
     output: 'export',
@@ -13,5 +11,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-
