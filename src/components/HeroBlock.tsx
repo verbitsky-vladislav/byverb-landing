@@ -116,9 +116,9 @@ export default function HeroBlock() {
               Рассчитайте стоимость за 2 минуты
             </div>
             <div className="px-8 py-4 h-16 xs:h-20 md:h-24 flex items-center">
-              <button className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+              <a href="#quiz" className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
                 <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
-              </button>
+              </a>
             </div>
             <div className="text-xs xs:text-sm md:text-base text-gray-600 font-roboto-light text-center">
               Сайт + бот + настройка • 7 дней • Гарантия
@@ -163,11 +163,11 @@ export default function HeroBlock() {
                   Рассчитайте стоимость за 2 минуты
                 </div>
                 <div className="h-20 flex items-center">
-                  <button className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                  <a href="#quiz" className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
                     <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                     <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
-                  </button>
+                  </a>
                 </div>
                 <div className="text-sm text-gray-600 font-roboto-light max-w-md whitespace-nowrap">
                   Сайт + бот + настройка • 7 дней • Гарантия
@@ -242,11 +242,11 @@ export default function HeroBlock() {
       </div>
 
       {/* НИЖНЯЯ ЧАСТЬ - СЛОГАН МАКСИМАЛЬНО ВНИЗУ (только десктоп) */}
-      <div className={`hidden xl:block w-full transition-all duration-1000 ease-out delay-1200 overflow-x-hidden mt-auto`}>
+      <div className={`hidden xl:block w-full transition-all duration-1000 ease-out delay-1200 overflow-x-hidden overflow-y-hidden mt-auto`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 overflow-x-hidden">
             {/* СЛОГАН - только на десктопах */}
-            <div className="hidden xl:block overflow-x-hidden">
+            <div className="hidden xl:block overflow-x-hidden overflow-y-hidden">
               <h2 
                 className="font-inter-black text-black leading-none tracking-tight whitespace-nowrap"
                 style={{

@@ -51,25 +51,25 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
               Главная
             </a>
             <a 
-              href="#services" 
-              className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
-                currentSection === 2 ? 'font-medium' : ''
-              }`}
-            >
-              Услуги
-            </a>
-            <a 
               href="#projects" 
               className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
-                currentSection === 3 ? 'font-medium' : ''
+                currentSection === 1 ? 'font-medium' : ''
               }`}
             >
               Проекты
             </a>
             <a 
+              href="#quiz" 
+              className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
+                currentSection === 2 ? 'font-medium' : ''
+              }`}
+            >
+              Квиз
+            </a>
+            <a 
               href="#about" 
               className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
-                currentSection === 4 ? 'font-medium' : ''
+                currentSection === 3 ? 'font-medium' : ''
               }`}
             >
               О нас
@@ -77,7 +77,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
             <a 
               href="#contact" 
               className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
-                currentSection === 5 ? 'font-medium' : ''
+                currentSection === 4 ? 'font-medium' : ''
               }`}
             >
               Контакты

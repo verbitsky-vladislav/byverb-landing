@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import HeroBlock from '../components/HeroBlock';
-import BlackBlock from '../components/BlackBlock';
+import ProjectsSlider from '../components/ProjectsSlider';
+import QuizBlock from '../components/QuizBlock';
 import SmartHeader from '../components/SmartHeader';
 
 export default function Home() {
@@ -39,62 +40,15 @@ export default function Home() {
 
   const sections = [
     { id: 'hero', bg: 'bg-white', content: <HeroBlock /> },
-    { id: 'black', bg: 'bg-black text-white', content: <BlackBlock /> },
+    { id: 'projects', bg: 'bg-black text-white', content: <ProjectsSlider /> },
     { 
-      id: 'services', 
+      id: 'quiz', 
       bg: 'bg-white', 
-      content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Услуги</h2>
-            <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
-              Создаём сайты, которые продают. От лендинга до интернет-магазина.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
-              <div className="p-3 xs:p-4 sm:p-6 border-2 border-black rounded-lg">
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-2 sm:mb-4">Лендинги</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Продающие страницы с конверсией до 15%</p>
-            </div>
-              <div className="p-3 xs:p-4 sm:p-6 border-2 border-black rounded-lg">
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-2 sm:mb-4">Сайты</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Корпоративные сайты с современным дизайном</p>
-                </div>
-              <div className="p-3 xs:p-4 sm:p-6 border-2 border-black rounded-lg">
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-2 sm:mb-4">Магазины</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Интернет-магазины с удобной корзиной</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    { 
-      id: 'projects', 
-      bg: 'bg-black text-white', 
-      content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Проекты</h2>
-            <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
-              Реализовали более 200 проектов для клиентов из разных сфер
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xs:gap-4 sm:gap-6 lg:gap-8">
-              <div className="p-3 xs:p-4 sm:p-6 border-2 border-white rounded-lg">
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-2 sm:mb-4">E-commerce</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Онлайн-магазин с оборотом 50 млн в месяц</p>
-          </div>
-              <div className="p-3 xs:p-4 sm:p-6 border-2 border-white rounded-lg">
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-2 sm:mb-4">SaaS</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Веб-приложение для управления проектами</p>
-                </div>
-            </div>
-          </div>
-        </div>
-      )
+      content: <QuizBlock />
     },
     { 
       id: 'about', 
-      bg: 'bg-white', 
+      bg: 'bg-black text-white', 
       content: (
         <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
@@ -122,7 +76,7 @@ export default function Home() {
     },
     { 
       id: 'contact', 
-      bg: 'bg-black text-white', 
+      bg: 'bg-white', 
       content: (
         <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
