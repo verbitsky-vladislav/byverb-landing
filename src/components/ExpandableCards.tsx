@@ -29,7 +29,6 @@ export default function ExpandableCards({
   accentColor = "#E53E3E"
 }: ExpandableCardsProps) {
   const [featuredCard, setFeaturedCard] = useState<string | null>(null);
-  const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, message: "", isActive: false });
 
   const handleCardClick = (cardId: string) => {
     if (!document.startViewTransition) {
@@ -40,25 +39,6 @@ export default function ExpandableCards({
     document.startViewTransition(() => {
       setFeaturedCard(featuredCard === cardId ? null : cardId);
     });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setTooltip(prev => ({
-      ...prev,
-      x: e.clientX + 10,
-      y: e.clientY - 40
-    }));
-  };
-
-  const handleMouseEnter = (message: string, isActive: boolean) => {
-    // Показываем тултип только на десктопах (≥ 1024px)
-    if (window.innerWidth >= 1024) {
-      setTooltip({ show: true, x: 0, y: 0, message, isActive });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setTooltip({ show: false, x: 0, y: 0, message: "", isActive: false });
   };
 
   // Функция для рендера текста с выделениями
@@ -148,7 +128,7 @@ export default function ExpandableCards({
   };
 
   return (
-    <>
+    <div className="my-4">
       {/* Подсказка для клика */}
       <div className="text-xs md:text-lg font-roboto-light text-gray-500 mb-3 text-center">
         — покликай чтобы не упустить выгоду
@@ -164,10 +144,8 @@ export default function ExpandableCards({
               <div
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                onMouseEnter={() => handleMouseEnter("не пропусти предложение", isFeatured)}
-                onMouseLeave={handleMouseLeave}
                 className={clsx(
-                  "relative rounded-lg shadow-md border border-gray-200 overflow-hidden transition-all duration-500 ease-in-out cursor-pointer",
+                  "relative rounded-lg shadow-md border border-gray-200 transition-all duration-500 ease-in-out cursor-pointer",
                   isFeatured
                     ? "bg-black text-white scale-105 z-20"
                     : "bg-white text-black hover:scale-102"
@@ -229,7 +207,7 @@ export default function ExpandableCards({
       <div className="hidden xl:block">
         <div
           className={clsx(
-            "grid grid-cols-3 grid-rows-2 gap-4 transition-all duration-700 ease-in-out h-[300px]",
+            "grid grid-cols-3 grid-rows-2 gap-4 transition-all duration-700 ease-in-out min-h-[350px]",
             className
           )}
         >
@@ -262,22 +240,19 @@ export default function ExpandableCards({
                 key={card.id}
                 style={{ viewTransitionName: `card-${index}` }}
                 onClick={() => handleCardClick(card.id)}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => handleMouseEnter("не пропусти предложение", isFeatured)}
-                onMouseLeave={handleMouseLeave}
                 className={clsx(
-                  "relative rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer",
+                  "relative rounded-2xl shadow-md border border-gray-200 transition-all duration-700 ease-in-out cursor-pointer",
                   getCardPosition(),
                   isFeatured
                     ? "bg-black text-white scale-105 z-20"
                     : "bg-white text-black"
                 )}
               >
-                <div className="p-6 flex flex-col justify-start items-start w-full h-full">
+                <div className="p-8 flex flex-col justify-start items-start w-full h-full">
                   <h3 
                     className={clsx(
                       "font-inter-black text-left transition-all duration-500",
-                      isFeatured ? "text-2xl mb-4" : "text-lg mb-2"
+                      isFeatured ? "text-2xl mb-6" : "text-lg mb-3"
                     )}
                   >
                     {card.title}
@@ -293,7 +268,7 @@ export default function ExpandableCards({
                   {/* Оффер - показывается только в развернутом состоянии */}
                   {isFeatured && (
                     <div className="flex flex-col justify-start w-full h-full">
-                      <p className="text-left text-base leading-relaxed font-roboto-light mb-6">
+                      <p className="text-left text-base leading-relaxed font-roboto-light mb-8">
                         {renderHighlightedText(card.offer, card.highlights)}
                       </p>
                       
@@ -329,27 +304,6 @@ export default function ExpandableCards({
           })}
         </div>
       </div>
-
-      {/* Tooltip */}
-      {tooltip.show && (
-        <div
-          className={clsx(
-            "fixed z-50 px-3 py-2 text-xs font-roboto-light rounded-lg shadow-lg pointer-events-none transition-opacity duration-200",
-            tooltip.isActive ? "bg-white text-black" : "bg-black text-white"
-          )}
-          style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: 'translateX(-50%)'
-          }}
-        >
-          {tooltip.message}
-          <div className={clsx(
-            "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent",
-            tooltip.isActive ? "border-t-white" : "border-t-black"
-          )}></div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

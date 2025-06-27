@@ -44,7 +44,7 @@ export default function Home() {
       id: 'services', 
       bg: 'bg-white', 
       content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Услуги</h2>
             <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
@@ -72,7 +72,7 @@ export default function Home() {
       id: 'projects', 
       bg: 'bg-black text-white', 
       content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Проекты</h2>
             <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
@@ -96,7 +96,7 @@ export default function Home() {
       id: 'about', 
       bg: 'bg-white', 
       content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">О нас</h2>
             <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
@@ -124,7 +124,7 @@ export default function Home() {
       id: 'contact', 
       bg: 'bg-black text-white', 
       content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Контакты</h2>
             <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
@@ -151,15 +151,15 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden max-w-full">
       <SmartHeader currentSection={currentSection} />
-      <div className="snap-y snap-mandatory h-screen overflow-y-auto">
+      <div className="snap-y snap-mandatory h-screen overflow-x-hidden max-w-full">
         {sections.map((section, index) => (
           <section
             key={section.id}
             id={section.id}
             data-section={index}
-            className={`snap-start h-screen flex items-center justify-center ${section.bg}`}
+            className={`snap-start h-screen flex items-center justify-center ${section.bg} overflow-x-hidden max-w-full`}
           >
             {section.content}
           </section>

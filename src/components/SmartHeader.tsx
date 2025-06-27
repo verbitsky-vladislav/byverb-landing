@@ -28,14 +28,14 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24 max-w-4xl mx-auto">
+        <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16 max-w-4xl mx-auto">
           
           {/* Логотип */}
           <div className="flex items-center space-x-3">
-            <span className="font-inter-black text-lg xs:text-xl sm:text-2xl lg:text-3xl tracking-tight">
+            <span className="font-inter-black text-base xs:text-lg sm:text-xl lg:text-2xl tracking-tight">
               byverb_
             </span>
-            <span className="hidden sm:block font-roboto-extra-light text-xs sm:text-sm tracking-wider opacity-70">
+            <span className="hidden sm:block font-roboto-extra-light text-xs tracking-wider opacity-70">
               DIGITAL AGENCY
             </span>
           </div>

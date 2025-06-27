@@ -4,6 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Глобальный запрет горизонтальной прокрутки */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Запрет горизонтальной прокрутки для всех основных контейнеров */
+#__next, .app, main, .main-content {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 
 /* View Transitions API */
 @media (prefers-reduced-motion: reduce) {
@@ -389,6 +400,13 @@ html, body {
 /* Скрываем основную кнопку на экранах ≤ 380px */
 @media (max-width: 380px) {
   .xl\:hidden .mt-8.space-y-4.max-w-2xl.mx-auto.w-full.block {
+    display: none !important;
+  }
+}
+
+/* Скрываем CTA кнопку на устройствах меньше 380px */
+@media (max-width: 379px) {
+  .cta-button-container {
     display: none !important;
   }
 }

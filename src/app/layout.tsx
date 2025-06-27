@@ -19,14 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" className="overflow-x-hidden">
       <head>
         <meta name="yandex-verification" content="6e32fd2f329f842a" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>byverb_ разработка сайтов и ботов</title>
       </head>
-      <body className={`${interBlack.variable} ${robotoExtraLight.variable} bg-white text-black`}>
-        {children}
+      <body className={`${interBlack.variable} ${robotoExtraLight.variable} bg-white text-black overflow-x-hidden max-w-full`}>
+        <div className="overflow-x-hidden max-w-full">
+          {children}
+        </div>
       </body>
     </html>
   );
