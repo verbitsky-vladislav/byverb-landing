@@ -52,14 +52,6 @@ const projects: Project[] = [
     url: "https://krabik6-tech-repair-landing-80ae.twc1.net/",
     results: ["200+ заявок в месяц (было 40)"]
   },
-  {
-    id: 6,
-    title: "GK-Invest - Инвестиционная платформа",
-    description: "Создали инвестиционную платформу в формате mini-apps с реферальной системой. Реализовали поддержку криптовалютных и фиатных платежей.",
-    image: "/images/portfolio/gk-invest.png",
-    url: "#",
-    results: ["Поддержка крипто и фиатных платежей", "Реферальная система"]
-  }
 ];
 
 export default function ProjectsSlider() {
