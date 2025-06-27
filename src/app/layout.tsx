@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
+        <meta name="yandex-verification" content="6e32fd2f329f842a" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
