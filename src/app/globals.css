@@ -71,7 +71,7 @@ html, body {
 /* Адаптивные стили по новым брейкпоинтам */
 
 /* Очень маленькие телефоны (< 360px) */
-@media (max-width: 359px) {
+@media (max-width: 380px) {
   .container {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -96,8 +96,8 @@ html, body {
   }
 }
 
-/* Базовые смартфоны (360px - 479px) */
-@media (min-width: 360px) and (max-width: 479px) {
+/* Базовые смартфоны (380px - 479px) */
+@media (min-width: 380px) and (max-width: 479px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -388,7 +388,7 @@ html, body {
 
 /* Скрываем основную кнопку на экранах ≤ 380px */
 @media (max-width: 380px) {
-  .hidden.xs\:block {
+  .xl\:hidden .mt-8.space-y-4.max-w-2xl.mx-auto.w-full.block {
     display: none !important;
   }
 }

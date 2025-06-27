@@ -106,7 +106,7 @@ export default function HeroBlock() {
           </div>
 
           {/* Нижняя часть - CTA кнопка (скрыта для экранов ≤ 380px) */}
-          <div className="mt-8 space-y-4 max-w-2xl mx-auto w-full hidden xs:block">
+          <div className="mt-8 space-y-4 max-w-2xl mx-auto w-full block">
             <div className="text-base xs:text-lg md:text-2xl font-inter-black text-black text-center">
               Рассчитайте стоимость за 2 минуты
             </div>
