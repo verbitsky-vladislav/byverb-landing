@@ -1,280 +1,140 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --accent: #00ff88;
-  --secondary: #666666;
-  --muted: #333333;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* View Transitions API */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s;
+  }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-secondary: var(--secondary);
-  --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
 }
 
-/* Плавные анимации */
-@keyframes fadeInUp {
+/* Отключаем стандартный скролл для плавного перелистывания */
+html, body {
+  scroll-snap-type: y mandatory;
+}
+
+/* Скрываем скроллбар для чистоты дизайна */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Кастомные шрифты */
+.font-inter-black {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+}
+
+.font-roboto-light {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+/* Стили для карточек */
+.card {
+  contain: layout;
+  overflow: hidden;
+  position: relative;
+  transition: scale 0.1s;
+}
+
+.card:not(.featured):hover {
+  scale: 1.033;
+}
+
+.card.featured {
+  order: -1;
+  grid-column: 1 / -1;
+  font-size: 133%;
+}
+
+/* Плавные переходы для grid */
+.grid {
+  transition: grid-template-columns 0.7s ease-in-out;
+}
+
+/* Анимации для карточек */
+@keyframes cardExpand {
   from {
-    opacity: 0;
-    transform: translateY(30px);
+    transform: scale(1);
   }
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: scale(1.05);
   }
 }
 
-@keyframes fadeInScale {
+@keyframes cardShrink {
   from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(1.05);
   }
   to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
   }
 }
 
-@keyframes scroll {
+.card-expand {
+  animation: cardExpand 0.7s ease-in-out forwards;
+}
+
+.card-shrink {
+  animation: cardShrink 0.7s ease-in-out forwards;
+}
+
+/* Анимация пульсации по размеру для кнопки */
+@keyframes buttonPulse {
   0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.33%);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--accent);
+    transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent);
-  }
-}
-
-@keyframes terminal {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
+    transform: scale(1.05);
   }
   100% {
-    background-position: 200% 0;
+    transform: scale(1);
   }
 }
 
-@keyframes continuousShimmer {
-  0% {
-    transform: translateX(-100%) skewX(-12deg);
-  }
-  100% {
-    transform: translateX(100%) skewX(-12deg);
-  }
+.button-pulse {
+  animation: buttonPulse 2s ease-in-out infinite;
 }
 
-@keyframes borderGlow {
-  0%, 100% {
-    border-color: rgba(0, 255, 136, 0.3);
-  }
-  50% {
-    border-color: rgba(0, 255, 136, 0.8);
-  }
-}
-
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes rotateIn {
-  from {
-    opacity: 0;
-    transform: rotate(-10deg) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-fade-in-scale {
-  animation: fadeInScale 0.6s ease-out forwards;
-}
-
-.animate-scroll-left {
-  transition: all 1s ease-in-out;
-}
-
-.animate-scroll-left:hover {
+.button-pulse:hover {
   animation-play-state: paused;
-}
-
-.animate-scroll {
-  animation: scroll 8s linear infinite;
-  will-change: transform;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-  will-change: box-shadow;
-}
-
-.animate-terminal {
-  animation: terminal 2s ease-in-out infinite;
-  will-change: opacity;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-.animate-border-glow {
-  animation: borderGlow 2s ease-in-out infinite;
-}
-
-.animate-slide-in-left {
-  animation: slideInFromLeft 0.6s ease-out forwards;
-}
-
-.animate-rotate-in {
-  animation: rotateIn 0.8s ease-out forwards;
-}
-
-/* Hover эффект только для картинки */
-.image-group:hover .image-group-hover\:opacity-100 {
-  opacity: 1;
-}
-
-/* Адаптивные стили */
-@media (max-width: 640px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1025px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Улучшенная типографика для мобильных */
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-  }
-  
-  h2 {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-  
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-}
-
-/* Оптимизация для планшетов */
-@media (min-width: 641px) and (max-width: 1024px) {
-  h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-  }
-}
-
-/* Оптимизация для десктопов */
-@media (min-width: 1025px) {
-  h1 {
-    font-size: 4.5rem;
-    line-height: 1.1;
-  }
-  
-  h2 {
-    font-size: 3rem;
-    line-height: 1.2;
-  }
-}
-
-/* Hover эффекты для десктопа */
-@media (min-width: 1025px) {
-  /* Убираем глобальное зеленое свечение, чтобы не перекрывать кастомные цвета карточек */
-  /* .group:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
-  }
-  
-  .group:hover .shadow-lg {
-    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
-  } */
 }

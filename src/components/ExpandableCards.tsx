@@ -1,0 +1,276 @@
+"use client";
+
+import { useState } from "react";
+import clsx from "clsx";
+import React from "react";
+
+interface Card {
+  id: string;
+  title: string;
+  description: string;
+  offer: string;
+  price?: string;
+  highlights?: Array<{
+    text: string;
+    color?: string;
+    fontWeight?: string;
+  }>;
+}
+
+interface ExpandableCardsProps {
+  cards: Card[];
+  className?: string;
+  accentColor?: string;
+}
+
+export default function ExpandableCards({ 
+  cards, 
+  className = "",
+  accentColor = "#E53E3E"
+}: ExpandableCardsProps) {
+  const [featuredCard, setFeaturedCard] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, message: "", isActive: false });
+
+  const handleCardClick = (cardId: string) => {
+    if (!document.startViewTransition) {
+      setFeaturedCard(featuredCard === cardId ? null : cardId);
+      return;
+    }
+
+    document.startViewTransition(() => {
+      setFeaturedCard(featuredCard === cardId ? null : cardId);
+    });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setTooltip(prev => ({
+      ...prev,
+      x: e.clientX + 10,
+      y: e.clientY - 40
+    }));
+  };
+
+  const handleMouseEnter = (message: string, isActive: boolean) => {
+    setTooltip({ show: true, x: 0, y: 0, message, isActive });
+  };
+
+  const handleMouseLeave = () => {
+    setTooltip({ show: false, x: 0, y: 0, message: "", isActive: false });
+  };
+
+  // Функция для рендера текста с выделениями
+  const renderHighlightedText = (text: string, highlights?: Array<{text: string, color?: string, fontWeight?: string}>) => {
+    if (!highlights || highlights.length === 0) {
+      return text;
+    }
+
+    // Создаем массив частей текста с их позициями
+    const parts: Array<{text: string, isHighlight: boolean, highlightIndex: number}> = [];
+    let currentText = text;
+
+    // Находим все совпадения и сортируем их по позиции
+    const matches: Array<{text: string, startIndex: number, highlightIndex: number}> = [];
+    
+    highlights.forEach((highlight, highlightIndex) => {
+      let startIndex = 0;
+      while (true) {
+        const index = currentText.indexOf(highlight.text, startIndex);
+        if (index === -1) break;
+        matches.push({
+          text: highlight.text,
+          startIndex: index,
+          highlightIndex
+        });
+        startIndex = index + 1;
+      }
+    });
+
+    // Сортируем совпадения по позиции
+    matches.sort((a, b) => a.startIndex - b.startIndex);
+
+    // Разбиваем текст на части
+    let lastIndex = 0;
+    matches.forEach((match) => {
+      // Добавляем текст до совпадения
+      if (match.startIndex > lastIndex) {
+        parts.push({
+          text: currentText.slice(lastIndex, match.startIndex),
+          isHighlight: false,
+          highlightIndex: -1
+        });
+      }
+      
+      // Добавляем выделенный текст
+      parts.push({
+        text: match.text,
+        isHighlight: true,
+        highlightIndex: match.highlightIndex
+      });
+      
+      lastIndex = match.startIndex + match.text.length;
+    });
+
+    // Добавляем оставшийся текст
+    if (lastIndex < currentText.length) {
+      parts.push({
+        text: currentText.slice(lastIndex),
+        isHighlight: false,
+        highlightIndex: -1
+      });
+    }
+
+    // Рендерим части
+    return (
+      <>
+        {parts.map((part, index) => {
+          if (part.isHighlight) {
+            const highlight = highlights[part.highlightIndex];
+            return (
+              <span 
+                key={index}
+                style={{ 
+                  color: highlight.color || accentColor,
+                  fontWeight: highlight.fontWeight || '900'
+                }}
+              >
+                {part.text}
+              </span>
+            );
+          } else {
+            return <span key={index}>{part.text}</span>;
+          }
+        })}
+      </>
+    );
+  };
+
+  return (
+    <>
+      <div className="text-xs font-roboto-light text-gray-500 mb-2 text-center">
+        — кликай чтобы не упустить предложение
+      </div>
+      <div
+        className={clsx(
+          "grid grid-cols-3 grid-rows-2 gap-4 transition-all duration-700 ease-in-out h-[300px]",
+          className
+        )}
+      >
+        {cards.map((card, index) => {
+          const isFeatured = featuredCard === card.id;
+          const isAnyFeatured = featuredCard !== null;
+
+          // Определяем позицию карточки
+          const getCardPosition = () => {
+            if (isFeatured) {
+              // Featured карточка занимает 4 блока - принудительно в левом верхнем углу
+              return "col-span-2 row-span-2 col-start-1 row-start-1";
+            }
+            
+            if (isAnyFeatured) {
+              // Все остальные карточки занимают по 1 блоку
+              return "col-span-1 row-span-1";
+            }
+            
+            // Исходное состояние
+            if (index === 0) {
+              return "col-span-2 row-span-2 col-start-1 row-start-1"; // Telegram большая (4 блока)
+            } else {
+              return "col-span-1 row-span-1"; // Web3 и AI маленькие (по 1 блоку)
+            }
+          };
+
+          return (
+            <div
+              key={card.id}
+              style={{ viewTransitionName: `card-${index}` }}
+              onClick={() => handleCardClick(card.id)}
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => handleMouseEnter("не пропусти предложение", isFeatured)}
+              onMouseLeave={handleMouseLeave}
+              className={clsx(
+                "relative rounded-2xl shadow-md border border-gray-200 overflow-hidden transition-all duration-700 ease-in-out cursor-pointer",
+                getCardPosition(),
+                isFeatured
+                  ? "bg-black text-white scale-105 z-20"
+                  : "bg-white text-black"
+              )}
+            >
+              <div className="p-6 flex flex-col justify-start items-start w-full h-full">
+                <h3 
+                  className={clsx(
+                    "font-inter-black text-left transition-all duration-500",
+                    isFeatured ? "text-2xl mb-4" : "text-lg mb-2"
+                  )}
+                >
+                  {card.title}
+                </h3>
+                
+                {/* Описание - показывается только в свернутом состоянии */}
+                {!isFeatured && (
+                  <p className="font-roboto-light text-left text-sm">
+                    {card.description}
+                  </p>
+                )}
+
+                {/* Оффер - показывается только в развернутом состоянии */}
+                {isFeatured && (
+                  <div className="flex flex-col justify-start w-full h-full">
+                    <p className="text-left text-base leading-relaxed font-roboto-light mb-6">
+                      {renderHighlightedText(card.offer, card.highlights)}
+                    </p>
+                    
+                    {/* Цена в развернутом состоянии */}
+                    {card.price && (
+                      <div className="mt-auto">
+                        <div className="text-sm text-gray-400 font-roboto-light mb-2">
+                          индивидуальное решение от
+                        </div>
+                        <div className="text-2xl font-inter-black text-[#E53E3E]">
+                          {card.price}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Кнопка закрытия для featured карточки */}
+              {isFeatured && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCardClick(card.id);
+                  }}
+                  className="absolute top-4 right-4 text-white hover:text-red-400 transition-colors duration-300"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Tooltip */}
+      {tooltip.show && (
+        <div
+          className={clsx(
+            "fixed z-50 px-3 py-2 text-xs font-roboto-light rounded-lg shadow-lg pointer-events-none transition-opacity duration-200",
+            tooltip.isActive ? "bg-white text-black" : "bg-black text-white"
+          )}
+          style={{
+            left: tooltip.x,
+            top: tooltip.y,
+            transform: 'translateX(-50%)'
+          }}
+        >
+          {tooltip.message}
+          <div className={clsx(
+            "absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent",
+            tooltip.isActive ? "border-t-white" : "border-t-black"
+          )}></div>
+        </div>
+      )}
+    </>
+  );
+}

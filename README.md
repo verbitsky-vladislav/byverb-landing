@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# byverb_ - Digital Agency Landing
 
-## Getting Started
+Черно-белый сайт digital агентства, специализирующегося на веб-разработке.
 
-First, run the development server:
+## Особенности
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Дизайн**: Минималистичный черно-белый дизайн
+- **Шрифты**: 
+  - Inter Black (900) - для заголовков и акцентов
+  - Roboto Extra Light (200) - для основного текста
+- **Аналитика**: Интегрирована Яндекс.Метрика
+- **Технологии**: Next.js 15, TypeScript, Tailwind CSS
+
+## Настройка
+
+### 1. Яндекс.Метрика
+
+Замените ID счетчика в файле `src/lib/analytics.ts`:
+
+```typescript
+export const YANDEX_METRIKA_ID = 'ВАШ_ID_СЧЕТЧИКА';
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Запуск проекта
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Сборка для продакшена
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Структура проекта
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── globals.css      # Глобальные стили
+│   ├── layout.tsx       # Корневой layout с шрифтами и метрикой
+│   └── page.tsx         # Главная страница
+└── lib/
+    └── analytics.ts     # Конфигурация аналитики
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Секции сайта
 
-## Deploy on Vercel
+1. **Header** - Навигация с логотипом byverb_
+2. **Hero** - Главный экран с призывом к действию
+3. **Services** - Услуги агентства
+4. **Projects** - Портфолио проектов
+5. **About** - О компании
+6. **Contact** - Контактная информация
+7. **Footer** - Подвал сайта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Следующие шаги
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Добавить контент в секции
+2. Настроить реальный ID Яндекс.Метрики
+3. Добавить изображения и иконки
+4. Настроить формы обратной связи
+5. Добавить анимации и интерактивность
