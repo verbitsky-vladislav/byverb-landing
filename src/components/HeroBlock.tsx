@@ -1,12 +1,11 @@
 'use client';
 
-import { useScreenHeight } from '@/hooks/useScreenHeight';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ExpandableCards from './ExpandableCards';
 
 export default function HeroBlock() {
-  const screenHeight = useScreenHeight();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isCTACollapsed, setIsCTACollapsed] = useState(false);
 
   useEffect(() => {
     // Небольшая задержка для плавного появления
@@ -55,40 +54,139 @@ export default function HeroBlock() {
 
   return (
     <div className="w-full h-full flex flex-col justify-between">
-      {/* Верхняя часть - основной контент */}
-      <div className="flex-1 flex items-center justify-center pt-20 pb-10">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+      {/* Мобильная версия - очень маленькие телефоны и базовые смартфоны */}
+      <div className="xl:hidden">
+        {/* ПЕРВЫЙ ЭКРАН - Заголовок, факты, карточки и CTA */}
+        <div className="h-screen flex flex-col px-4 pt-16 pb-8">
+          {/* Контейнер с ограниченной шириной для планшетов и телефонов */}
+          <div className="flex-1 flex flex-col justify-center space-y-8 max-w-2xl mx-auto w-full">
+            {/* Заголовок */}
+            <div className="space-y-4">
+              <div className="text-base xs:text-lg md:text-2xl font-inter-black text-gray-700">
+                нужен сайт, который продает?
+              </div>
+              <div className="text-2xl xs:text-3xl md:text-5xl font-inter-black leading-tight tracking-tight">
+                <span className="text-black">САЙТ → ЗАЯВКА → БОТ → КЛИЕНТ!</span>
+              </div>
+            </div>
+
+            {/* Компактные факты только для больших планшетов (768px+) */}
+            <div className="hidden lg:grid lg:grid-cols-3 gap-3 mb-6">
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <div className="text-sm lg:text-xl font-inter-black text-black">
+                  9.900 ₽
+                </div>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <div className="text-sm lg:text-xl font-inter-black text-black">
+                  7 дней
+                </div>
+              </div>
+              <div className="bg-gray-50 p-3 rounded-lg text-center">
+                <div className="text-sm lg:text-xl font-inter-black text-black">
+                  23%
+                </div>
+              </div>
+            </div>
+
+            {/* Миниатюрные факты для планшетов (480px - 768px) */}
+            <div className="hidden sm:block lg:hidden mb-4">
+              <div className="flex justify-center space-x-4">
+                <div className="bg-gray-50 px-2 py-1 rounded text-center">
+                  <div className="text-xs font-inter-black text-black">9.900₽</div>
+                </div>
+                <div className="bg-gray-50 px-2 py-1 rounded text-center">
+                  <div className="text-xs font-inter-black text-black">7д</div>
+                </div>
+                <div className="bg-gray-50 px-2 py-1 rounded text-center">
+                  <div className="text-xs font-inter-black text-black">23%</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Карточки решений */}
+            <div className="w-full">
+              <ExpandableCards cards={cards} />
+            </div>
+          </div>
+
+          {/* Нижняя часть - CTA кнопка (удобно расположена снизу экрана) */}
+          <div className="xs:block hidden mt-8 space-y-4 max-w-2xl mx-auto w-full">
+            <div className="text-base xs:text-lg md:text-2xl font-inter-black text-black text-center">
+              Рассчитайте стоимость за 2 минуты
+            </div>
+            <button className="group relative w-full inline-flex items-center justify-center px-6 xs:px-8 md:px-16 py-4 xs:py-5 md:py-8 bg-[#E53E3E] text-white font-inter-black text-base xs:text-lg md:text-2xl tracking-wider transition-all duration-500 transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] shadow-xl hover:shadow-2xl hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+              <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+            </button>
+            <div className="text-xs xs:text-sm md:text-lg text-gray-600 font-roboto-light text-center">
+              Сайт + бот + настройка • 7 дней • Гарантия
+            </div>
+          </div>
+        </div>
+
+        {/* Фиксированная кнопка CTA для очень маленьких телефонов (< 380px) */}
+        <div className="xs:hidden fixed bottom-4 left-4 z-40">
+          <div className={`bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
+            isCTACollapsed ? 'w-12 h-12' : 'w-64 p-4'
+          }`}>
+            {isCTACollapsed ? (
+              /* Свернутое состояние - только иконка */
+              <button 
+                onClick={() => setIsCTACollapsed(false)}
+                className="w-full h-full flex items-center justify-center text-[#E53E3E] hover:scale-110 transition-transform duration-200"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </button>
+            ) : (
+              /* Развернутое состояние - полная кнопка */
+              <div className="space-y-3">
+                <div className="flex justify-between items-start">
+                  <div className="text-sm font-inter-black text-black">
+                    Рассчитайте стоимость за 2 минуты
+                  </div>
+                  <button 
+                    onClick={() => setIsCTACollapsed(true)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200 ml-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <button className="group relative w-full inline-flex items-center justify-center px-4 py-3 bg-[#E53E3E] text-white font-inter-black text-sm tracking-wider transition-all duration-500 transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] shadow-xl hover:shadow-2xl hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                </button>
+                <div className="text-xs text-gray-600 font-roboto-light text-center">
+                  Сайт + бот + настройка • 7 дней • Гарантия
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Десктопная версия - ноутбуки и больше */}
+      <div className="hidden xl:flex flex-1 flex items-center justify-center pt-20 pb-10">
+        <div className="w-full max-w-[1400px] mx-auto px-8">
+          <div className="grid grid-cols-2 gap-20 items-start">
             
             {/* ЛЕВАЯ КОЛОНКА - Заголовок и CTA */}
-            <div className={`order-2 lg:order-1 pt-8 transition-all duration-1000 ease-out ${
+            <div className={`order-2 xl:order-1 pt-8 transition-all duration-1000 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               {/* Основной заголовок */}
               <div className="mb-12">
-                <div className={`text-xl sm:text-2xl lg:text-3xl font-inter-black text-gray-700 mb-2 transition-all duration-700 ease-out delay-200 ${
+                <div className={`text-2xl xl:text-3xl font-inter-black text-gray-700 mb-2 transition-all duration-700 ease-out delay-200 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  нужен продукт, который продает?
+                  нужен сайт, который продает?
                 </div>
                 <div className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-inter-black leading-none tracking-tight mb-8 transition-all duration-700 ease-out delay-400 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  <button className="group relative bg-black text-white px-8 py-4 inline-block transition-all duration-500 transform hover:scale-110 cursor-pointer border-4 border-black shadow-xl hover:shadow-2xl hover:-translate-y-1 overflow-hidden hover:bg-white hover:text-black">
-                    <span className="relative z-10">ОБСУДИТЬ</span>
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
-                    <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-30 transition-all duration-500 group-hover:scale-110"></div>
-                  </button>
-                </div>
-                <div className={`text-2xl sm:text-3xl lg:text-4xl font-inter-black text-black mb-4 transition-all duration-700 ease-out delay-600 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}>
-                  За 7 дней
-                </div>
-                <div className={`text-lg sm:text-xl text-gray-600 font-roboto-light transition-all duration-700 ease-out delay-800 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}>
-                  Или вернем деньги
+                  <span className="text-black">САЙТ → ЗАЯВКА → БОТ → КЛИЕНТ!</span>
                 </div>
               </div>
               
@@ -96,17 +194,22 @@ export default function HeroBlock() {
               <div className={`space-y-6 transition-all duration-700 ease-out delay-1000 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
+                <div className="text-lg font-inter-black text-black">
+                  Рассчитайте стоимость за 2 минуты
+                </div>
                 <button className="group relative inline-flex items-center justify-center px-16 py-8 bg-[#E53E3E] text-white font-inter-black text-xl sm:text-2xl tracking-wider transition-all duration-500 transform hover:scale-110 cursor-pointer border-4 border-[#E53E3E] shadow-2xl hover:shadow-[0_25px_50px_rgba(229,62,62,0.2)] hover:-translate-y-2 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
-                  <span className="relative z-10">ПОДОБРАТЬ ПРОДУКТ БЕСПЛАТНО</span>
+                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500 group-hover:scale-110"></div>
                 </button>
                 <div className="text-base text-gray-600 font-roboto-light max-w-md whitespace-nowrap">
-                  Подберем продукт под ваш бизнес • 15 минут • Без обязательств
+                  Сайт + бот + настройка • 7 дней • Гарантия
                 </div>
               </div>
             </div>
 
             {/* ПРАВАЯ КОЛОНКА - Факты и карточки */}
-            <div className={`order-1 lg:order-2 transition-all duration-1000 ease-out delay-300 ${
+            <div className={`order-1 xl:order-2 transition-all duration-1000 ease-out delay-300 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               {/* Блок с фактами и гарантиями */}
@@ -116,28 +219,36 @@ export default function HeroBlock() {
                 <div className="space-y-6">
                   <div>
                     <div className="text-2xl sm:text-3xl font-inter-black text-black mb-2">
-                      Создаем за 7 дней
+                      Прибыль растет в 3 раза
                     </div>
                     <div className="text-lg font-inter-black text-gray-700">
-                      С гарантией роста продаж
+                      Средний результат наших проектов
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     <div className="text-center">
-                      <div className="text-4xl sm:text-5xl font-inter-black text-[#E53E3E] mb-2">
-                        7
+                      <div className="text-lg sm:text-xl lg:text-2xl font-inter-black text-black mb-2">
+                        9.900 ₽
                       </div>
-                      <div className="text-sm text-gray-600 font-roboto-light">
-                        дней до запуска
+                      <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
+                        стартовая цена
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-4xl sm:text-5xl font-inter-black text-[#E53E3E] mb-2">
-                        100%
+                      <div className="text-lg sm:text-xl lg:text-2xl font-inter-black text-black mb-2">
+                        7 дней
                       </div>
-                      <div className="text-sm text-gray-600 font-roboto-light">
-                        гарантия результата
+                      <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
+                        до запуска
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg sm:text-xl lg:text-2xl font-inter-black text-black mb-2">
+                        23%
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
+                        средняя конверсия
                       </div>
                     </div>
                   </div>
@@ -152,7 +263,7 @@ export default function HeroBlock() {
                 </div>
               </div>
 
-              {/* Карточки продуктов */}
+              {/* Карточки решений */}
               <div className={`w-full max-w-lg transition-all duration-700 ease-out delay-700 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
@@ -163,30 +274,36 @@ export default function HeroBlock() {
         </div>
       </div>
 
-      {/* НИЖНЯЯ ЧАСТЬ - СЛОГАН МАКСИМАЛЬНО ВНИЗУ */}
-      <div className={`w-full transition-all duration-1000 ease-out delay-1200 ${
+      {/* НИЖНЯЯ ЧАСТЬ - СЛОГАН МАКСИМАЛЬНО ВНИЗУ (только десктоп) */}
+      <div className={`hidden xl:block w-full transition-all duration-1000 ease-out delay-1200 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            {/* СЛОГАН */}
-            <div>
-              <h2 className="font-inter-black text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-black leading-none tracking-tight whitespace-nowrap">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+            {/* СЛОГАН - только на десктопах */}
+            <div className="hidden xl:block">
+              <h2 
+                className="font-inter-black text-black leading-none tracking-tight whitespace-nowrap"
+                style={{
+                  fontSize: 'clamp(4rem, 8vw, 9rem)',
+                  lineHeight: '0.9'
+                }}
+              >
                 ПРИБЫЛЬ РАСТЕТ
               </h2>
             </div>
             
             {/* КОНТАКТЫ */}
-            <div className="flex flex-col gap-2 items-center">
+            <div className="flex flex-col gap-1 sm:gap-2 items-center">
               <a 
                 href="tel:+74951234567" 
-                className="font-inter-black text-base sm:text-lg text-black hover:text-gray-600 transition-colors duration-300"
+                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-colors duration-300"
               >
                 +7 (495) 123-45-67
               </a>
               <a 
                 href="mailto:hello@byverb.dev" 
-                className="font-inter-black text-base sm:text-lg text-black hover:text-gray-600 transition-colors duration-300"
+                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-colors duration-300"
               >
                 hello@byverb.dev
               </a>

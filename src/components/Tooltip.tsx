@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ export default function Tooltip({ children, message = "не пропусти п�
       {/* Подсказка */}
       {isVisible && (
         <div
-          className="fixed z-50 px-3 py-2 text-xs font-roboto-light bg-black text-white rounded-lg shadow-lg pointer-events-none transition-opacity duration-200"
+          className="fixed z-50 px-2 xs:px-3 py-1 xs:py-2 text-xs font-roboto-light bg-black text-white rounded-lg shadow-lg pointer-events-none transition-opacity duration-200"
           style={{
             left: position.x,
             top: position.y,
@@ -47,7 +47,7 @@ export default function Tooltip({ children, message = "не пропусти п�
         >
           {message}
           {/* Стрелочка */}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-3 xs:border-l-4 border-r-3 xs:border-r-4 border-t-3 xs:border-t-4 border-transparent border-t-black"></div>
         </div>
       )}
     </div>
