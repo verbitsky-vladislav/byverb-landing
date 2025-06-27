@@ -38,11 +38,9 @@ const config: Config = {
         fadeInUp: {
           "0%": {
             opacity: "0",
-            transform: "translateY(30px)",
           },
           "100%": {
             opacity: "1",
-            transform: "translateY(0)",
           },
         },
         glow: {
@@ -60,7 +58,7 @@ const config: Config = {
         },
         buttonPulse: {
           "0%": { transform: "scale(1)" },
-          "50%": { transform: "scale(1.05)" },
+          "50%": { transform: "scale(1.02)" },
           "100%": { transform: "scale(1)" },
         },
       },

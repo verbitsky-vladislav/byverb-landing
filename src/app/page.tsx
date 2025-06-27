@@ -153,18 +153,19 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden max-w-full">
       <SmartHeader currentSection={currentSection} />
-      <div className="snap-y snap-mandatory h-screen overflow-x-hidden max-w-full">
+      <div className="snap-y snap-mandatory overflow-x-hidden max-w-full" style={{ height: '100vh' }}>
         {sections.map((section, index) => (
           <section
             key={section.id}
             id={section.id}
             data-section={index}
-            className={`snap-start h-screen flex items-center justify-center ${section.bg} overflow-x-hidden max-w-full`}
+            className={`snap-start flex items-center justify-center ${section.bg} overflow-hidden max-w-full`}
+            style={{ height: '100vh' }}
           >
             {section.content}
           </section>
-                ))}
-              </div>
+        ))}
+      </div>
     </div>
   );
 }

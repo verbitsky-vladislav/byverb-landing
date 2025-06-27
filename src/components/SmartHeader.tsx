@@ -28,7 +28,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16 max-w-4xl mx-auto">
+        <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
           
           {/* Логотип */}
           <div className="flex items-center space-x-3">
@@ -41,7 +41,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
           </div>
 
           {/* Навигация */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 flex-1 justify-center">
             <a 
               href="#hero" 
               className={`font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity ${
@@ -97,7 +97,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
           {/* Мобильное меню */}
           <div className="md:hidden">
             <button 
-              className="p-2 rounded-lg transition-all duration-300 hover:scale-110"
+              className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100"
               style={{
                 color: isWhiteSection ? '#000000' : '#ffffff'
               }}

@@ -135,8 +135,8 @@ export default function ExpandableCards({
       </div>
 
       {/* Мобильная версия - очень маленькие телефоны и базовые смартфоны */}
-      <div className="xl:hidden">
-        <div className="space-y-3">
+      <div className="xl:hidden overflow-hidden">
+        <div className="space-y-3 p-2 overflow-hidden">
           {cards.map((card, index) => {
             const isFeatured = featuredCard === card.id;
             
@@ -145,10 +145,10 @@ export default function ExpandableCards({
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
                 className={clsx(
-                  "relative rounded-lg shadow-md border border-gray-200 transition-all duration-500 ease-in-out cursor-pointer",
+                  "relative rounded-lg shadow-md border border-gray-200 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden",
                   isFeatured
-                    ? "bg-black text-white scale-105 z-20"
-                    : "bg-white text-black hover:scale-102"
+                    ? "bg-black text-white scale-[1.02] z-20"
+                    : "bg-white text-black hover:scale-[1.01]"
                 )}
               >
                 <div className="p-3 xs:p-4 md:p-8 flex flex-col justify-start items-start w-full">
@@ -192,7 +192,7 @@ export default function ExpandableCards({
                       e.stopPropagation();
                       handleCardClick(card.id);
                     }}
-                    className="absolute top-2 right-2 text-white hover:text-red-400 transition-colors duration-300 text-lg md:text-2xl"
+                    className="absolute top-2 right-2 text-white hover:text-red-400 transition-colors duration-300 text-lg md:text-2xl hover:scale-[1.1]"
                   >
                     ✕
                   </button>
@@ -204,12 +204,13 @@ export default function ExpandableCards({
       </div>
 
       {/* Десктопная версия - ноутбуки и больше */}
-      <div className="hidden xl:block">
+      <div className="hidden xl:block overflow-hidden">
         <div
           className={clsx(
-            "grid grid-cols-3 grid-rows-2 gap-4 transition-all duration-700 ease-in-out min-h-[350px]",
+            "grid grid-cols-3 grid-rows-2 gap-4 transition-all duration-700 ease-in-out p-4 overflow-hidden",
             className
           )}
+          style={{ minHeight: '350px' }}
         >
           {cards.map((card, index) => {
             const isFeatured = featuredCard === card.id;
@@ -241,11 +242,11 @@ export default function ExpandableCards({
                 style={{ viewTransitionName: `card-${index}` }}
                 onClick={() => handleCardClick(card.id)}
                 className={clsx(
-                  "relative rounded-2xl shadow-md border border-gray-200 transition-all duration-700 ease-in-out cursor-pointer",
+                  "relative rounded-2xl shadow-md border border-gray-200 transition-all duration-700 ease-in-out cursor-pointer overflow-hidden",
                   getCardPosition(),
                   isFeatured
-                    ? "bg-black text-white scale-105 z-20"
-                    : "bg-white text-black"
+                    ? "bg-black text-white scale-[1.02] z-20"
+                    : "bg-white text-black hover:scale-[1.01]"
                 )}
               >
                 <div className="p-8 flex flex-col justify-start items-start w-full h-full">
@@ -294,7 +295,7 @@ export default function ExpandableCards({
                       e.stopPropagation();
                       handleCardClick(card.id);
                     }}
-                    className="absolute top-4 right-4 text-white hover:text-red-400 transition-colors duration-300"
+                    className="absolute top-4 right-4 text-white hover:text-red-400 transition-colors duration-300 hover:scale-[1.1]"
                   >
                     ✕
                   </button>

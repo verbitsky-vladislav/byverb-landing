@@ -48,15 +48,15 @@ export default function HeroBlock() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col overflow-x-hidden max-w-full">
+    <div className="w-full flex flex-col max-w-full overflow-hidden" style={{ height: '100vh' }}>
       {/* Мобильная версия - очень маленькие телефоны и базовые смартфоны */}
-      <div className="xl:hidden overflow-x-hidden max-w-full h-full">
+      <div className="xl:hidden max-w-full overflow-hidden" style={{ height: '100vh' }}>
         {/* ПЕРВЫЙ ЭКРАН - Заголовок, факты, карточки и CTA */}
-        <div className="h-full flex flex-col px-4 pt-12 pb-6 overflow-x-hidden max-w-full">
+        <div className="flex flex-col px-4 pt-12 pb-6 max-w-full overflow-hidden" style={{ height: '100vh' }}>
           {/* Контейнер с ограниченной шириной для планшетов и телефонов */}
-          <div className="flex-1 flex flex-col justify-center space-y-4 max-w-2xl mx-auto w-full overflow-x-hidden">
+          <div className="flex-1 flex flex-col justify-center space-y-4 max-w-2xl mx-auto w-full">
             {/* Заголовок */}
-            <div className="space-y-3 overflow-x-hidden">
+            <div className="space-y-3">
               <div className="text-sm xs:text-base md:text-xl font-inter-black text-gray-700">
                 нужен сайт, который продает?
               </div>
@@ -71,7 +71,7 @@ export default function HeroBlock() {
             </div>
 
             {/* Компактные факты только для больших планшетов (768px+) */}
-            <div className="hidden lg:grid lg:grid-cols-3 gap-3 mb-3 overflow-x-hidden">
+            <div className="hidden lg:grid lg:grid-cols-3 gap-3 mb-3">
               <div className="bg-gray-50 p-2 rounded-lg text-center">
                 <div className="text-xs lg:text-lg font-inter-black text-black">
                   9.900 ₽
@@ -90,7 +90,7 @@ export default function HeroBlock() {
             </div>
 
             {/* Миниатюрные факты для планшетов (480px - 768px) */}
-            <div className="hidden sm:block lg:hidden mb-3 overflow-x-hidden">
+            <div className="hidden sm:block lg:hidden mb-3">
               <div className="flex justify-center space-x-3">
                 <div className="bg-gray-50 px-2 py-1 rounded text-center">
                   <div className="text-xs font-inter-black text-black">9.900₽</div>
@@ -105,19 +105,21 @@ export default function HeroBlock() {
             </div>
 
             {/* Карточки решений */}
-            <div className="w-full overflow-x-hidden">
+            <div className="w-full">
               <ExpandableCards cards={cards} />
             </div>
           </div>
 
           {/* Нижняя часть - CTA кнопка (скрыта для экранов ≤ 380px) */}
-          <div className="mt-4 space-y-3 max-w-2xl mx-auto w-full block overflow-x-hidden cta-button-container">
+          <div className="mt-4 space-y-3 w-full block cta-button-container">
             <div className="text-sm xs:text-base md:text-xl font-inter-black text-black text-center">
               Рассчитайте стоимость за 2 минуты
             </div>
-            <button className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
-              <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
-            </button>
+            <div className="px-8 py-4 h-16 xs:h-20 md:h-24 flex items-center">
+              <button className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+              </button>
+            </div>
             <div className="text-xs xs:text-sm md:text-base text-gray-600 font-roboto-light text-center">
               Сайт + бот + настройка • 7 дней • Гарантия
             </div>
@@ -126,23 +128,23 @@ export default function HeroBlock() {
       </div>
 
       {/* Десктопная версия - ноутбуки и больше */}
-      <div className="hidden xl:flex flex-1 items-center justify-center pt-12 pb-6 overflow-x-hidden max-w-full h-full">
-        <div className="w-full max-w-[1400px] mx-auto px-8 overflow-x-hidden">
-          <div className="grid grid-cols-2 gap-16 items-start overflow-x-hidden">
+      <div className="hidden xl:flex flex-1 items-center justify-center pt-12 pb-6 max-w-full overflow-hidden" style={{ height: '100vh' }}>
+        <div className="w-full max-w-[1400px] mx-auto px-8">
+          <div className="grid grid-cols-2 gap-16 items-start">
             
             {/* ЛЕВАЯ КОЛОНКА - Заголовок и CTA */}
-            <div className={`order-2 xl:order-1 pt-6 transition-all duration-1000 ease-out overflow-x-hidden ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            <div className={`order-2 xl:order-1 pt-6 transition-all duration-1000 ease-out ${
+              isLoaded ? 'opacity-100' : 'opacity-0'
             }`}>
               {/* Основной заголовок */}
-              <div className="mb-8 overflow-x-hidden">
+              <div className="mb-8">
                 <div className={`text-xl xl:text-2xl font-inter-black text-gray-700 mb-2 transition-all duration-700 ease-out delay-200 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  isLoaded ? 'opacity-100' : 'opacity-0'
                 }`}>
                   нужен сайт, который продает?
                 </div>
                 <div className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-inter-black leading-none tracking-tight mb-4 transition-all duration-700 ease-out delay-400 ${
-                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  isLoaded ? 'opacity-100' : 'opacity-0'
                 }`}>
                   <span className="text-black">
                     <span className="xl:block">САЙТ →</span>
@@ -154,17 +156,19 @@ export default function HeroBlock() {
               </div>
               
               {/* CTA кнопка */}
-              <div className={`space-y-4 transition-all duration-700 ease-out delay-1000 overflow-x-hidden ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              <div className={`space-y-4 transition-all duration-700 ease-out delay-1000 ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
               }`}>
                 <div className="text-base font-inter-black text-black">
                   Рассчитайте стоимость за 2 минуты
                 </div>
-                <button className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-110 cursor-pointer border-4 border-[#E53E3E] hover:-translate-y-2 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
-                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                  <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500 group-hover:scale-110"></div>
-                </button>
+                <div className="h-20 flex items-center">
+                  <button className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                    <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                    <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
+                  </button>
+                </div>
                 <div className="text-sm text-gray-600 font-roboto-light max-w-md whitespace-nowrap">
                   Сайт + бот + настройка • 7 дней • Гарантия
                 </div>
@@ -172,14 +176,14 @@ export default function HeroBlock() {
             </div>
 
             {/* ПРАВАЯ КОЛОНКА - Факты и карточки */}
-            <div className={`order-1 xl:order-2 transition-all duration-1000 ease-out delay-300 overflow-x-hidden ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            <div className={`order-1 xl:order-2 transition-all duration-1000 ease-out delay-300 ${
+              isLoaded ? 'opacity-100' : 'opacity-0'
             }`}>
               {/* Блок с фактами и гарантиями */}
-              <div className={`bg-white border border-black p-6 rounded-lg mb-4 transition-all duration-700 ease-out delay-500 overflow-x-hidden ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              <div className={`bg-white border border-black p-6 rounded-lg mb-4 transition-all duration-700 ease-out delay-500 ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
               }`}>
-                <div className="space-y-4 overflow-x-hidden">
+                <div className="space-y-4">
                   <div>
                     <div className="text-xl sm:text-2xl font-inter-black text-black mb-2">
                       Прибыль растет в 3 раза
@@ -227,8 +231,8 @@ export default function HeroBlock() {
               </div>
 
               {/* Карточки решений */}
-              <div className={`w-full transition-all duration-700 ease-out delay-700 overflow-x-hidden overflow-y-hidden ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              <div className={`w-full transition-all duration-700 ease-out delay-700 overflow-y-hidden ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
               }`}>
                 <ExpandableCards cards={cards} />
               </div>
@@ -285,12 +289,12 @@ export default function HeroBlock() {
                   </div>
                   <button 
                     onClick={() => setIsFloatingButtonExpanded(false)}
-                    className="text-gray-400 hover:text-gray-600 transition-all duration-300 ease-in-out text-lg hover:scale-110"
+                    className="text-gray-400 hover:text-gray-600 transition-all duration-300 ease-in-out text-lg hover:scale-[1.1]"
                   >
                     ✕
                   </button>
                 </div>
-                <button className="group relative w-full inline-flex items-center justify-center px-6 py-4 bg-[#E53E3E] text-white font-inter-black text-base tracking-wider transition-all duration-500 ease-in-out transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                <button className="group relative w-full inline-flex items-center justify-center px-6 py-4 bg-[#E53E3E] text-white font-inter-black text-base tracking-wider transition-all duration-500 ease-in-out transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
                   <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
                 </button>
                 <div className="text-xs text-gray-600 font-roboto-light text-center mt-3">
@@ -302,7 +306,7 @@ export default function HeroBlock() {
             <div className="transition-all duration-700 ease-out transform animate-in zoom-in-95 fade-in overflow-x-hidden">
               <button 
                 onClick={() => setIsFloatingButtonExpanded(true)}
-                className="w-16 h-16 bg-[#E53E3E] text-white font-inter-black text-xs rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:scale-110 flex items-center justify-center"
+                className="w-16 h-16 bg-[#E53E3E] text-white font-inter-black text-xs rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:scale-[1.05] flex items-center justify-center"
               >
                 💰
               </button>
@@ -312,4 +316,4 @@ export default function HeroBlock() {
       </div>
     </div>
   );
-} 
+}
