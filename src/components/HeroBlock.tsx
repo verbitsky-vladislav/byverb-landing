@@ -1,19 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ExpandableCards from './ExpandableCards';
 
 export default function HeroBlock() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isCTACollapsed, setIsCTACollapsed] = useState(false);
+  const [isFloatingButtonExpanded, setIsFloatingButtonExpanded] = useState(true);
 
   useEffect(() => {
-    // Небольшая задержка для плавного появления
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
+    setIsLoaded(true);
   }, []);
 
   const cards = [
@@ -110,8 +105,8 @@ export default function HeroBlock() {
             </div>
           </div>
 
-          {/* Нижняя часть - CTA кнопка (удобно расположена снизу экрана) */}
-          <div className="xs:block hidden mt-8 space-y-4 max-w-2xl mx-auto w-full">
+          {/* Нижняя часть - CTA кнопка (скрыта для экранов ≤ 380px) */}
+          <div className="mt-8 space-y-4 max-w-2xl mx-auto w-full hidden xs:block">
             <div className="text-base xs:text-lg md:text-2xl font-inter-black text-black text-center">
               Рассчитайте стоимость за 2 минуты
             </div>
@@ -121,48 +116,6 @@ export default function HeroBlock() {
             <div className="text-xs xs:text-sm md:text-lg text-gray-600 font-roboto-light text-center">
               Сайт + бот + настройка • 7 дней • Гарантия
             </div>
-          </div>
-        </div>
-
-        {/* Фиксированная кнопка CTA для очень маленьких телефонов (< 380px) */}
-        <div className="xs:hidden fixed bottom-4 left-4 z-40">
-          <div className={`bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200 transition-all duration-300 ease-in-out ${
-            isCTACollapsed ? 'w-12 h-12' : 'w-64 p-4'
-          }`}>
-            {isCTACollapsed ? (
-              /* Свернутое состояние - только иконка */
-              <button 
-                onClick={() => setIsCTACollapsed(false)}
-                className="w-full h-full flex items-center justify-center text-[#E53E3E] hover:scale-110 transition-transform duration-200"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-              </button>
-            ) : (
-              /* Развернутое состояние - полная кнопка */
-              <div className="space-y-3">
-                <div className="flex justify-between items-start">
-                  <div className="text-sm font-inter-black text-black">
-                    Рассчитайте стоимость за 2 минуты
-                  </div>
-                  <button 
-                    onClick={() => setIsCTACollapsed(true)}
-                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200 ml-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-                <button className="group relative w-full inline-flex items-center justify-center px-4 py-3 bg-[#E53E3E] text-white font-inter-black text-sm tracking-wider transition-all duration-500 transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] shadow-xl hover:shadow-2xl hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
-                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
-                </button>
-                <div className="text-xs text-gray-600 font-roboto-light text-center">
-                  Сайт + бот + настройка • 7 дней • Гарантия
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -309,6 +262,44 @@ export default function HeroBlock() {
               </a>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Всплывающая кнопка для очень маленьких телефонов (≤ 380px) */}
+      <div className="xl:hidden">
+        <div className="fixed bottom-4 left-4 right-4 z-50">
+          {isFloatingButtonExpanded ? (
+            <div className="transition-all duration-700 ease-out transform animate-in slide-in-from-bottom-4 fade-in">
+              <div className="bg-white border-2 border-[#E53E3E] rounded-lg shadow-xl p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="text-sm font-inter-black text-black">
+                    Рассчитайте стоимость за 2 минуты
+                  </div>
+                  <button 
+                    onClick={() => setIsFloatingButtonExpanded(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-all duration-300 ease-in-out text-lg hover:scale-110"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <button className="group relative w-full inline-flex items-center justify-center px-6 py-4 bg-[#E53E3E] text-white font-inter-black text-base tracking-wider transition-all duration-500 ease-in-out transform hover:scale-105 cursor-pointer border-2 border-[#E53E3E] shadow-xl hover:shadow-2xl hover:-translate-y-1 button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                </button>
+                <div className="text-xs text-gray-600 font-roboto-light text-center mt-3">
+                  Сайт + бот + настройка • 7 дней • Гарантия
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="transition-all duration-700 ease-out transform animate-in zoom-in-95 fade-in">
+              <button 
+                onClick={() => setIsFloatingButtonExpanded(true)}
+                className="w-16 h-16 bg-[#E53E3E] text-white font-inter-black text-xs rounded-full shadow-xl hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:scale-110 flex items-center justify-center"
+              >
+                💰
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -51,7 +51,10 @@ export default function ExpandableCards({
   };
 
   const handleMouseEnter = (message: string, isActive: boolean) => {
-    setTooltip({ show: true, x: 0, y: 0, message, isActive });
+    // Показываем тултип только на десктопах (≥ 1024px)
+    if (window.innerWidth >= 1024) {
+      setTooltip({ show: true, x: 0, y: 0, message, isActive });
+    }
   };
 
   const handleMouseLeave = () => {
