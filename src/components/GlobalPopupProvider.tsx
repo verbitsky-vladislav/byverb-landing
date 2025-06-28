@@ -27,8 +27,8 @@ export default function GlobalPopupProvider({ children }: GlobalPopupProviderPro
 
     // Очищаем при размонтировании
     return () => {
-      if (typeof window !== 'undefined') {
-        delete window.openQuizPopup;
+      if (typeof window !== 'undefined' && window.openQuizPopup) {
+        window.openQuizPopup = undefined;
       }
     };
   }, []);

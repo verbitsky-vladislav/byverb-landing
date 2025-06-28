@@ -1,5 +1,9 @@
 import { useEffect } from 'react';
 
+interface WebkitOverflowStyle extends CSSStyleDeclaration {
+  webkitOverflowScrolling?: string;
+}
+
 // Хук для получения высоты экрана
 export const useScreenHeight = () => {
   useEffect(() => {
@@ -34,7 +38,7 @@ export const useScrollLock = (isLocked: boolean) => {
       
       // Дополнительная блокировка для iOS Safari
       document.body.style.touchAction = 'none';
-      document.body.style.webkitOverflowScrolling = 'auto';
+      (document.body.style as WebkitOverflowStyle).webkitOverflowScrolling = 'auto';
       
       // Блокируем скролл на html
       document.documentElement.style.overflow = 'hidden';
@@ -57,7 +61,7 @@ export const useScrollLock = (isLocked: boolean) => {
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.touchAction = '';
-      document.body.style.webkitOverflowScrolling = '';
+      (document.body.style as WebkitOverflowStyle).webkitOverflowScrolling = '';
       
       document.documentElement.style.overflow = '';
       document.documentElement.style.position = '';
@@ -84,7 +88,7 @@ export const useScrollLock = (isLocked: boolean) => {
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.touchAction = '';
-      document.body.style.webkitOverflowScrolling = '';
+      (document.body.style as WebkitOverflowStyle).webkitOverflowScrolling = '';
       
       document.documentElement.style.overflow = '';
       document.documentElement.style.position = '';

@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    openQuizPopup: (title: string, message: string) => void;
+    openQuizPopup?: (title: string, message: string) => void;
   }
 }
 

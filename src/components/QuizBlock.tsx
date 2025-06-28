@@ -30,11 +30,6 @@ type QuizResult = {
   };
 
 // Глобальное состояние для попапа
-declare global {
-  interface Window {
-    openQuizPopup: (title: string, message: string) => void;
-  }
-}
 
 const questions: QuizQuestion[] = [
     {
