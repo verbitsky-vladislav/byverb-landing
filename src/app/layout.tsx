@@ -1,6 +1,7 @@
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
+import React from "react";
 
 const interBlack = Inter({
   subsets: ["latin", "cyrillic"],
@@ -84,17 +85,13 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'your-google-verification-code',
-    yandex: '6e32fd2f329f842a',
-    yandex_verification: '6e32fd2f329f842a',
   },
   category: 'technology',
   classification: 'Web Development',
   other: {
-    'yandex-verification': '6e32fd2f329f842a',
     'google-site-verification': 'your-google-verification-code',
     'msvalidate.01': 'your-bing-verification-code',
     'wot-verification': 'your-wot-verification-code',
-    'yandex-verification': '6e32fd2f329f842a',
     'mailru-verification': 'your-mailru-verification-code',
   },
 };
@@ -107,57 +104,13 @@ export default function RootLayout({
   return (
     <html lang="ru" className="overflow-x-hidden">
       <head>
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="byverb_" />
-        
-        {/* Yandex Metrika */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-              (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-              ym(YOUR_YANDEX_METRIKA_ID, "init", {
-                defer: true,
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true
-              });
-            `,
-          }}
-        />
-        <noscript>
-          <div>
-            <img src="https://mc.yandex.ru/watch/YOUR_YANDEX_METRIKA_ID" style={{ position: 'absolute', left: '-9999px' }} alt="" />
-          </div>
-        </noscript>
-
-        {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'YOUR_GA_ID', {
-                page_title: 'byverb_ - Разработка сайтов и ботов',
-                page_location: 'https://ru.byverb.com',
-                send_page_view: true
-              });
-            `,
-          }}
-        />
 
         {/* Structured Data */}
         <script
@@ -243,8 +196,6 @@ export default function RootLayout({
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://mc.yandex.ru" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         
         {/* Favicon */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -254,14 +205,14 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         
         {/* DNS Prefetch */}
-        <link rel="dns-prefetch" href="//mc.yandex.ru" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <title></title>
       </head>
       <body className={`${interBlack.variable} ${robotoExtraLight.variable} bg-white text-black overflow-x-hidden max-w-full`}>
         <div className="overflow-x-hidden max-w-full">
           {children}
         </div>
+        <div style={{ display: 'none' }}>Verification: 6d04f5b259c24cf8</div>
       </body>
     </html>
   );

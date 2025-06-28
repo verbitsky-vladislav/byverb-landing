@@ -6,9 +6,10 @@
 - ✅ Полные мета-теги для всех поисковых систем
 - ✅ Open Graph для социальных сетей
 - ✅ Twitter Cards
-- ✅ Yandex и Google верификация
+- ✅ Google верификация
 - ✅ Географические мета-теги (Москва, Россия)
 - ✅ DC (Dublin Core) мета-теги
+- ✅ Верификация: 6d04f5b259c24cf8
 
 ### 2. **Структурированные данные (Schema.org)**
 - ✅ Organization микроразметка
@@ -30,7 +31,6 @@
 - ✅ PWA манифест
 
 ### 4. **Аналитика и отслеживание**
-- ✅ Yandex Metrika
 - ✅ Google Analytics
 - ✅ Core Web Vitals мониторинг
 - ✅ Performance API
@@ -72,19 +72,15 @@
 
 ## 🔧 Настройка аналитики
 
-### Yandex Metrika:
-1. Замените `YOUR_YANDEX_METRIKA_ID` на ваш ID в `layout.tsx`
-2. Добавьте в Yandex Webmaster: `https://ru.byverb.com`
-
 ### Google Analytics:
 1. Замените `YOUR_GA_ID` на ваш ID в `layout.tsx`
 2. Добавьте в Google Search Console: `https://ru.byverb.com`
 
 ### Верификация:
 1. **Google**: Замените `your-google-verification-code`
-2. **Yandex**: Уже настроен `6e32fd2f329f842a`
-3. **Bing**: Замените `your-bing-verification-code`
-4. **Mail.ru**: Замените `your-mailru-verification-code`
+2. **Bing**: Замените `your-bing-verification-code`
+3. **Mail.ru**: Замените `your-mailru-verification-code`
+4. **WOT**: Замените `your-wot-verification-code`
 
 ## 📊 Мониторинг Core Web Vitals
 
@@ -119,8 +115,8 @@
 
 ### 3. **Локальная оптимизация**
 - Добавьте адрес в Google My Business
-- Создайте страницы в Yandex.Справочнике
-- Добавьте отзывы на 2GIS
+- Создайте страницы в 2GIS
+- Добавьте отзывы на картах
 
 ### 4. **Контент-маркетинг**
 - Ведите блог
@@ -130,11 +126,10 @@
 ## 🔍 Проверка SEO
 
 ### Инструменты для проверки:
-1. **Yandex Webmaster** - https://webmaster.yandex.ru
-2. **Google Search Console** - https://search.google.com/search-console
-3. **PageSpeed Insights** - https://pagespeed.web.dev
-4. **GTmetrix** - https://gtmetrix.com
-5. **Schema.org Validator** - https://validator.schema.org
+1. **Google Search Console** - https://search.google.com/search-console
+2. **PageSpeed Insights** - https://pagespeed.web.dev
+3. **GTmetrix** - https://gtmetrix.com
+4. **Schema.org Validator** - https://validator.schema.org
 
 ### Что проверить:
 - ✅ Индексация в поисковиках
@@ -170,4 +165,5 @@ npm run deploy
 
 **Домен**: https://ru.byverb.com  
 **Версия**: 1.0  
-**Дата**: 2024 
+**Дата**: 2024  
+**Верификация**: 6d04f5b259c24cf8 

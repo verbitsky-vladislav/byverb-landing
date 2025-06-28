@@ -40,9 +40,6 @@ export default function SocialMeta({
       {/* VK */}
       <meta property="vk:image" content={`https://ru.byverb.com${image}`} />
       
-      {/* Yandex */}
-      <meta name="yandex-verification" content="6e32fd2f329f842a" />
-      
       {/* Additional Social Meta */}
       <meta name="author" content="byverb_" />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
