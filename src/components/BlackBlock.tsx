@@ -34,10 +34,10 @@ export default function BlackBlock() {
               +7 (495) 123-45-67
             </a>
             <a 
-              href="mailto:hello@byverb.dev" 
-              className="font-inter-black text-xs xs:text-sm sm:text-base lg:text-lg text-white hover:text-gray-300 transition-colors duration-300"
+              href="mailto:vladislav.verbitsky.bis@gmail.com"
+              className="text-white hover:text-red-500 transition-colors"
             >
-              hello@byverb.dev
+              vladislav.verbitsky.bis@gmail.com
             </a>
           </div>
         </div>

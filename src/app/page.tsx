@@ -4,15 +4,66 @@ import React, { useState, useEffect } from 'react';
 import HeroBlock from '../components/HeroBlock';
 import ProjectsSlider from '../components/ProjectsSlider';
 import QuizBlock from '../components/QuizBlock';
+import ProductConfigurator from '../components/ProductConfigurator';
+import FAQBlock from '../components/FAQBlock';
 import SmartHeader from '../components/SmartHeader';
+import AboutBlock from '../components/AboutBlock';
+import HowWeWorkBlock from '../components/HowWeWorkBlock';
+import ContactBlock from '../components/ContactBlock';
+import OrderPopup from '../components/OrderPopup';
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState(0);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
 
   useEffect(() => {
+    // Проверяем, что мы на клиенте
+    if (typeof window === 'undefined') return;
+
+    // Обработчик для открытия попапа
+    const handleOpenOrderPopup = (event: CustomEvent) => {
+      setPopupTitle(event.detail.title);
+      setPopupMessage(event.detail.message);
+      setPopupOpen(true);
+    };
+
+    // Обработчик для принудительной установки FAQ секции
+    const handleSetFAQSection = () => {
+      console.log('Forcing FAQ section to active');
+      setCurrentSection(6);
+    };
+
+    window.addEventListener('openOrderPopup', handleOpenOrderPopup as EventListener);
+    window.addEventListener('setFAQSection', handleSetFAQSection);
+
+    // Функция определения активной секции при скролле
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section');
+      const viewportHeight = window.innerHeight;
+      const scrollTop = window.pageYOffset;
+      
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + scrollTop;
+        const sectionHeight = rect.height;
+        const sectionCenter = sectionTop + sectionHeight / 2;
+        const currentScrollCenter = scrollTop + viewportHeight / 2;
+        
+        // Секция считается активной, если её центр находится в центре viewport
+        if (Math.abs(sectionCenter - currentScrollCenter) < viewportHeight * 0.4) {
+          setCurrentSection(index);
+        }
+      });
+    };
+
+    // Добавляем обработчик скролла
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     const observerOptions = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px', // Секция считается активной когда находится в центре экрана
+      rootMargin: '-20% 0px -20% 0px', // Уменьшаем отступы для более точного определения
       threshold: 0
     };
 
@@ -20,8 +71,15 @@ export default function Home() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const sectionIndex = parseInt(entry.target.getAttribute('data-section') || '0');
-          setCurrentSection(sectionIndex);
-          console.log('Активная секция:', sectionIndex);
+          const rect = entry.target.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          const sectionCenter = rect.top + rect.height / 2;
+          const viewportCenter = viewportHeight / 2;
+          
+          // Секция считается активной, если её центр находится в центре viewport
+          if (Math.abs(sectionCenter - viewportCenter) < viewportHeight * 0.3) {
+            setCurrentSection(sectionIndex);
+          }
         }
       });
     }, observerOptions);
@@ -35,91 +93,80 @@ export default function Home() {
 
     return () => {
       sections.forEach(section => observer.unobserve(section));
+      window.removeEventListener('openOrderPopup', handleOpenOrderPopup as EventListener);
+      window.removeEventListener('setFAQSection', handleSetFAQSection);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const sections = [
-    { id: 'hero', bg: 'bg-white', content: <HeroBlock /> },
-    { id: 'projects', bg: 'bg-black text-white', content: <ProjectsSlider /> },
+    { id: 'hero', bg: 'bg-white', content: <HeroBlock />, isHero: true },
+    { id: 'projects', bg: 'bg-black text-white', content: <ProjectsSlider />, isHero: false },
     { 
       id: 'quiz', 
       bg: 'bg-white', 
-      content: <QuizBlock />
+      content: <QuizBlock />,
+      isHero: false
+    },
+    { 
+      id: 'products', 
+      bg: 'bg-white', 
+      content: <ProductConfigurator />,
+      isHero: false
     },
     { 
       id: 'about', 
       bg: 'bg-black text-white', 
-      content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">О нас</h2>
-            <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
-              Команда из 15 специалистов. Работаем с 2019 года.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 text-left">
-              <div>
-                <h3 className="text-xl xs:text-2xl sm:text-3xl font-inter-black mb-2 sm:mb-4">15</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Специалистов в команде</p>
-          </div>
-              <div>
-                <h3 className="text-xl xs:text-2xl sm:text-3xl font-inter-black mb-2 sm:mb-4">200+</h3>
-                <p className="text-xs xs:text-sm sm:text-base">Реализованных проектов</p>
-                </div>
-                    <div>
-              <h3 className="text-xl xs:text-2xl sm:text-3xl font-inter-black mb-2 sm:mb-4">5</h3>
-              <p className="text-xs xs:text-sm sm:text-base">Лет на рынке</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      content: <AboutBlock />,
+      isHero: false
+    },
+    { 
+      id: 'how-we-work', 
+      bg: 'bg-white', 
+      content: <HowWeWorkBlock />,
+      isHero: false
+    },
+    { 
+      id: 'faq', 
+      bg: 'bg-white', 
+      content: <FAQBlock />,
+      isHero: false
     },
     { 
       id: 'contact', 
-      bg: 'bg-white', 
-      content: (
-        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8">Контакты</h2>
-            <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12">
-              Готовы обсудить ваш проект
-            </p>
-            <div className="space-y-3 xs:space-y-4 sm:space-y-6">
-              <div>
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-1 sm:mb-2">Телефон</h3>
-                <p className="text-xs xs:text-sm sm:text-base lg:text-lg">+7 (999) 123-45-67</p>
-              </div>
-              <div>
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-1 sm:mb-2">Email</h3>
-                <p className="text-xs xs:text-sm sm:text-base lg:text-lg">hello@byverb.ru</p>
-              </div>
-              <div>
-                <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-1 sm:mb-2">Адрес</h3>
-                <p className="text-xs xs:text-sm sm:text-base lg:text-lg">Москва, ул. Примерная, 123</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+      bg: 'bg-black text-white', 
+      content: <ContactBlock />,
+      isHero: false
     }
   ];
 
   return (
     <div className="min-h-screen overflow-x-hidden max-w-full">
       <SmartHeader currentSection={currentSection} />
-      <div className="snap-y snap-mandatory overflow-x-hidden max-w-full" style={{ height: '100vh' }}>
+      <div className="overflow-x-hidden max-w-full">
         {sections.map((section, index) => (
           <section
             key={section.id}
             id={section.id}
             data-section={index}
-            className={`snap-start flex items-center justify-center ${section.bg} overflow-hidden max-w-full`}
-            style={{ height: '100vh' }}
+            className={`flex items-center justify-center ${section.bg} overflow-hidden max-w-full ${
+              section.isHero ? 'h-screen' : 'min-h-screen py-8 sm:py-12 lg:py-16'
+            }`}
           >
-            {section.content}
+            <div className="w-full max-w-full px-4 sm:px-6 lg:px-8">
+              {section.content}
+            </div>
           </section>
         ))}
       </div>
+
+      {/* Попап заказа */}
+      <OrderPopup
+        isOpen={popupOpen}
+        onClose={() => setPopupOpen(false)}
+        title={popupTitle}
+        message={popupMessage}
+      />
     </div>
   );
 }

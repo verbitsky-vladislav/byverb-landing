@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="ru" className="overflow-x-hidden">
       <head>
         <meta name="yandex-verification" content="6e32fd2f329f842a" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>byverb_ разработка сайтов и ботов</title>
       </head>
       <body className={`${interBlack.variable} ${robotoExtraLight.variable} bg-white text-black overflow-x-hidden max-w-full`}>

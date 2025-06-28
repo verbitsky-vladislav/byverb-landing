@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import OrderPopup from './OrderPopup';
 
 interface Project {
   id: number;
@@ -56,6 +57,9 @@ const projects: Project[] = [
 
 export default function ProjectsSlider() {
   const [currentProject, setCurrentProject] = useState(0);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
@@ -67,6 +71,85 @@ export default function ProjectsSlider() {
 
   const goToProject = (index: number) => {
     setCurrentProject(index);
+  };
+
+  const openPopup = (title: string, message: string) => {
+    setPopupTitle(title);
+    setPopupMessage(message);
+    setPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
+
+  const getProjectMessage = (project: Project) => {
+    const messages = {
+      1: `Здравствуйте! Хочу заказать проект похожий на "To The Sun - DAO комьюнити криптоинвесторов".
+
+Мне нужен:
+• Современный сайт для DAO комьюнити
+• Система смарт-контрактов
+• Реферальная система с блокчейн-функционалом
+• Интеграция с криптокошельками
+
+Результаты проекта впечатляют: 80k$ за первую неделю и 2000+ участников.
+
+Готов обсудить детали и бюджет.`
+    ,
+      2: `Здравствуйте! Хочу заказать лендинг похожий на проект TATWOLE.
+
+Мне нужен:
+• Лендинг для продажи программы тренировок
+• Простая страница с одной целью - конверсия
+• Оптимизация под мобильные устройства
+• Интеграция с платежными системами
+
+Результаты проекта отличные: конверсия 62% и 3000 переходов в первый день.
+
+Готов обсудить детали и бюджет.`
+    ,
+      3: `Здравствуйте! Хочу заказать сайт похожий на кофейню "Какао'Мама".
+
+Мне нужен:
+• Масштабный ребрендинг сайта
+• Современный дизайн
+• Удобная связь прямо на сайте
+• Интеграция с Яндекс.Картами
+• Геотаргетинг по городу
+
+Результаты: +62 посетителя в неделю.
+
+Готов обсудить детали и бюджет.`
+    ,
+      4: `Здравствуйте! Хочу заказать лендинг похожий на Reflecty.
+
+Мне нужен:
+• Лендинг-атлант для максимального прогрева
+• Интеграция с Telegram-ботом
+• Настройка контекстной и таргетированной рекламы
+• Система прогрева посетителей
+
+Результаты впечатляют: 80% заявок конвертировались в платежи, 4000+ посетителей за 2 месяца.
+
+Готов обсудить детали и бюджет.`
+    ,
+      5: `Здравствуйте! Хочу заказать сайт похожий на мастера по ремонту техники.
+
+Мне нужен:
+• Одностраничный сайт с упором на доверие
+• Продвижение в Рекламной сети Яндекс
+• Система заявок
+• Оптимизация под локальные запросы
+
+Результаты: 200+ заявок в месяц (было 40).
+
+Готов обсудить детали и бюджет.`
+    };
+    
+    return messages[project.id as keyof typeof messages] || `Здравствуйте! Хочу заказать проект похожий на этот.
+
+Готов обсудить детали и бюджет.`;
   };
 
   const currentProjectData = projects[currentProject];
@@ -137,7 +220,13 @@ export default function ProjectsSlider() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>
               </a>
-              <button className="w-full bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+              <button 
+                onClick={() => openPopup(
+                  `Заказать проект похожий на "${currentProjectData.title}"`,
+                  getProjectMessage(currentProjectData)
+                )}
+                className="w-full bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer"
+              >
                 Хочу такой же
               </button>
             </div>
@@ -249,7 +338,13 @@ export default function ProjectsSlider() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
                     </a>
-                    <button className="bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <button 
+                      onClick={() => openPopup(
+                        `Заказать проект похожий на "${currentProjectData.title}"`,
+                        getProjectMessage(currentProjectData)
+                      )}
+                      className="bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer"
+                    >
                       Хочу такой же
                     </button>
                   </div>
@@ -302,6 +397,14 @@ export default function ProjectsSlider() {
           ))}
         </div>
       </div>
+
+      {/* Попап заказа */}
+      <OrderPopup
+        isOpen={popupOpen}
+        onClose={closePopup}
+        title={popupTitle}
+        message={popupMessage}
+      />
     </div>
   );
 } 

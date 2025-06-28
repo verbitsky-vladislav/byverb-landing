@@ -31,14 +31,15 @@ export default function ExpandableCards({
   const [featuredCard, setFeaturedCard] = useState<string | null>(null);
 
   const handleCardClick = (cardId: string) => {
-    if (!document.startViewTransition) {
+    // Проверяем, что мы на клиенте и доступен startViewTransition
+    if (typeof window !== 'undefined' && document.startViewTransition) {
+      document.startViewTransition(() => {
+        setFeaturedCard(featuredCard === cardId ? null : cardId);
+      });
+    } else {
+      // Fallback для сервера или браузеров без поддержки
       setFeaturedCard(featuredCard === cardId ? null : cardId);
-      return;
     }
-
-    document.startViewTransition(() => {
-      setFeaturedCard(featuredCard === cardId ? null : cardId);
-    });
   };
 
   // Функция для рендера текста с выделениями

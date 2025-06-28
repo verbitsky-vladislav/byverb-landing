@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
+import OrderPopup from './OrderPopup';
 
 interface QuizQuestion {
   id: number;
@@ -270,6 +271,9 @@ export default function QuizBlock() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [result, setResult] = useState<QuizResult | null>(null);
   const [contact, setContact] = useState('');
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupTitle, setPopupTitle] = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
 
   const handleAnswer = (answerIndex: number) => {
     const newAnswers = [...answers, answerIndex];
@@ -290,6 +294,54 @@ export default function QuizBlock() {
       setShowContactForm(false);
       // Запускаем хлопушку при показе результата
       launchConfetti();
+    }
+  };
+
+  const openPopup = (title: string, message: string) => {
+    setPopupTitle(title);
+    setPopupMessage(message);
+    setPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
+
+  const handleBasicOption = () => {
+    if (result) {
+      openPopup(
+        `Заказать ${result.option1.title}`,
+        `Здравствуйте! Хочу заказать ${result.option1.title}.
+
+Детали заказа:
+• Название: ${result.option1.title}
+• Стоимость: ${formatNumber(result.option1.price)} ₽ (было ${formatNumber(result.option1.originalPrice)} ₽)
+• Описание: ${result.option1.description}
+
+Преимущества:
+${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
+
+Готов обсудить детали и начать работу.`
+      );
+    }
+  };
+
+  const handleFullOption = () => {
+    if (result) {
+      openPopup(
+        `Заказать ${result.option2.title}`,
+        `Здравствуйте! Хочу заказать ${result.option2.title}.
+
+Детали заказа:
+• Название: ${result.option2.title}
+• Стоимость: ${formatNumber(result.option2.price)} ₽
+• Описание: ${result.option2.description}
+
+Преимущества:
+${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
+
+Готов обсудить детали и начать работу.`
+      );
     }
   };
 
@@ -330,120 +382,139 @@ export default function QuizBlock() {
     setContact('');
   };
 
+  // Функция для форматирования чисел без локали
+  const formatNumber = (num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+
   if (showResult && result) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black">
-            {result.title}
-          </h2>
-          <p className="text-sm xs:text-base sm:text-lg lg:text-xl mb-8 text-gray-700">
-            {result.recommendation}
-          </p>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8 mb-8">
-            {/* Вариант 1 - Базовый со скидкой */}
-            <div className="bg-white border-2 border-red-500 rounded-3xl p-6 xs:p-8 shadow-2xl relative">
-              <div className="absolute -top-3 -right-3 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                -40%
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black">
+          {result.title}
+        </h2>
+        <p className="text-sm xs:text-base sm:text-lg lg:text-xl mb-8 text-gray-700">
+          {result.recommendation}
+        </p>
+        
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mb-8 justify-center items-center">
+          {/* Вариант 1 - Базовый (рекомендуемый) */}
+          <div className="bg-white border-2 border-red-500 rounded-3xl p-4 xs:p-6 shadow-2xl relative w-full max-w-md lg:max-w-sm">
+            <div className="absolute -top-3 -right-3 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+              -40%
+            </div>
+            <div className="absolute -top-3 -left-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+              Рекомендуем
+            </div>
+            <h3 className="text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black">
+              {result.option1.title}
+            </h3>
+            <p className="text-sm xs:text-base mb-4 text-gray-700">
+              {result.option1.description}
+            </p>
+            
+            <div className="mb-4">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <span className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-red-500">
+                  {formatNumber(result.option1.price)} ₽
+                </span>
+                <span className="text-base xs:text-lg sm:text-xl text-gray-400 line-through">
+                  {formatNumber(result.option1.originalPrice)} ₽
+                </span>
               </div>
-              <div className="absolute -top-3 -left-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                Рекомендуем
-              </div>
-              <h3 className="text-xl xs:text-2xl sm:text-3xl font-inter-black mb-4 text-black">
-                {result.option1.title}
-              </h3>
-              <p className="text-sm xs:text-base sm:text-lg mb-6 text-gray-700">
-                {result.option1.description}
-              </p>
-              
-              <div className="mb-6">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <span className="text-2xl xs:text-3xl sm:text-4xl font-inter-black text-red-500">
-                    {result.option1.price.toLocaleString()} ₽
-                  </span>
-                  <span className="text-lg xs:text-xl sm:text-2xl text-gray-400 line-through">
-                    {result.option1.originalPrice.toLocaleString()} ₽
-                  </span>
+            </div>
+            
+            <div className="space-y-2 mb-4 text-left">
+              {result.option1.benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-700">{benefit}</span>
                 </div>
-              </div>
-              
-              <div className="space-y-3 mb-6 text-left">
-                {result.option1.benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-sm xs:text-base text-gray-700">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-              
-              <button className="w-full bg-red-500 text-white px-6 py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base xs:text-lg cursor-pointer">
-                Выбрать базовый
-              </button>
+              ))}
             </div>
-
-            {/* Вариант 2 - Полный (скрыт на мобильных) */}
-            <div className="hidden lg:block bg-white border-2 border-black rounded-3xl p-6 xs:p-8 shadow-2xl">
-              <h3 className="text-xl xs:text-2xl sm:text-3xl font-inter-black mb-4 text-black">
-                {result.option2.title}
-              </h3>
-              <p className="text-sm xs:text-base sm:text-lg mb-6 text-gray-700">
-                {result.option2.description}
-              </p>
-              
-              <div className="mb-6">
-                <div className="text-2xl xs:text-3xl sm:text-4xl font-inter-black text-black">
-                  {result.option2.price.toLocaleString()} ₽
-                </div>
-              </div>
-              
-              <div className="space-y-3 mb-6 text-left">
-                {result.option2.benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-sm xs:text-base text-gray-700">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-              
-              <button className="w-full bg-black text-white px-6 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base xs:text-lg cursor-pointer">
-                Выбрать полный
-              </button>
-            </div>
-
-            {/* Кнопка "Выбрать самостоятельно" для мобильных */}
-            <div className="lg:hidden mt-6">
-              <button className="w-full bg-transparent border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer">
-                Выбрать самостоятельно
-              </button>
-            </div>
+            
+            <button className="w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer" onClick={handleBasicOption}>
+              Выбрать базовый
+            </button>
           </div>
-          
+
+          {/* Вариант 2 - Полный (скрыт на мобильных) */}
+          <div className="hidden lg:block bg-white border-2 border-black rounded-3xl p-4 xs:p-6 shadow-2xl w-full max-w-md lg:max-w-sm">
+            <h3 className="text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black">
+              {result.option2.title}
+            </h3>
+            <p className="text-sm xs:text-base mb-4 text-gray-700">
+              {result.option2.description}
+            </p>
+            
+            <div className="mb-4">
+              <div className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-black">
+                {formatNumber(result.option2.price)} ₽
+              </div>
+            </div>
+            
+            <div className="space-y-2 mb-4 text-left">
+              {result.option2.benefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-gray-700">{benefit}</span>
+                </div>
+              ))}
+            </div>
+            
+            <button className="w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer" onClick={() => {
+              handleFullOption();
+            }}>
+              Выбрать полный
+            </button>
+          </div>
+        </div>
+        
+        {/* Кнопки в ряд */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
           <button 
             onClick={resetQuiz}
-            className="bg-transparent border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer"
+            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
           >
-            Пройти квиз заново
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span className="text-sm">Заново</span>
           </button>
+          
+          <a 
+            href="#products" 
+            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer text-sm"
+          >
+            Посмотреть варианты
+          </a>
         </div>
+
+        {/* Попап заказа */}
+        <OrderPopup
+          isOpen={popupOpen}
+          onClose={closePopup}
+          title={popupTitle}
+          message={popupMessage}
+        />
       </div>
     );
   }
 
   if (showContactForm && result) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-4xl mx-auto text-center">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black">
+          <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black">
             Последний шаг
           </h2>
-          <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12 text-gray-700">
+          <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700">
             Укажите WhatsApp или Telegram — мы свяжемся с вами и обсудим подробнее
           </p>
 
           {/* Прогресс бар */}
-          <div className="mb-8">
-            <div className="text-center mb-4">
+          <div className="mb-6">
+            <div className="text-center mb-3">
               <p className="text-sm xs:text-base sm:text-lg text-gray-600 font-medium">
                 Последний шаг до волшебства
               </p>
@@ -461,30 +532,38 @@ export default function QuizBlock() {
           </div>
 
           {/* Форма контактов */}
-          <div className="bg-white border-2 border-black rounded-3xl p-6 xs:p-8 sm:p-12 mb-8 shadow-2xl">
-            <h3 className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-inter-black mb-6 xs:mb-8 text-black">
+          <div className="bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl">
+            <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black">
               Ваш контакт
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               <input
                 type="text"
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 placeholder="WhatsApp или Telegram (например: +7 999 123-45-67 или @username)"
-                className="w-full px-6 py-4 border-2 border-gray-300 rounded-full font-medium text-black placeholder-gray-500 focus:border-black focus:outline-none transition-all duration-300 text-sm xs:text-base sm:text-lg"
+                className="w-full px-4 xs:px-6 py-3 xs:py-4 border-2 border-gray-300 rounded-full font-medium text-black placeholder-gray-500 focus:border-black focus:outline-none transition-all duration-300 text-base sm:text-lg"
               />
               
               <button
                 onClick={handleContactSubmit}
                 disabled={!contact.trim()}
-                className="w-full bg-red-500 text-white px-6 py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base xs:text-lg disabled:bg-gray-300 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
+                className="w-full bg-red-500 text-white px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base disabled:bg-gray-300 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
               >
                 Получить расчёт
               </button>
             </div>
           </div>
         </div>
+
+        {/* Попап заказа */}
+        <OrderPopup
+          isOpen={popupOpen}
+          onClose={closePopup}
+          title={popupTitle}
+          message={popupMessage}
+        />
       </div>
     );
   }
@@ -493,18 +572,18 @@ export default function QuizBlock() {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div className="max-w-4xl mx-auto text-center">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black">
+        <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black">
           Рассчитаем стоимость
         </h2>
-        <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-6 xs:mb-8 sm:mb-12 text-gray-700">
+        <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700">
           Ответьте на 5 вопросов и получите точную стоимость проекта
         </p>
 
         {/* Прогресс бар */}
-        <div className="mb-8">
-          <div className="text-center mb-4">
+        <div className="mb-6">
+          <div className="text-center mb-3">
             <p className="text-sm xs:text-base sm:text-lg text-gray-600 font-medium">
               {currentQ.message}
             </p>
@@ -522,17 +601,17 @@ export default function QuizBlock() {
         </div>
 
         {/* Вопрос */}
-        <div className="bg-white border-2 border-black rounded-3xl p-6 xs:p-8 sm:p-12 mb-8 shadow-2xl">
-          <h3 className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-inter-black mb-6 xs:mb-8 text-black">
+        <div className="bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl">
+          <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black">
             {currentQ.question}
           </h3>
           
-          <div className="space-y-3 xs:space-y-4">
+          <div className="space-y-2 xs:space-y-3">
             {currentQ.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(index)}
-                className="w-full bg-transparent border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer"
+                className="w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer"
               >
                 {option}
               </button>
@@ -540,6 +619,14 @@ export default function QuizBlock() {
           </div>
         </div>
       </div>
+
+      {/* Попап заказа */}
+      <OrderPopup
+        isOpen={popupOpen}
+        onClose={closePopup}
+        title={popupTitle}
+        message={popupMessage}
+      />
     </div>
   );
 } 

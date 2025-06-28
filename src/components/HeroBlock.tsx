@@ -5,10 +5,11 @@ import ExpandableCards from './ExpandableCards';
 
 export default function HeroBlock() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isFloatingButtonExpanded, setIsFloatingButtonExpanded] = useState(true);
+  const [isFloatingButtonExpanded, setIsFloatingButtonExpanded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+    setIsFloatingButtonExpanded(false);
   }, []);
 
   const cards = [
@@ -54,7 +55,7 @@ export default function HeroBlock() {
         {/* ПЕРВЫЙ ЭКРАН - Заголовок, факты, карточки и CTA */}
         <div className="flex flex-col px-4 pt-12 pb-6 max-w-full overflow-hidden" style={{ height: '100vh' }}>
           {/* Контейнер с ограниченной шириной для планшетов и телефонов */}
-          <div className="flex-1 flex flex-col justify-center space-y-4 max-w-2xl mx-auto w-full">
+          <div className="flex-1 flex flex-col justify-center space-y-4 max-w-2xl mx-auto w-full -mb-4 sm:-mb-6 lg:-mb-8">
             {/* Заголовок */}
             <div className="space-y-3">
               <div className="text-sm xs:text-base md:text-xl font-inter-black text-gray-700">
@@ -111,12 +112,12 @@ export default function HeroBlock() {
           </div>
 
           {/* Нижняя часть - CTA кнопка (скрыта для экранов ≤ 380px) */}
-          <div className="mt-4 space-y-3 w-full block cta-button-container">
+          <div className="mt-2 md:mt-4 space-y-3 w-full block cta-button-container">
             <div className="text-sm xs:text-base md:text-xl font-inter-black text-black text-center">
               Рассчитайте стоимость за 2 минуты
             </div>
             <div className="px-8 py-4 h-16 xs:h-20 md:h-24 flex items-center">
-              <a href="#quiz" className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+              <a href="#quiz" className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden rounded-full">
                 <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
               </a>
             </div>
@@ -163,7 +164,7 @@ export default function HeroBlock() {
                   Рассчитайте стоимость за 2 минуты
                 </div>
                 <div className="h-20 flex items-center">
-                  <a href="#quiz" className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
+                  <a href="#quiz" className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden rounded-full">
                     <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                     <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
@@ -261,16 +262,16 @@ export default function HeroBlock() {
             {/* КОНТАКТЫ */}
             <div className="flex flex-col gap-1 sm:gap-2 items-center overflow-x-hidden">
               <a 
-                href="tel:+74951234567" 
-                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-colors duration-300"
+                href="tel:+79856850115" 
+                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-all duration-300 hover:scale-110 transform cursor-pointer"
               >
-                +7 (495) 123-45-67
+                +7 (985) 685-01-15
               </a>
               <a 
-                href="mailto:hello@byverb.dev" 
-                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-colors duration-300"
+                href="mailto:vladislav.verbitsky.bis@gmail.com"
+                className="font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-all duration-300 hover:scale-110 transform cursor-pointer"
               >
-                hello@byverb.dev
+                vladislav.verbitsky.bis@gmail.com
               </a>
             </div>
           </div>
