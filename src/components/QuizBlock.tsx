@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import OrderPopup from './OrderPopup';
 
 interface QuizQuestion {
   id: number;
@@ -29,6 +28,13 @@ type QuizResult = {
       benefits: string[];
     };
   };
+
+// Глобальное состояние для попапа
+declare global {
+  interface Window {
+    openQuizPopup: (title: string, message: string) => void;
+  }
+}
 
 const questions: QuizQuestion[] = [
     {
@@ -271,9 +277,6 @@ export default function QuizBlock() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [result, setResult] = useState<QuizResult | null>(null);
   const [contact, setContact] = useState('');
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [popupTitle, setPopupTitle] = useState('');
-  const [popupMessage, setPopupMessage] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -308,50 +311,9 @@ export default function QuizBlock() {
   };
 
   const openPopup = (title: string, message: string) => {
-    setPopupTitle(title);
-    setPopupMessage(message);
-    setPopupOpen(true);
-  };
-
-  const closePopup = () => {
-    setPopupOpen(false);
-  };
-
-  const handleBasicOption = () => {
-    if (result) {
-      openPopup(
-        `Заказать ${result.option1.title}`,
-        `Здравствуйте! Хочу заказать ${result.option1.title}.
-
-Детали заказа:
-• Название: ${result.option1.title}
-• Стоимость: ${formatNumber(result.option1.price)} ₽ (было ${formatNumber(result.option1.originalPrice)} ₽)
-• Описание: ${result.option1.description}
-
-Преимущества:
-${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
-
-Готов обсудить детали и начать работу.`
-      );
-    }
-  };
-
-  const handleFullOption = () => {
-    if (result) {
-      openPopup(
-        `Заказать ${result.option2.title}`,
-        `Здравствуйте! Хочу заказать ${result.option2.title}.
-
-Детали заказа:
-• Название: ${result.option2.title}
-• Стоимость: ${formatNumber(result.option2.price)} ₽
-• Описание: ${result.option2.description}
-
-Преимущества:
-${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
-
-Готов обсудить детали и начать работу.`
-      );
+    // Используем глобальную функцию для открытия попапа
+    if (typeof window !== 'undefined' && window.openQuizPopup) {
+      window.openQuizPopup(title, message);
     }
   };
 
@@ -467,7 +429,20 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             
             <button className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`} onClick={handleBasicOption}>
+            }`} onClick={() => openPopup(
+              `Заказать ${result.option1.title}`,
+              `Здравствуйте! Хочу заказать ${result.option1.title}.
+
+Детали заказа:
+• Название: ${result.option1.title}
+• Стоимость: ${formatNumber(result.option1.price)} ₽ (было ${formatNumber(result.option1.originalPrice)} ₽)
+• Описание: ${result.option1.description}
+
+Преимущества:
+${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
+
+Готов обсудить детали и начать работу.`
+            )}>
               Выбрать базовый
             </button>
           </div>
@@ -508,9 +483,20 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             
             <button className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`} onClick={() => {
-              handleFullOption();
-            }}>
+            }`} onClick={() => openPopup(
+              `Заказать ${result.option2.title}`,
+              `Здравствуйте! Хочу заказать ${result.option2.title}.
+
+Детали заказа:
+• Название: ${result.option2.title}
+• Стоимость: ${formatNumber(result.option2.price)} ₽
+• Описание: ${result.option2.description}
+
+Преимущества:
+${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
+
+Готов обсудить детали и начать работу.`
+            )}>
               Выбрать полный
             </button>
           </div>
@@ -537,14 +523,6 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             Посмотреть варианты
           </a>
         </div>
-
-        {/* Попап заказа */}
-        <OrderPopup
-          isOpen={popupOpen}
-          onClose={closePopup}
-          title={popupTitle}
-          message={popupMessage}
-        />
       </div>
     );
   }
@@ -618,14 +596,6 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             </div>
           </div>
         </div>
-
-        {/* Попап заказа */}
-        <OrderPopup
-          isOpen={popupOpen}
-          onClose={closePopup}
-          title={popupTitle}
-          message={popupMessage}
-        />
       </div>
     );
   }
@@ -698,14 +668,6 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
           </div>
         </div>
       </div>
-
-      {/* Попап заказа */}
-      <OrderPopup
-        isOpen={popupOpen}
-        onClose={closePopup}
-        title={popupTitle}
-        message={popupMessage}
-      />
     </div>
   );
 } 

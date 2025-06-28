@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS переменная для высоты экрана */
+:root {
+  --vh: 1vh;
+}
+
 /* Глобальный запрет горизонтальной прокрутки */
 html, body {
   overflow-x: hidden;
@@ -407,4 +412,57 @@ html, body {
   .cta-button-container {
     display: none !important;
   }
+}
+
+/* Стили для блокировки скролла в попапах */
+.popup-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.popup-open body {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Предотвращение скролла на мобильных устройствах */
+@media (max-width: 768px) {
+  .popup-open {
+    -webkit-overflow-scrolling: auto !important;
+    touch-action: none !important;
+  }
+  
+  .popup-open body {
+    -webkit-overflow-scrolling: auto !important;
+    touch-action: none !important;
+  }
+}
+
+/* Стили для скроллбара в попапе */
+.popup-text-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-text-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.popup-text-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.popup-text-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Для Firefox */
+.popup-text-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
 }

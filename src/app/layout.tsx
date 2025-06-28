@@ -2,6 +2,8 @@ import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
 import React from "react";
+import ScreenHeightProvider from "../components/ScreenHeightProvider";
+import GlobalPopupProvider from "../components/GlobalPopupProvider";
 
 const interBlack = Inter({
   subsets: ["latin", "cyrillic"],
@@ -502,7 +504,11 @@ export default function RootLayout({
       </head>
       <body className={`${interBlack.variable} ${robotoExtraLight.variable} bg-white text-black overflow-x-hidden max-w-full`}>
         <div className="overflow-x-hidden max-w-full">
-          {children}
+          <ScreenHeightProvider>
+            <GlobalPopupProvider>
+              {children}
+            </GlobalPopupProvider>
+          </ScreenHeightProvider>
         </div>
       </body>
     </html>
