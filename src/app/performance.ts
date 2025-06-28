@@ -100,19 +100,4 @@ export const monitorWebVitals = (): void => {
       console.log('CLS:', clsValue);
     }).observe({ entryTypes: ['layout-shift'] });
   }
-};
-
-// Service Worker registration for PWA
-export const registerServiceWorker = (): void => {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered: ', registration);
-        })
-        .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
-        });
-    });
-  }
 }; 
