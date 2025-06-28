@@ -7,22 +7,13 @@ export default function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "byverb_",
-    "description": "Разработка сайтов и ботов в Москве. Создание веб-сайтов под ключ, лендингов, интернет-магазинов.",
+    "description": "Разработка сайтов и ботов. Создание веб-сайтов под ключ, лендингов, интернет-магазинов.",
     "url": "https://ru.byverb.com",
     "telephone": "+7-XXX-XXX-XXXX",
     "email": "info@ru.byverb.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Москва",
-      "addressLocality": "Москва",
-      "addressRegion": "Москва",
-      "postalCode": "100000",
       "addressCountry": "RU"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 55.7558,
-      "longitude": 37.6176
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -40,12 +31,12 @@ export default function LocalBusinessSchema() {
     "currenciesAccepted": "RUB",
     "paymentAccepted": "Cash, Credit Card, Bank Transfer",
     "areaServed": {
-      "@type": "City",
-      "name": "Москва"
+      "@type": "Country",
+      "name": "Россия"
     },
     "serviceArea": {
-      "@type": "City",
-      "name": "Москва"
+      "@type": "Country",
+      "name": "Россия"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
