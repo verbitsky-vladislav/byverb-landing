@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import OrderPopup from './OrderPopup';
 
@@ -274,6 +274,16 @@ export default function QuizBlock() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Задержка для начала анимации
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAnswer = (answerIndex: number) => {
     const newAnswers = [...answers, answerIndex];
@@ -389,31 +399,51 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
 
   if (showResult && result) {
     return (
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black">
+      <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-out ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <h2 className={`text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 sm:mb-8 text-black transition-all duration-700 ease-out delay-200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}>
           {result.title}
         </h2>
-        <p className="text-sm xs:text-base sm:text-lg lg:text-xl mb-8 text-gray-700">
+        <p className={`text-sm xs:text-base sm:text-lg lg:text-xl mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           {result.recommendation}
         </p>
         
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mb-8 justify-center items-center">
+        <div className={`flex flex-col lg:flex-row gap-4 lg:gap-6 mb-8 justify-center items-center transition-all duration-1000 ease-out delay-600 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           {/* Вариант 1 - Базовый (рекомендуемый) */}
-          <div className="bg-white border-2 border-red-500 rounded-3xl p-4 xs:p-6 shadow-2xl relative w-full max-w-md lg:max-w-sm">
-            <div className="absolute -top-3 -right-3 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+          <div className={`bg-white border-2 border-red-500 rounded-3xl p-4 xs:p-6 shadow-2xl relative w-full max-w-md lg:max-w-sm transition-all duration-700 ease-out delay-700 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}>
+            <div className={`absolute -top-3 -right-3 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-800 ${
+              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}>
               -40%
             </div>
-            <div className="absolute -top-3 -left-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+            <div className={`absolute -top-3 -left-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}>
               Рекомендуем
             </div>
-            <h3 className="text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black">
+            <h3 className={`text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option1.title}
             </h3>
-            <p className="text-sm xs:text-base mb-4 text-gray-700">
+            <p className={`text-sm xs:text-base mb-4 text-gray-700 transition-all duration-700 ease-out delay-1100 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option1.description}
             </p>
             
-            <div className="mb-4">
+            <div className={`mb-4 transition-all duration-700 ease-out delay-1200 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               <div className="flex items-center justify-center gap-3 mb-2">
                 <span className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-red-500">
                   {formatNumber(result.option1.price)} ₽
@@ -424,7 +454,9 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
               </div>
             </div>
             
-            <div className="space-y-2 mb-4 text-left">
+            <div className={`space-y-2 mb-4 text-left transition-all duration-700 ease-out delay-1300 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option1.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -433,27 +465,39 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
               ))}
             </div>
             
-            <button className="w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer" onClick={handleBasicOption}>
+            <button className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`} onClick={handleBasicOption}>
               Выбрать базовый
             </button>
           </div>
 
           {/* Вариант 2 - Полный (скрыт на мобильных) */}
-          <div className="hidden lg:block bg-white border-2 border-black rounded-3xl p-4 xs:p-6 shadow-2xl w-full max-w-md lg:max-w-sm">
-            <h3 className="text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black">
+          <div className={`hidden lg:block bg-white border-2 border-black rounded-3xl p-4 xs:p-6 shadow-2xl w-full max-w-md lg:max-w-sm transition-all duration-700 ease-out delay-800 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}>
+            <h3 className={`text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option2.title}
             </h3>
-            <p className="text-sm xs:text-base mb-4 text-gray-700">
+            <p className={`text-sm xs:text-base mb-4 text-gray-700 transition-all duration-700 ease-out delay-1100 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option2.description}
             </p>
             
-            <div className="mb-4">
+            <div className={`mb-4 transition-all duration-700 ease-out delay-1200 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               <div className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-black">
                 {formatNumber(result.option2.price)} ₽
               </div>
             </div>
             
-            <div className="space-y-2 mb-4 text-left">
+            <div className={`space-y-2 mb-4 text-left transition-all duration-700 ease-out delay-1300 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {result.option2.benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-black rounded-full mt-2 flex-shrink-0"></div>
@@ -462,7 +506,9 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
               ))}
             </div>
             
-            <button className="w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer" onClick={() => {
+            <button className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`} onClick={() => {
               handleFullOption();
             }}>
               Выбрать полный
@@ -471,7 +517,9 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         </div>
         
         {/* Кнопки в ряд */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+        <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center transition-all duration-700 ease-out delay-1500 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           <button 
             onClick={resetQuiz}
             className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
@@ -503,17 +551,25 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
 
   if (showContactForm && result) {
     return (
-      <div className="max-w-4xl mx-auto text-center">
+      <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-out ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black">
+          <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}>
             Последний шаг
           </h2>
-          <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700">
+          <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             Укажите WhatsApp или Telegram — мы свяжемся с вами и обсудим подробнее
           </p>
 
           {/* Прогресс бар */}
-          <div className="mb-6">
+          <div className={`mb-6 transition-all duration-700 ease-out delay-600 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             <div className="text-center mb-3">
               <p className="text-sm xs:text-base sm:text-lg text-gray-600 font-medium">
                 Последний шаг до волшебства
@@ -532,12 +588,18 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
           </div>
 
           {/* Форма контактов */}
-          <div className="bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl">
-            <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black">
+          <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out delay-800 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}>
+            <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               Ваш контакт
             </h3>
             
-            <div className="space-y-3">
+            <div className={`space-y-3 transition-all duration-700 ease-out delay-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               <input
                 type="text"
                 value={contact}
@@ -572,17 +634,25 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="max-w-4xl mx-auto text-center">
+    <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ease-out ${
+      isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+    }`}>
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black">
+        <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}>
           Рассчитаем стоимость
         </h2>
-        <p className="text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700">
+        <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           Ответьте на 5 вопросов и получите точную стоимость проекта
         </p>
 
         {/* Прогресс бар */}
-        <div className="mb-6">
+        <div className={`mb-6 transition-all duration-700 ease-out delay-600 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           <div className="text-center mb-3">
             <p className="text-sm xs:text-base sm:text-lg text-gray-600 font-medium">
               {currentQ.message}
@@ -601,17 +671,26 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         </div>
 
         {/* Вопрос */}
-        <div className="bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl">
-          <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black">
+        <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out delay-800 ${
+          isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+        }`}>
+          <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out delay-900 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             {currentQ.question}
           </h3>
           
-          <div className="space-y-2 xs:space-y-3">
+          <div className={`space-y-2 xs:space-y-3 transition-all duration-700 ease-out delay-1000 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             {currentQ.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(index)}
-                className="w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer"
+                className={`w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer transition-all duration-500 ease-out ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: `${1100 + index * 100}ms` }}
               >
                 {option}
               </button>

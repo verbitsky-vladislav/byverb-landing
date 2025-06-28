@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OrderPopup from './OrderPopup';
 
 interface Project {
@@ -60,6 +60,16 @@ export default function ProjectsSlider() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Задержка для начала анимации
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
@@ -157,24 +167,31 @@ export default function ProjectsSlider() {
   return (
     <div className="max-w-[1400px] mx-auto">
       {/* Заголовок */}
-      <div className="text-center mb-8">
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+      <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <p className={`text-lg md:text-xl text-gray-300 max-w-2xl mx-auto transition-all duration-700 ease-out delay-200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           РЕАЛЬНЫЕ КЕЙСЫ. РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ.
         </p>
       </div>
 
       {/* Мобильная версия */}
-      <div className="block xl:hidden space-y-8">
+      <div className={`block xl:hidden space-y-8 transition-all duration-1000 ease-out delay-400 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         <div 
-          className="bg-black rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
+          className={`bg-black rounded-3xl shadow-2xl border border-white/20 overflow-hidden transition-all duration-700 ease-out delay-600 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}
           style={{
-            opacity: 1,
-            transform: 'translateY(0)',
-            transition: 'opacity 0.5s ease, transform 0.5s ease',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
         >
-          <div className="relative h-48 sm:h-56 w-full">
+          <div className={`relative h-48 sm:h-56 w-full transition-all duration-700 ease-out delay-700 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             <img 
               src={currentProjectData.image} 
               alt={currentProjectData.title} 
@@ -196,10 +213,18 @@ export default function ProjectsSlider() {
               </a>
             </div>
           </div>
-          <div className="p-4 sm:p-6">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-white">{currentProjectData.title}</h3>
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4">{currentProjectData.description}</p>
-            <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-green-900/20 border border-green-500/30 rounded-lg" style={{
+          <div className={`p-4 sm:p-6 transition-all duration-700 ease-out delay-800 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            <h3 className={`text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-white transition-all duration-700 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>{currentProjectData.title}</h3>
+            <p className={`text-sm sm:text-base text-gray-300 leading-relaxed mb-3 sm:mb-4 transition-all duration-700 ease-out delay-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>{currentProjectData.description}</p>
+            <div className={`mb-3 sm:mb-4 p-3 sm:p-4 bg-green-900/20 border border-green-500/30 rounded-lg transition-all duration-700 ease-out delay-1100 ${
+              isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+            }`} style={{
               boxShadow: 'inset 0 1px 0 rgba(34, 197, 94, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.3)'
             }}>
               <div className="text-xs sm:text-sm text-green-300 space-y-1">
@@ -208,7 +233,9 @@ export default function ProjectsSlider() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-2 sm:gap-3">
+            <div className={`flex flex-col gap-2 sm:gap-3 transition-all duration-700 ease-out delay-1200 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               <a 
                 href={currentProjectData.url} 
                 target="_blank" 
@@ -234,7 +261,9 @@ export default function ProjectsSlider() {
         </div>
         
         {/* Мобильная навигация */}
-        <div className="flex items-center justify-center gap-3 mt-4 sm:mt-6">
+        <div className={`flex items-center justify-center gap-3 mt-4 sm:mt-6 transition-all duration-700 ease-out delay-1300 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           <button 
             onClick={prevProject}
             className="w-8 h-8 rounded-full bg-black border border-white/20 flex items-center justify-center hover:border-white/40 hover:shadow-lg transition-all duration-300 group shadow-md cursor-pointer" 
@@ -275,11 +304,15 @@ export default function ProjectsSlider() {
       </div>
 
       {/* Десктопная версия */}
-      <div className="relative hidden xl:block">
+      <div className={`relative hidden xl:block transition-all duration-1000 ease-out delay-400 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         {/* Кнопки навигации */}
         <button 
           onClick={prevProject}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 w-12 h-12 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:border-white/40 hover:shadow-lg transition-all duration-300 group shadow-md cursor-pointer" 
+          className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 w-12 h-12 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:border-white/40 hover:shadow-lg transition-all duration-300 group shadow-md cursor-pointer ${
+            isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          }`} 
           style={{
             boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
@@ -291,7 +324,9 @@ export default function ProjectsSlider() {
         </button>
         <button 
           onClick={nextProject}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 w-12 h-12 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:border-white/40 hover:shadow-lg transition-all duration-300 group shadow-md cursor-pointer" 
+          className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 w-12 h-12 rounded-full bg-black/80 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:border-white/40 hover:shadow-lg transition-all duration-300 group shadow-md cursor-pointer ${
+            isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`} 
           style={{
             boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
@@ -303,21 +338,31 @@ export default function ProjectsSlider() {
         </button>
 
         {/* Слайдер */}
-        <div className="relative mb-8">
+        <div className={`relative mb-8 transition-all duration-1000 ease-out delay-600 ${
+          isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+        }`}>
           <div className="bg-black rounded-3xl shadow-2xl border border-white/20 overflow-hidden" style={{
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}>
             <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] xl:min-h-[600px]">
               {/* Левая часть с информацией */}
-              <div className="lg:col-span-5 p-6 md:p-8 lg:p-10 flex flex-col justify-center relative z-10 bg-black/80 backdrop-blur-sm">
+              <div className={`lg:col-span-5 p-6 md:p-8 lg:p-10 flex flex-col justify-center relative z-10 bg-black/80 backdrop-blur-sm transition-all duration-700 ease-out delay-700 ${
+                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              }`}>
                 <div>
-                  <h3 className="text-2xl lg:text-3xl font-semibold mb-3 lg:mb-4 text-white">
+                  <h3 className={`text-2xl lg:text-3xl font-semibold mb-3 lg:mb-4 text-white transition-all duration-700 ease-out delay-800 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
                     {currentProjectData.title}
                   </h3>
-                  <p className="text-base lg:text-lg text-gray-300 leading-relaxed mb-4 lg:mb-6">
+                  <p className={`text-base lg:text-lg text-gray-300 leading-relaxed mb-4 lg:mb-6 transition-all duration-700 ease-out delay-900 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
                     {currentProjectData.description}
                   </p>
-                  <div className="mb-4 lg:mb-6 p-4 lg:p-5 bg-green-900/20 border border-green-500/30 rounded-xl" style={{
+                  <div className={`mb-4 lg:mb-6 p-4 lg:p-5 bg-green-900/20 border border-green-500/30 rounded-xl transition-all duration-700 ease-out delay-1000 ${
+                    isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+                  }`} style={{
                     boxShadow: 'inset 0 1px 0 rgba(34, 197, 94, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.3)'
                   }}>
                     <div className="text-sm lg:text-base text-green-300 space-y-1 lg:space-y-2">
@@ -326,7 +371,9 @@ export default function ProjectsSlider() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+                  <div className={`flex flex-col sm:flex-row gap-3 lg:gap-4 transition-all duration-700 ease-out delay-1100 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
                     <a 
                       href={currentProjectData.url} 
                       target="_blank" 
@@ -352,8 +399,12 @@ export default function ProjectsSlider() {
               </div>
 
               {/* Правая часть с изображением */}
-              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] xl:min-h-[500px] group p-4 lg:p-6">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/20" style={{
+              <div className={`lg:col-span-7 relative min-h-[300px] lg:min-h-[400px] xl:min-h-[500px] group p-4 lg:p-6 transition-all duration-700 ease-out delay-800 ${
+                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              }`}>
+                <div className={`relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/20 transition-all duration-700 ease-out delay-900 ${
+                  isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
+                }`} style={{
                   boxShadow: '0 20px 40px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                 }}>
                   <img 
@@ -384,7 +435,9 @@ export default function ProjectsSlider() {
         </div>
 
         {/* Точки навигации */}
-        <div className="flex items-center justify-center gap-3">
+        <div className={`flex items-center justify-center gap-3 transition-all duration-700 ease-out delay-1200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           {projects.map((_, index) => (
             <button
               key={index}

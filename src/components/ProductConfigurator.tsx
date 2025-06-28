@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OrderPopup from './OrderPopup';
 
 // Функция для форматирования чисел без локали
@@ -94,6 +94,16 @@ export default function ProductConfigurator() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Задержка для начала анимации
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleProductToggle = (productId: string) => {
     setSelectedProducts(prev => {
@@ -250,29 +260,47 @@ export default function ProductConfigurator() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-4 text-black">
+      <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <h2 className={`text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}>
           Подобрать проект
         </h2>
-        <p className="text-sm sm:text-base lg:text-lg text-gray-700">
+        <p className={`text-sm sm:text-base lg:text-lg text-gray-700 transition-all duration-700 ease-out delay-400 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           Выберите продукты и функции для вашего проекта
         </p>
       </div>
 
       {/* Мобильная и планшетная версия - готовые пакеты */}
-      <div className="block xl:hidden">
+      <div className={`block xl:hidden transition-all duration-1000 ease-out delay-600 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         <div className="space-y-6">
           {/* Готовые пакеты услуг */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Пакет 1: Продающий лендинг */}
-            <div className="bg-white border-2 border-red-500 rounded-2xl p-6 shadow-xl relative">
-              <div className="absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            <div className={`bg-white border-2 border-red-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out delay-700 ${
+              isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}>
+              <div className={`absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-800 ${
+                isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}>
                 Популярно
               </div>
-              <h3 className="text-xl font-inter-black mb-3 text-black">Продающий лендинг</h3>
-              <p className="text-sm text-gray-600 mb-4">Одностраничный сайт для продаж</p>
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-900 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Продающий лендинг</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1000 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Одностраничный сайт для продаж</p>
               
-              <div className="space-y-2 mb-4">
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1100 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
                   <span className="text-sm text-gray-700">Hero блок с CTA</span>
@@ -299,7 +327,9 @@ export default function ProductConfigurator() {
                 </div>
               </div>
               
-              <div className="text-center mb-4">
+              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1200 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="text-2xl font-inter-black text-red-500 mb-1">15.000 ₽</div>
                 <div className="text-sm text-gray-500">вместо 25.000 ₽</div>
               </div>
@@ -320,18 +350,28 @@ export default function ProductConfigurator() {
 
 Нужен качественный лендинг для привлечения клиентов.`
                 )}
-                className="w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer"
+                className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1300 ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
               >
                 Заказать лендинг
               </button>
             </div>
 
             {/* Пакет 2: Telegram бот */}
-            <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-xl">
-              <h3 className="text-xl font-inter-black mb-3 text-black">Telegram бот</h3>
-              <p className="text-sm text-gray-600 mb-4">Автоматизация продаж в Telegram</p>
+            <div className={`bg-white border-2 border-black rounded-2xl p-6 shadow-xl transition-all duration-700 ease-out delay-800 ${
+              isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}>
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-900 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Telegram бот</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1000 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Автоматизация продаж в Telegram</p>
               
-              <div className="space-y-2 mb-4">
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1100 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
                   <span className="text-sm text-gray-700">Каталог товаров</span>
@@ -358,7 +398,9 @@ export default function ProductConfigurator() {
                 </div>
               </div>
               
-              <div className="text-center mb-4">
+              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1200 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="text-2xl font-inter-black text-black mb-1">18.000 ₽</div>
                 <div className="text-sm text-gray-500">вместо 30.000 ₽</div>
               </div>
@@ -378,21 +420,33 @@ export default function ProductConfigurator() {
 
 Нужен бот для автоматизации продаж в Telegram.`
                 )}
-                className="w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer"
+                className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1300 ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
               >
                 Заказать бота
               </button>
             </div>
 
             {/* Пакет 3: Mini App */}
-            <div className="bg-white border-2 border-blue-500 rounded-2xl p-6 shadow-xl">
-              <div className="absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            <div className={`bg-white border-2 border-blue-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}>
+              <div className={`absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-1000 ${
+                isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}>
                 Новинка
               </div>
-              <h3 className="text-xl font-inter-black mb-3 text-black">Telegram Mini App</h3>
-              <p className="text-sm text-gray-600 mb-4">Приложение внутри Telegram</p>
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-1100 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Telegram Mini App</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1200 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>Приложение внутри Telegram</p>
               
-              <div className="space-y-2 mb-4">
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1300 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                   <span className="text-sm text-gray-700">Авторизация через Telegram</span>
@@ -419,7 +473,9 @@ export default function ProductConfigurator() {
                 </div>
               </div>
               
-              <div className="text-center mb-4">
+              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1400 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 <div className="text-2xl font-inter-black text-blue-500 mb-1">25.000 ₽</div>
                 <div className="text-sm text-gray-500">вместо 40.000 ₽</div>
               </div>
@@ -439,55 +495,25 @@ export default function ProductConfigurator() {
 
 Нужно приложение внутри Telegram для продаж.`
                 )}
-                className="w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer"
+                className={`w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1500 ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
               >
                 Заказать Mini App
               </button>
             </div>
           </div>
 
-          {/* Дополнительные опции */}
-          <div className="hidden xl:block bg-white border-2 border-gray-200 rounded-2xl p-6 shadow-xl">
-            <h3 className="text-lg font-inter-black mb-4 text-black">Дополнительные опции</h3>
-            <p className="text-sm text-gray-600 mb-4">Можете добавить к любому пакету</p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                <div>
-                  <div className="font-semibold text-sm text-black">CRM интеграция</div>
-                  <div className="text-xs text-gray-600">Автоматизация продаж</div>
-                </div>
-                <div className="text-right">
-                  <div className="font-bold text-sm text-red-500">+4.000 ₽</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                <div>
-                  <div className="font-semibold text-sm text-black">Криптоплатежи</div>
-                  <div className="text-xs text-gray-600">USDT, TON, ETH</div>
-                </div>
-                <div className="text-right">
-                  <div className="font-bold text-sm text-red-500">+6.000 ₽</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                <div>
-                  <div className="font-semibold text-sm text-black">Мультиязычность</div>
-                  <div className="text-xs text-gray-600">Поддержка языков</div>
-                </div>
-                <div className="text-right">
-                  <div className="font-bold text-sm text-red-500">+3.000 ₽</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* CTA блок */}
-          <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-center text-white">
-            <h3 className="text-xl font-inter-black mb-2">Нужен кастомный проект?</h3>
-            <p className="text-sm mb-4 opacity-90">Создадим индивидуальное решение под ваши задачи</p>
+          <div className={`bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-center text-white transition-all duration-700 ease-out delay-1600 ${
+            isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+          }`}>
+            <h3 className={`text-xl font-inter-black mb-2 transition-all duration-700 ease-out delay-1700 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>Нужен кастомный проект?</h3>
+            <p className={`text-sm mb-4 opacity-90 transition-all duration-700 ease-out delay-1800 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>Создадим индивидуальное решение под ваши задачи</p>
             <button
               onClick={() => openPopup(
                 'Обсудить кастомный проект',
@@ -501,7 +527,9 @@ export default function ProductConfigurator() {
 
 Готов обсудить детали и предложить решение.`
               )}
-              className="bg-white text-red-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer"
+              className={`bg-white text-red-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer transition-all duration-700 ease-out delay-1900 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
             >
               Обсудить проект
             </button>
@@ -510,24 +538,33 @@ export default function ProductConfigurator() {
       </div>
 
       {/* Десктопная версия - подбор проекта */}
-      <div className="hidden xl:grid xl:grid-cols-4 gap-8">
+      <div className={`hidden xl:grid xl:grid-cols-4 gap-8 transition-all duration-1000 ease-out delay-600 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         {/* Левая колонка - Выбор продуктов */}
-        <div className="xl:col-span-1">
+        <div className={`xl:col-span-1 transition-all duration-700 ease-out delay-700 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+        }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl">
-            <h3 className="text-xl font-inter-black mb-4 text-black">
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-800 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               Выберите продукты
             </h3>
             
-            <div className="space-y-3">
-              {products.map((product) => (
+            <div className={`space-y-3 transition-all duration-700 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
+              {products.map((product, index) => (
                 <div
                   key={product.id}
                   onClick={() => handleProductToggle(product.id)}
-                  className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
+                  className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 transition-all duration-500 ease-out ${
                     selectedProducts.includes(product.id)
                       ? 'border-red-500 bg-red-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
+                  style={{ transitionDelay: `${1000 + index * 100}ms` }}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-semibold text-black">{product.name}</h4>
@@ -557,21 +594,29 @@ export default function ProductConfigurator() {
         </div>
 
         {/* Центральная колонка - Функции (расширенная) */}
-        <div className="xl:col-span-2">
+        <div className={`xl:col-span-2 transition-all duration-700 ease-out delay-800 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl">
-            <h3 className="text-xl font-inter-black mb-4 text-black">
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               Настройте функции
             </h3>
             
             {selectedProducts.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-8">
+              <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out delay-1000 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 Сначала выберите продукты слева
               </p>
             ) : (
               <div>
                 {/* Кнопки переключения между продуктами */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {selectedProducts.map((productId) => {
+                <div className={`flex flex-wrap gap-2 mb-4 transition-all duration-700 ease-out delay-1000 ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}>
+                  {selectedProducts.map((productId, index) => {
                     const product = products.find(p => p.id === productId);
                     if (!product) return null;
                     
@@ -584,6 +629,7 @@ export default function ProductConfigurator() {
                             ? 'bg-red-500 text-white'
                             : 'bg-gray-100 text-black hover:bg-gray-200'
                         }`}
+                        style={{ transitionDelay: `${1100 + index * 100}ms` }}
                       >
                         {product.name}
                       </button>
@@ -593,17 +639,23 @@ export default function ProductConfigurator() {
 
                 {/* Функции активного продукта */}
                 {activeProduct ? (
-                  <div>
+                  <div className={`transition-all duration-700 ease-out delay-1100 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
                     {(() => {
                       const product = products.find(p => p.id === activeProduct);
                       if (!product) return null;
                       
                       return (
                         <div>
-                          <h4 className="font-semibold text-black mb-3">{product.name}</h4>
+                          <h4 className={`font-semibold text-black mb-3 transition-all duration-700 ease-out delay-1200 ${
+                            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                          }`}>{product.name}</h4>
                           
-                          <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-                            {product.features.map((feature) => (
+                          <div className={`grid grid-cols-1 xl:grid-cols-3 gap-4 transition-all duration-700 ease-out delay-1300 ${
+                            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                          }`}>
+                            {product.features.map((feature, index) => (
                               <div
                                 key={feature.id}
                                 onClick={() => handleFeatureToggle(feature.id)}
@@ -612,6 +664,7 @@ export default function ProductConfigurator() {
                                     ? 'border-red-500 bg-red-50'
                                     : 'border-gray-200 hover:border-gray-300'
                                 }`}
+                                style={{ transitionDelay: `${1400 + index * 50}ms` }}
                               >
                                 {/* Заголовок с ценой */}
                                 <div className="flex justify-between items-start mb-2">
@@ -643,7 +696,9 @@ export default function ProductConfigurator() {
                     })()}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-500 text-center py-8">
+                  <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out delay-1200 ${
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}>
                     Выберите продукт для настройки функций
                   </p>
                 )}
@@ -653,19 +708,27 @@ export default function ProductConfigurator() {
         </div>
 
         {/* Правая колонка - Корзина */}
-        <div className="xl:col-span-1">
+        <div className={`xl:col-span-1 transition-all duration-700 ease-out delay-900 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+        }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl sticky top-4">
-            <h3 className="text-xl font-inter-black mb-4 text-black">
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-1000 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               Ваш проект
             </h3>
             
             {selectedProducts.length === 0 ? (
-              <p className="text-sm text-gray-500 mb-4">
+              <p className={`text-sm text-gray-500 mb-4 transition-all duration-700 ease-out delay-1100 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
                 Выберите продукты и функции
               </p>
             ) : (
-              <div className="space-y-4 mb-6">
-                {selectedProducts.map((productId) => {
+              <div className={`space-y-4 mb-6 transition-all duration-700 ease-out delay-1100 ${
+                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}>
+                {selectedProducts.map((productId, index) => {
                   const product = products.find(p => p.id === productId);
                   const selectedFeaturesForProduct = getSelectedFeaturesByProduct(productId);
                   if (!product) return null;
@@ -701,7 +764,9 @@ export default function ProductConfigurator() {
               </div>
             )}
 
-            <div className="border-t border-gray-200 pt-4">
+            <div className={`border-t border-gray-200 pt-4 transition-all duration-700 ease-out delay-1200 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               <div className="flex justify-between items-center mb-4">
                 <span className="font-bold text-lg text-black">Итого:</span>
                 <span className="font-bold text-xl text-red-500">{formatNumber(getTotalPrice())} ₽</span>

@@ -230,17 +230,29 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
             onClick={closeMobileMenu}
           ></div>
           
-          {/* Меню */}
-          <div className={`absolute top-0 right-0 w-64 h-full ${finalIsWhiteSection || forceWhiteForFAQ ? 'bg-white' : 'bg-black'} shadow-xl transform transition-transform duration-300 ease-in-out`}>
-            <div className="p-6">
-              {/* Заголовок */}
+          {/* Меню - теперь снизу и полноэкранное */}
+          <div className={`absolute bottom-0 left-0 right-0 w-full max-h-[85vh] ${finalIsWhiteSection || forceWhiteForFAQ ? 'bg-white' : 'bg-black'} shadow-xl transform transition-transform duration-300 ease-in-out rounded-t-3xl`}>
+            <div className="p-6 pb-8">
+              {/* Индикатор свайпа */}
+              <div className="flex justify-center mb-6">
+                <div className={`w-12 h-1 rounded-full ${finalIsWhiteSection || forceWhiteForFAQ ? 'bg-gray-300' : 'bg-gray-600'}`}></div>
+              </div>
+
+              {/* Заголовок с логотипом */}
               <div className="flex items-center justify-between mb-8">
-                <span className="font-inter-black text-xl tracking-tight" style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}>
-                  byverb_
-                </span>
+                <div className="flex items-center space-x-3">
+                  <span className="font-inter-black text-xl tracking-tight" style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}>
+                    byverb_
+                  </span>
+                  <span className="font-roboto-extra-light text-xs tracking-wider opacity-70" style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}>
+                    DIGITAL AGENCY
+                  </span>
+                </div>
                 <button 
                   onClick={closeMobileMenu}
-                  className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 cursor-pointer"
+                  className={`p-2 rounded-full transition-all duration-300 hover:bg-opacity-20 cursor-pointer ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
+                  }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -250,12 +262,14 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
               </div>
 
               {/* Навигация */}
-              <nav className="space-y-4">
+              <nav className="space-y-2 mb-8">
                 <a 
                   href="#hero" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 0 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 0 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -264,8 +278,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#projects" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 1 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 1 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -274,8 +290,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#quiz" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 2 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 2 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -284,8 +302,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#products" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 3 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 3 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -294,8 +314,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#about" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 4 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 4 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -304,8 +326,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#how-we-work" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 5 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 5 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -316,13 +340,16 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     window.location.hash = '#faq';
+                    closeMobileMenu();
                     // Принудительно устанавливаем FAQ секцию
                     setTimeout(() => {
                       window.dispatchEvent(new CustomEvent('setFAQSection'));
                     }, 100);
                   }}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 6 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 6 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -331,8 +358,10 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 <a 
                   href="#contact" 
                   onClick={closeMobileMenu}
-                  className={`block font-roboto-extra-light text-sm hover:opacity-70 transition-opacity ${
-                    currentSection === 7 ? 'font-medium' : ''
+                  className={`block py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    currentSection === 7 ? 'font-medium bg-opacity-20' : ''
+                  } ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
@@ -341,12 +370,17 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
               </nav>
 
               {/* Контакты */}
-              <div className="mt-8 pt-6 border-t" style={{ borderColor: finalIsWhiteSection || forceWhiteForFAQ ? '#e5e7eb' : '#374151' }}>
+              <div className="pt-6 border-t" style={{ borderColor: finalIsWhiteSection || forceWhiteForFAQ ? '#e5e7eb' : '#374151' }}>
                 <a 
                   href="tel:+79856850115" 
-                  className="font-roboto-extra-light text-sm hover:opacity-70 transition-opacity"
+                  className={`inline-flex items-center gap-3 py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
+                    finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
+                  }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                   +7 (985) 685-01-15
                 </a>
               </div>
