@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import OrderPopup from './OrderPopup';
 
 interface Project {
@@ -192,12 +193,13 @@ export default function ProjectsSlider() {
           <div className={`relative h-48 sm:h-56 w-full transition-all duration-700 ease-out delay-700 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            <img 
+            <Image 
               src={currentProjectData.image} 
               alt={currentProjectData.title} 
               className="object-cover w-full h-full"
-              width="256" 
-              height="192"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority
             />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
               <a 
@@ -407,12 +409,13 @@ export default function ProjectsSlider() {
                 }`} style={{
                   boxShadow: '0 20px 40px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                 }}>
-                  <img 
+                  <Image 
                     src={currentProjectData.image} 
                     alt={currentProjectData.title} 
-                    className="object-cover object-left-top w-full h-full"
-                    width="1024" 
-                    height="683"
+                    className="object-cover object-left-top"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                   />
                   {/* Кнопка просмотра изображения */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

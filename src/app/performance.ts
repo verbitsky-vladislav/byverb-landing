@@ -1,6 +1,6 @@
 // Performance optimization utilities
 
-export const preloadFonts = () => {
+export const preloadFonts = (): void => {
   // Preload critical fonts
   const link = document.createElement('link');
   link.rel = 'preload';
@@ -11,7 +11,7 @@ export const preloadFonts = () => {
   document.head.appendChild(link);
 };
 
-export const preloadCriticalResources = () => {
+export const preloadCriticalResources = (): void => {
   // Preload critical images and resources
   const criticalResources = [
     '/images/og-image.jpg',
@@ -28,7 +28,7 @@ export const preloadCriticalResources = () => {
   });
 };
 
-export const optimizeImages = () => {
+export const optimizeImages = (): void => {
   // Lazy load non-critical images
   const images = document.querySelectorAll('img[data-src]');
   const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -45,10 +45,10 @@ export const optimizeImages = () => {
   images.forEach(img => imageObserver.observe(img));
 };
 
-export const debounce = (func: Function, wait: number) => {
+export const debounce = <T extends (...args: unknown[]) => void>(func: T, wait: number): ((...args: Parameters<T>) => void) => {
   let timeout: NodeJS.Timeout;
-  return function executedFunction(...args: any[]) {
-    const later = () => {
+  return function executedFunction(...args: Parameters<T>): void {
+    const later = (): void => {
       clearTimeout(timeout);
       func(...args);
     };
@@ -57,9 +57,9 @@ export const debounce = (func: Function, wait: number) => {
   };
 };
 
-export const throttle = (func: Function, limit: number) => {
-  let inThrottle: boolean;
-  return function executedFunction(...args: any[]) {
+export const throttle = <T extends (...args: unknown[]) => void>(func: T, limit: number): ((...args: Parameters<T>) => void) => {
+  let inThrottle = false;
+  return function executedFunction(this: unknown, ...args: Parameters<T>): void {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;
@@ -69,7 +69,7 @@ export const throttle = (func: Function, limit: number) => {
 };
 
 // Core Web Vitals monitoring
-export const monitorWebVitals = () => {
+export const monitorWebVitals = (): void => {
   if (typeof window !== 'undefined') {
     // Monitor Largest Contentful Paint (LCP)
     new PerformanceObserver((list) => {
@@ -82,7 +82,8 @@ export const monitorWebVitals = () => {
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
       entries.forEach((entry) => {
-        console.log('FID:', entry.processingStart - entry.startTime);
+        const firstInputEntry = entry as PerformanceEventTiming;
+        console.log('FID:', firstInputEntry.processingStart - firstInputEntry.startTime);
       });
     }).observe({ entryTypes: ['first-input'] });
 
@@ -90,9 +91,10 @@ export const monitorWebVitals = () => {
     let clsValue = 0;
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry: any) => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
+      entries.forEach((entry) => {
+        const layoutShiftEntry = entry as PerformanceEntry & { hadRecentInput?: boolean; value?: number };
+        if (!layoutShiftEntry.hadRecentInput) {
+          clsValue += layoutShiftEntry.value || 0;
         }
       });
       console.log('CLS:', clsValue);
@@ -101,7 +103,7 @@ export const monitorWebVitals = () => {
 };
 
 // Service Worker registration for PWA
-export const registerServiceWorker = () => {
+export const registerServiceWorker = (): void => {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
