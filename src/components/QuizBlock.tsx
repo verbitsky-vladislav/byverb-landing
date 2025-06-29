@@ -665,3 +665,63 @@ Je suis prêt à discuter des détails et commencer le travail.`
     </div>
   );
 }
+
+// Функция отправки в Telegram
+const sendToTelegram = async (data: {
+  contact: string;
+  answers: number[];
+  result: QuizResult;
+  questions: QuizQuestion[];
+}) => {
+  const chat_id = '7038101756'; // <--- ВОТ ТУТ chat_id твоего аккаунта
+  const token = '8125633163:AAHvVG8CAIsWyOwfqvJ4fF0BVNi50bIxiFQ'; // Токен бота
+
+  // Формируем текст с вопросами и ответами
+  const questionsAndAnswers = data.questions.map((question, index) => {
+    const answerIndex = data.answers[index];
+    const answer = question.options[answerIndex];
+    return `${index + 1}. ${question.question}\n   Ответ: ${answer}`;
+  }).join('\n\n');
+
+  // Формируем результат
+  const resultText = `
+🎯 РЕЗУЛЬТАТ КВИЗА:
+${data.result.title}
+
+📝 Рекомендация:
+${data.result.recommendation}
+
+💰 Вариант 1 (Рекомендуемый):
+${data.result.option1.title} - ${data.result.option1.price} ₽
+${data.result.option1.description}
+
+💰 Вариант 2:
+${data.result.option2.title} - ${data.result.option2.price} ₽
+${data.result.option2.description}
+`;
+
+  const text = `🆕 НОВАЯ ЗАЯВКА ИЗ КВИЗА
+
+👤 Контакт: ${data.contact}
+
+❓ ВОПРОСЫ И ОТВЕТЫ:
+${questionsAndAnswers}
+
+${resultText}
+
+⏰ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id,
+        text,
+        parse_mode: 'HTML'
+      })
+    });
+  } catch (error) {
+    console.error('Ошибка отправки в Telegram:', error);
+  }
+}; 
