@@ -296,12 +296,22 @@ export default function QuizBlock() {
     }
   };
 
-  const handleContactSubmit = () => {
+  const handleContactSubmit = async () => {
     if (contact.trim()) {
       setShowResult(true);
       setShowContactForm(false);
       // Запускаем хлопушку при показе результата
       launchConfetti();
+
+      // Отправляем данные в Telegram
+      if (result) {
+        await sendToTelegram({
+          contact,
+          answers,
+          result,
+          questions
+        });
+      }
     }
   };
 
