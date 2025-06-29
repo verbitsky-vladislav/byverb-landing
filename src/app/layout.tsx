@@ -408,7 +408,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="byverb_" />
-        <meta name="yandex-verification" content="6d04f5b259c24cf8" />
+        <meta name="yandex-verification" content="8da699a3a6fac98b" />
 
         {/* Structured Data */}
         <script
