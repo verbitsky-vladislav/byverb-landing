@@ -46,17 +46,19 @@ export default function OrderPopup({ isOpen, onClose, title, message }: OrderPop
 
   const handleTelegram = () => {
     window.open(`https://t.me/by_verb`, '_blank');
-    onClose();
+    handleClose();
   };
 
   const handleWhatsApp = () => {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/79856850115?text=${encodedMessage}`, '_blank');
-    onClose();
+    handleClose();
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
+      // Предотвращаем нежелательный скролл при закрытии
+      e.preventDefault();
       onClose();
     }
   };
@@ -81,6 +83,11 @@ export default function OrderPopup({ isOpen, onClose, title, message }: OrderPop
     e.stopPropagation();
   };
 
+  const handleClose = () => {
+    // Предотвращаем нежелательный скролл при закрытии
+    onClose();
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -102,7 +109,7 @@ export default function OrderPopup({ isOpen, onClose, title, message }: OrderPop
           <div className="flex items-center justify-between">
             <h2 className="text-lg xs:text-xl font-inter-black pr-2">{title}</h2>
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer flex-shrink-0"
               aria-label="Закрыть"
             >

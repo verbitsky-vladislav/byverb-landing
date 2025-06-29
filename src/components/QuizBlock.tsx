@@ -296,12 +296,22 @@ export default function QuizBlock() {
     }
   };
 
-  const handleContactSubmit = () => {
+  const handleContactSubmit = async () => {
     if (contact.trim()) {
       setShowResult(true);
       setShowContactForm(false);
       // Запускаем хлопушку при показе результата
       launchConfetti();
+
+      // Отправляем данные в Telegram
+      if (result) {
+        await sendToTelegram({
+          contact,
+          answers,
+          result,
+          questions
+        });
+      }
     }
   };
 
@@ -498,7 +508,7 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         </div>
         
         {/* Кнопки в ряд */}
-        <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center transition-all duration-700 ease-out delay-1500 ${
+        <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <button 
@@ -528,19 +538,19 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="max-w-2xl mx-auto">
-          <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
+          <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
             Последний шаг
           </h2>
-          <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
+          <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             Укажите WhatsApp или Telegram — мы свяжемся с вами и обсудим подробнее
           </p>
 
           {/* Прогресс бар */}
-          <div className={`mb-6 transition-all duration-700 ease-out delay-600 ${
+          <div className={`mb-6 transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             <div className="text-center mb-3">
@@ -561,16 +571,16 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
           </div>
 
           {/* Форма контактов */}
-          <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out delay-800 ${
+          <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
-            <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out delay-900 ${
+            <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               Ваш контакт
             </h3>
             
-            <div className={`space-y-3 transition-all duration-700 ease-out delay-1000 ${
+            <div className={`space-y-3 transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <input
@@ -603,19 +613,19 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
       isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
     }`}>
       <div className="max-w-2xl mx-auto">
-        <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
+        <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           Рассчитаем стоимость
         </h2>
-        <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
+        <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           Ответьте на 5 вопросов и получите точную стоимость проекта
         </p>
 
         {/* Прогресс бар */}
-        <div className={`mb-6 transition-all duration-700 ease-out delay-600 ${
+        <div className={`mb-6 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <div className="text-center mb-3">
@@ -636,26 +646,25 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         </div>
 
         {/* Вопрос */}
-        <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out delay-800 ${
+        <div className={`bg-white border-2 border-black rounded-3xl p-4 xs:p-6 sm:p-8 mb-6 shadow-2xl transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
         }`}>
-          <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out delay-900 ${
+          <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             {currentQ.question}
           </h3>
           
-          <div className={`space-y-2 xs:space-y-3 transition-all duration-700 ease-out delay-1000 ${
+          <div className={`space-y-2 xs:space-y-3 transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             {currentQ.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(index)}
-                className={`w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer transition-all duration-500 ease-out ${
+                className={`w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
-                style={{ transitionDelay: `${1100 + index * 100}ms` }}
               >
                 {option}
               </button>
@@ -665,4 +674,64 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
       </div>
     </div>
   );
-} 
+}
+
+// Функция отправки в Telegram
+const sendToTelegram = async (data: {
+  contact: string;
+  answers: number[];
+  result: QuizResult;
+  questions: QuizQuestion[];
+}) => {
+  const chat_id = '7038101756'; // <--- ВОТ ТУТ chat_id твоего аккаунта
+  const token = '8125633163:AAHvVG8CAIsWyOwfqvJ4fF0BVNi50bIxiFQ'; // Токен бота
+
+  // Формируем текст с вопросами и ответами
+  const questionsAndAnswers = data.questions.map((question, index) => {
+    const answerIndex = data.answers[index];
+    const answer = question.options[answerIndex];
+    return `${index + 1}. ${question.question}\n   Ответ: ${answer}`;
+  }).join('\n\n');
+
+  // Формируем результат
+  const resultText = `
+🎯 РЕЗУЛЬТАТ КВИЗА:
+${data.result.title}
+
+📝 Рекомендация:
+${data.result.recommendation}
+
+💰 Вариант 1 (Рекомендуемый):
+${data.result.option1.title} - ${data.result.option1.price} ₽
+${data.result.option1.description}
+
+💰 Вариант 2:
+${data.result.option2.title} - ${data.result.option2.price} ₽
+${data.result.option2.description}
+`;
+
+  const text = `🆕 НОВАЯ ЗАЯВКА ИЗ КВИЗА
+
+👤 Контакт: ${data.contact}
+
+❓ ВОПРОСЫ И ОТВЕТЫ:
+${questionsAndAnswers}
+
+${resultText}
+
+⏰ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id,
+        text,
+        parse_mode: 'HTML'
+      })
+    });
+  } catch (error) {
+    console.error('Ошибка отправки в Telegram:', error);
+  }
+}; 

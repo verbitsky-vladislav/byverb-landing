@@ -495,7 +495,7 @@ export default function ProductConfigurator() {
 
 Нужно приложение внутри Telegram для продаж.`
                 )}
-                className={`w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1500 ${
+                className={`w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >

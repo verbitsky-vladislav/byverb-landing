@@ -202,7 +202,7 @@ export default function FAQBlock() {
 
 Готов обсудить мой проект.`
               )}
-              className={`inline-flex items-center justify-center gap-2 xs:gap-3 bg-white text-black px-6 xs:px-8 py-3 xs:py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 border-2 border-white cursor-pointer text-sm xs:text-base transition-all duration-1000 ease-out delay-1500 ${
+              className={`inline-flex items-center justify-center gap-2 xs:gap-3 bg-white text-black px-6 xs:px-8 py-3 xs:py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 border-2 border-white cursor-pointer text-sm xs:text-base transition-all duration-1000 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
               }`}
             >

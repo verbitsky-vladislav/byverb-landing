@@ -72,9 +72,15 @@ export const useScrollLock = (isLocked: boolean) => {
       document.documentElement.classList.remove('popup-open');
       document.body.classList.remove('popup-open');
       
-      // Восстанавливаем позицию скролла
+      // Восстанавливаем позицию скролла без анимации
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
+        // Используем requestAnimationFrame для плавного восстановления
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: parseInt(scrollY),
+            behavior: 'instant' // Мгновенный скролл без анимации
+          });
+        });
         document.body.removeAttribute('data-scroll-y');
       }
     }
@@ -100,7 +106,12 @@ export const useScrollLock = (isLocked: boolean) => {
       document.body.classList.remove('popup-open');
       
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: parseInt(scrollY),
+            behavior: 'instant'
+          });
+        });
         document.body.removeAttribute('data-scroll-y');
       }
     };

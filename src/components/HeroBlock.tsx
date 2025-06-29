@@ -400,7 +400,7 @@ export default function HeroBlock() {
               </div>
             </div>
           ) : (
-            <div className={`transition-all duration-700 ease-out transform animate-in zoom-in-95 fade-in overflow-x-hidden delay-1500 ${
+            <div className={`transition-all duration-700 ease-out transform animate-in zoom-in-95 fade-in overflow-x-hidden ${
               isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
               <button 

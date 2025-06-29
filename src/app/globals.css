@@ -55,12 +55,12 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 /* Отключаем стандартный скролл для плавного перелистывания */
 html, body {
-  scroll-snap-type: y mandatory;
+  /* scroll-snap-type: y mandatory; */
 }
 
 /* Скрываем скроллбар для чистоты дизайна */

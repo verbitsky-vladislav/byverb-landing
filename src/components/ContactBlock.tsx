@@ -177,7 +177,7 @@ export default function ContactBlock() {
           }`}>
             <div className="text-sm text-gray-400">Работаем по всему миру</div>
             <div className="flex gap-4">
-              <a href="https://t.me/by_verb" target="_blank" rel="noopener noreferrer" className={`text-gray-400 hover:text-white transition-colors transition-all duration-1000 ease-out delay-1500 ${
+              <a href="https://t.me/by_verb" target="_blank" rel="noopener noreferrer" className={`text-gray-400 hover:text-white transition-colors transition-all duration-1000 ease-out ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
               }`}>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
