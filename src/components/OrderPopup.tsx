@@ -46,13 +46,17 @@ export default function OrderPopup({ isOpen, onClose, title, message }: OrderPop
 
   const handleTelegram = () => {
     window.open(`https://t.me/by_verb`, '_blank');
-    onClose();
+    setTimeout(() => {
+      onClose();
+    }, 100);
   };
 
   const handleWhatsApp = () => {
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/79856850115?text=${encodedMessage}`, '_blank');
-    onClose();
+    setTimeout(() => {
+      onClose();
+    }, 100);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {

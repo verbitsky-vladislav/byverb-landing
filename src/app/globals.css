@@ -420,6 +420,7 @@ html, body {
   position: fixed !important;
   width: 100% !important;
   height: 100% !important;
+  scroll-behavior: auto !important;
 }
 
 .popup-open body {
@@ -427,6 +428,7 @@ html, body {
   position: fixed !important;
   width: 100% !important;
   height: 100% !important;
+  scroll-behavior: auto !important;
 }
 
 /* Предотвращение скролла на мобильных устройствах */
@@ -465,4 +467,13 @@ html, body {
 .popup-text-scroll {
   scrollbar-width: thin;
   scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+/* Отключаем smooth scroll для попапов */
+.popup-open {
+  scroll-behavior: auto !important;
+}
+
+.popup-open html {
+  scroll-behavior: auto !important;
 }

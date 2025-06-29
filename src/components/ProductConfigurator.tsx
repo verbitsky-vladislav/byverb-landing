@@ -5,7 +5,9 @@ import OrderPopup from './OrderPopup';
 
 // Функция для форматирования чисел без локали
 const formatNumber = (num: number): string => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  // Конвертируем рубли в евро: 90 рублей = 1 евро, умножаем на 2
+  const euros = Math.round((num / 90) * 2);
+  return euros.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '');
 };
 
 interface Feature {
@@ -26,63 +28,279 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'website',
-    name: 'Сайт',
-    description: 'Лендинги и многостраничники',
-    basePrice: 5000,
-    features: [
-      { id: 'hero', name: 'Hero блок', price: 3000, description: 'Главный экран с заголовком и CTA', category: 'website' },
-      { id: 'about', name: 'Блок "О нас"', price: 2000, description: 'Информация о компании', category: 'website' },
-      { id: 'services', name: 'Блок услуг', price: 2500, description: 'Список ваших услуг', category: 'website' },
-      { id: 'portfolio', name: 'Портфолио', price: 3000, description: 'Галерея работ', category: 'website' },
-      { id: 'testimonials', name: 'Отзывы', price: 2000, description: 'Отзывы клиентов', category: 'website' },
-      { id: 'contact', name: 'Контакты', price: 1500, description: 'Форма обратной связи', category: 'website' },
-      { id: 'blog', name: 'Блог', price: 4000, description: 'Статьи и новости', category: 'website' },
-      { id: 'shop', name: 'Магазин', price: 8000, description: 'Каталог товаров + корзина', category: 'website' },
-      { id: 'cms', name: 'Админ-панель', price: 5000, description: 'Управление контентом', category: 'website' },
-      { id: 'seo', name: 'SEO оптимизация', price: 3000, description: 'Настройка для поисковиков', category: 'website' },
-      { id: 'analytics', name: 'Аналитика', price: 2000, description: 'Яндекс.Метрика + Google Analytics', category: 'website' },
-      { id: 'crm', name: 'Интеграция с CRM', price: 4000, description: 'Подключение к CRM системе', category: 'website' }
+    "id": "website",
+    "name": "Site Web",
+    "description": "Landing pages et sites multi-pages",
+    "basePrice": 5000,
+    "features": [
+        {
+            "id": "hero",
+            "name": "Section Hero",
+            "price": 3000,
+            "description": "Écran principal avec titre et appel à l'action",
+            "category": "website"
+        },
+        {
+            "id": "about",
+            "name": "Section 'À propos'",
+            "price": 2000,
+            "description": "Informations sur votre entreprise",
+            "category": "website"
+        },
+        {
+            "id": "services",
+            "name": "Section Services",
+            "price": 2500,
+            "description": "Liste de vos services",
+            "category": "website"
+        },
+        {
+            "id": "portfolio",
+            "name": "Portfolio",
+            "price": 3000,
+            "description": "Galerie de vos réalisations",
+            "category": "website"
+        },
+        {
+            "id": "testimonials",
+            "name": "Témoignages",
+            "price": 2000,
+            "description": "Avis vérifiés de clients",
+            "category": "website"
+        },
+        {
+            "id": "contact",
+            "name": "Contact",
+            "price": 1500,
+            "description": "Formulaire de contact intelligent",
+            "category": "website"
+        },
+        {
+            "id": "blog",
+            "name": "Blog",
+            "price": 4000,
+            "description": "Articles et actualités",
+            "category": "website"
+        },
+        {
+            "id": "shop",
+            "name": "Boutique en ligne",
+            "price": 8000,
+            "description": "Catalogue produits + panier",
+            "category": "website"
+        },
+        {
+            "id": "cms",
+            "name": "Backoffice",
+            "price": 5000,
+            "description": "Gestion de contenu simplifiée",
+            "category": "website"
+        },
+        {
+            "id": "seo",
+            "name": "Optimisation SEO",
+            "price": 3000,
+            "description": "Référencement naturel performant",
+            "category": "website"
+        },
+        {
+            "id": "analytics",
+            "name": "Analytics",
+            "price": 2000,
+            "description": "Google Analytics + outils avancés",
+            "category": "website"
+        },
+        {
+            "id": "crm",
+            "name": "Intégration CRM",
+            "price": 4000,
+            "description": "Synchronisation avec votre CRM",
+            "category": "website"
+        }
     ]
   },
   {
-    id: 'telegram-app',
-    name: 'Telegram Mini App',
-    description: 'Приложения внутри Telegram',
-    basePrice: 8000,
-    features: [
-      { id: 'auth', name: 'Авторизация', price: 2000, description: 'Вход через Telegram', category: 'telegram-app' },
-      { id: 'catalog', name: 'Каталог товаров', price: 4000, description: 'Список товаров/услуг', category: 'telegram-app' },
-      { id: 'cart', name: 'Корзина', price: 3000, description: 'Добавление в корзину', category: 'telegram-app' },
-      { id: 'payment', name: 'Оплата', price: 5000, description: 'Подключение платежей', category: 'telegram-app' },
-      { id: 'crypto', name: 'Криптоплатежи', price: 6000, description: 'USDT, TON, ETH', category: 'telegram-app' },
-      { id: 'ai-chat', name: 'ИИ-чат', price: 8000, description: 'ChatGPT интеграция', category: 'telegram-app' },
-      { id: 'notifications', name: 'Уведомления', price: 2000, description: 'Push-уведомления', category: 'telegram-app' },
-      { id: 'sharing', name: 'Шеринг', price: 1500, description: 'Поделиться с друзьями', category: 'telegram-app' },
-      { id: 'gallery', name: 'Галерея', price: 2500, description: 'Фото и видео', category: 'telegram-app' },
-      { id: 'booking', name: 'Бронирование', price: 4000, description: 'Запись на услуги', category: 'telegram-app' },
-      { id: 'reviews', name: 'Отзывы', price: 2000, description: 'Система отзывов', category: 'telegram-app' },
-      { id: 'admin', name: 'Админка', price: 5000, description: 'Управление приложением', category: 'telegram-app' }
+    "id": "telegram-app",
+    "name": "Application Telegram Mini",
+    "description": "Applications intégrées à Telegram",
+    "basePrice": 8000,
+    "features": [
+        {
+            "id": "auth",
+            "name": "Authentification",
+            "price": 2000,
+            "description": "Connexion via Telegram",
+            "category": "telegram-app"
+        },
+        {
+            "id": "catalog",
+            "name": "Catalogue Produits",
+            "price": 4000,
+            "description": "Liste de produits/services",
+            "category": "telegram-app"
+        },
+        {
+            "id": "cart",
+            "name": "Panier",
+            "price": 3000,
+            "description": "Ajout au panier",
+            "category": "telegram-app"
+        },
+        {
+            "id": "payment",
+            "name": "Paiement",
+            "price": 5000,
+            "description": "Intégration de solutions de paiement",
+            "category": "telegram-app"
+        },
+        {
+            "id": "crypto",
+            "name": "Paiements Crypto",
+            "price": 6000,
+            "description": "USDT, TON, ETH acceptés",
+            "category": "telegram-app"
+        },
+        {
+            "id": "ai-chat",
+            "name": "Chat IA",
+            "price": 8000,
+            "description": "Intégration ChatGPT avancée",
+            "category": "telegram-app"
+        },
+        {
+            "id": "notifications",
+            "name": "Notifications",
+            "price": 2000,
+            "description": "Alertes push personnalisées",
+            "category": "telegram-app"
+        },
+        {
+            "id": "sharing",
+            "name": "Partage",
+            "price": 1500,
+            "description": "Fonctionnalité de partage social",
+            "category": "telegram-app"
+        },
+        {
+            "id": "gallery",
+            "name": "Galerie",
+            "price": 2500,
+            "description": "Espace photo/vidéo optimisé",
+            "category": "telegram-app"
+        },
+        {
+            "id": "booking",
+            "name": "Réservation",
+            "price": 4000,
+            "description": "Système de rendez-vous intelligent",
+            "category": "telegram-app"
+        },
+        {
+            "id": "reviews",
+            "name": "Avis Clients",
+            "price": 2000,
+            "description": "Module d'évaluations vérifiées",
+            "category": "telegram-app"
+        },
+        {
+            "id": "admin",
+            "name": "Interface Admin",
+            "price": 5000,
+            "description": "Tableau de bord de gestion complet",
+            "category": "telegram-app"
+        }
     ]
   },
   {
-    id: 'telegram-bot',
-    name: 'Telegram Бот',
-    description: 'Автоматизация в Telegram',
-    basePrice: 3000,
-    features: [
-      { id: 'commands', name: 'Команды', price: 1000, description: 'Базовые команды /start, /help', category: 'telegram-bot' },
-      { id: 'keyboard', name: 'Клавиатура', price: 1500, description: 'Inline кнопки', category: 'telegram-bot' },
-      { id: 'catalog-bot', name: 'Каталог', price: 3000, description: 'Показ товаров в боте', category: 'telegram-bot' },
-      { id: 'cart-bot', name: 'Корзина в боте', price: 2500, description: 'Оформление заказов', category: 'telegram-bot' },
-      { id: 'payment-bot', name: 'Оплата в боте', price: 4000, description: 'Прием платежей', category: 'telegram-bot' },
-      { id: 'ai-bot', name: 'ИИ-бот', price: 6000, description: 'ChatGPT в боте', category: 'telegram-bot' },
-      { id: 'support', name: 'Поддержка', price: 2000, description: 'FAQ + чат с менеджером', category: 'telegram-bot' },
-      { id: 'notifications-bot', name: 'Рассылки', price: 2000, description: 'Массовые уведомления', category: 'telegram-bot' },
-      { id: 'analytics-bot', name: 'Аналитика бота', price: 1500, description: 'Статистика использования', category: 'telegram-bot' },
-      { id: 'multilang', name: 'Мультиязычность', price: 3000, description: 'Поддержка разных языков', category: 'telegram-bot' },
-      { id: 'webhook', name: 'Webhook', price: 2000, description: 'Интеграция с внешними системами', category: 'telegram-bot' },
-      { id: 'admin-bot', name: 'Админка бота', price: 3000, description: 'Управление ботом', category: 'telegram-bot' }
+    "id": "telegram-bot",
+    "name": "Bot Telegram",
+    "description": "Automatisation sur Telegram",
+    "basePrice": 3000,
+    "features": [
+        {
+            "id": "commands",
+            "name": "Commandes",
+            "price": 1000,
+            "description": "Commandes de base /start, /help",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "keyboard",
+            "name": "Clavier",
+            "price": 1500,
+            "description": "Boutons inline personnalisés",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "catalog-bot",
+            "name": "Catalogue",
+            "price": 3000,
+            "description": "Affichage des produits dans le bot",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "cart-bot",
+            "name": "Panier",
+            "price": 2500,
+            "description": "Passation de commandes automatisée",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "payment-bot",
+            "name": "Paiement",
+            "price": 4000,
+            "description": "Système de paiement sécurisé intégré",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "ai-bot",
+            "name": "Bot IA",
+            "price": 6000,
+            "description": "Assistant intelligent avec ChatGPT",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "support",
+            "name": "Support",
+            "price": 2000,
+            "description": "FAQ + chat avec manager",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "notifications-bot",
+            "name": "Notifications",
+            "price": 2000,
+            "description": "Envoi de notifications groupées",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "analytics-bot",
+            "name": "Analytique",
+            "price": 1500,
+            "description": "Tableau de bord statistique",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "multilang",
+            "name": "Multilingue",
+            "price": 3000,
+            "description": "Prise en charge de plusieurs langues",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "webhook",
+            "name": "Webhook",
+            "price": 2000,
+            "description": "Connexion avec systèmes externes",
+            "category": "telegram-bot"
+        },
+        {
+            "id": "admin-bot",
+            "name": "Administration",
+            "price": 3000,
+            "description": "Panneau de gestion complet",
+            "category": "telegram-bot"
+        }
     ]
   }
 ];
@@ -171,79 +389,71 @@ export default function ProductConfigurator() {
   const getBusinessBenefits = (featureId: string) => {
     const benefits: { [key: string]: string } = {
       // Сайт
-      'hero': 'Привлекает внимание посетителей, увеличивает конверсию на 40%. Первое впечатление решает всё.',
-      'about': 'Повышает доверие клиентов на 60%. Люди покупают у тех, кому доверяют.',
-      'services': 'Четко показывает ваши услуги. Увеличивает понимание ценности на 35%.',
-      'portfolio': 'Демонстрирует качество работ. Увеличивает доверие и конверсию на 45%.',
-      'testimonials': 'Социальное доказательство работает. Увеличивает продажи на 25%.',
-      'contact': 'Упрощает связь с клиентами. Снижает барьер для обращения на 50%.',
-      'blog': 'SEO-трафик растет на 70%. Позиционирует вас как эксперта.',
-      'shop': 'Продажи 24/7 без вашего участия. Автоматизация увеличивает прибыль.',
-      'cms': 'Экономия времени на обновление контента. Снижает затраты на поддержку.',
-      'seo': 'Бесплатный трафик из поиска. ROI до 500% от вложений.',
-      'analytics': 'Понимание поведения клиентов. Оптимизация увеличивает конверсию на 30%.',
-      'crm': 'Автоматизация продаж. Увеличивает средний чек на 40%.',
+      "hero": "Capte immédiatement l'attention et booste vos conversions de 40%. La première impression est cruciale.",
+      "about": "Augmente la confiance des clients de 60%. On achète toujours là où on a confiance.",
+      "services": "Présente clairement vos services. Améliore la perception de valeur de 35%.",
+      "portfolio": "Démontre la qualité de votre travail. Augmente la confiance et les conversions de 45%.",
+      "testimonials": "La preuve sociale qui fait vendre. Augmente les ventes de 25%.",
+      "contact": "Simplifie la prise de contact. Réduit de 50% les freins à l'engagement.",
+      "blog": "Augmente le trafic SEO de 70%. Vous positionne comme expert.",
+      "shop": "Ventes 24/7 sans intervention. L'automatisation booste vos profits.",
+      "cms": "Gagnez du temps sur les mises à jour. Réduit les coûts de maintenance.",
+      "seo": "Trafic gratuit via les moteurs de recherche. ROI pouvant atteindre 500%.",
+      "analytics": "Comprenez le comportement client. Optimisez pour +30% de conversions.",
+      "crm": "Automatisez vos ventes. Augmentez le panier moyen de 40%.",
 
       // Telegram Mini App
-      'auth': 'Быстрая регистрация через Telegram. Снижает отказы на 60%.',
-      'catalog': 'Удобный просмотр товаров. Увеличивает время в приложении на 80%.',
-      'cart': 'Простое добавление в корзину. Увеличивает конверсию на 45%.',
-      'payment': 'Быстрая оплата. Снижает брошенные корзины на 70%.',
-      'crypto': 'Новые платежные методы. Привлекает крипто-аудиторию.',
-      'ai-chat': '24/7 поддержка клиентов. Снижает нагрузку на менеджеров на 80%.',
-      'notifications': 'Напоминания о товарах. Увеличивает повторные покупки на 35%.',
-      'sharing': 'Вирусное распространение. Бесплатный маркетинг через клиентов.',
-      'gallery': 'Визуальное представление товаров. Увеличивает доверие на 50%.',
-      'booking': 'Автоматизация записи. Снижает ошибки и экономит время.',
-      'reviews': 'Доверие через отзывы. Увеличивает конверсию на 25%.',
-      'admin': 'Управление без программистов. Экономия на разработчиках.',
+      "auth": "Inscription express via Telegram. Réduit les abandons de 60%.",
+      "catalog": "Navigation produit intuitive. Augmente le temps d'utilisation de 80%.",
+      "cart": "Ajout au panier simplifié. Booste la conversion de 45%.",
+      "payment": "Paiement ultra-rapide. Diminue les paniers abandonnés de 70%.",
+      "crypto": "Nouvelles méthodes de paiement. Ciblez la communauté crypto.",
+      "ai-chat": "Support client 24/7. Réduit la charge managériale de 80%.",
+      "notifications": "Rappels produits intelligents. Augmente les achats répétés de 35%.",
+      "sharing": "Effet viral garanti. Marketing gratuit par vos clients.",
+      "gallery": "Présentation visuelle impactante. Renforce la confiance de 50%.",
+      "booking": "Réservation automatisée. Élimine les erreurs et gagnez du temps.",
+      "reviews": "La puissance des avis clients. Améliore la conversion de 25%.",
+      "admin": "Gestion sans codage. Économisez sur les développeurs.",
 
       // Telegram Бот
-      'commands': 'Быстрый доступ к информации. Улучшает пользовательский опыт.',
-      'keyboard': 'Удобная навигация. Увеличивает использование бота на 60%.',
-      'catalog-bot': 'Продажи прямо в Telegram. Увеличивает конверсию на 40%.',
-      'cart-bot': 'Простое оформление заказов. Снижает брошенные корзины на 50%.',
-      'payment-bot': 'Оплата в мессенджере. Увеличивает завершенные покупки на 65%.',
-      'ai-bot': 'Автоматические ответы 24/7. Снижает нагрузку на поддержку на 90%.',
-      'support': 'Быстрая помощь клиентам. Увеличивает удовлетворенность на 70%.',
-      'notifications-bot': 'Массовые рассылки. Увеличивает повторные продажи на 45%.',
-      'analytics-bot': 'Понимание аудитории. Оптимизация увеличивает эффективность.',
-      'multilang': 'Международная аудитория. Расширяет рынок сбыта.',
-      'webhook': 'Интеграция с внешними системами. Автоматизация процессов.',
-      'admin-bot': 'Управление ботом без кода. Экономия на разработке.'
+      "commands": "Accès instantané à l'information. Optimise l'expérience utilisateur.",
+      "keyboard": "Navigation intuitive. Augmente l'engagement de 60%.",
+      "catalog-bot": "Vente directe sur Telegram. Conversion boostée de 40%.",
+      "cart-bot": "Commandes simplifiées. Réduit les abandons de panier de 50%.",
+      "payment-bot": "Paiement dans le chat. Finalise 65% d'achats supplémentaires.",
+      "ai-bot": "Réponses automatiques 24/7. Réduit la charge support de 90%.",
+      "support": "Assistance rapide. Satisfaction client augmentée de 70%.",
+      "notifications-bot": "Campagnes ciblées. Fidélisation accrue de 45%.",
+      "analytics-bot": "Analyse comportementale. Optimisation continue des performances.",
+      "multilang": "Audience internationale. Développez vos marchés.",
+      "webhook": "Interconnexion systèmes. Automatisation complète.",
+      "admin-bot": "Gestion no-code. Économies substantielles.",
     };
 
-    return benefits[featureId] || 'Увеличивает эффективность бизнеса и прибыль.';
+      return benefits[featureId] || 'Augmente l\'efficacité de votre business et vos profits.';
   };
 
   const getOrderMessage = () => {
-    const selectedProductsStr = selectedProducts.map(productId => {
+    let message = 'Bonjour! Je souhaite commander :\n\n';
+    
+    // Добавляем выбранные продукты
+    selectedProducts.forEach(productId => {
       const product = products.find(p => p.id === productId);
       if (product) {
-        return `${product.name} - ${formatNumber(product.basePrice)} ₽`;
+        message += `${product.name} - ${formatNumber(product.basePrice)}\n`;
       }
-      return '';
-    }).filter(Boolean).join('\n');
-
-    const selectedFeaturesStr = selectedFeatures.map(featureId => {
+    });
+    
+    // Добавляем выбранные функции
+    selectedFeatures.forEach(featureId => {
       const feature = products.flatMap(p => p.features).find(f => f.id === featureId);
       if (feature) {
-        return `${feature.name} - ${formatNumber(feature.price)} ₽`;
+        message += `${feature.name} - ${formatNumber(feature.price)}\n`;
       }
-      return '';
-    }).filter(Boolean).join('\n');
-
-    let message = 'Здравствуйте! Хочу заказать проект:\n\n';
+    });
     
-    if (selectedProductsStr) {
-      message += `Продукты:\n${selectedProductsStr}\n\n`;
-    }
-    
-    if (selectedFeaturesStr) {
-      message += `Функции:\n${selectedFeaturesStr}\n\n`;
-    }
-    
-    message += `Итого: ${formatNumber(getTotalPrice())} ₽`;
+    message += `\nTotal: ${formatNumber(getTotalPrice())}`;
     
     return message;
   };
@@ -263,317 +473,266 @@ export default function ProductConfigurator() {
       <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
-        <h2 className={`text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-200 ${
+        <h2 className={`text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-4 text-black transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          Подобрать проект
+          Choisir votre projet
         </h2>
-        <p className={`text-sm sm:text-base lg:text-lg text-gray-700 transition-all duration-700 ease-out delay-400 ${
+        <p className={`text-sm sm:text-base lg:text-lg text-gray-700 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          Выберите продукты и функции для вашего проекта
+          Choisissez vos produits et fonctionnalités
         </p>
       </div>
 
       {/* Мобильная и планшетная версия - готовые пакеты */}
-      <div className={`block xl:hidden transition-all duration-1000 ease-out delay-600 ${
+      <div className={`block xl:hidden transition-all duration-1000 ease-out ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         <div className="space-y-6">
           {/* Готовые пакеты услуг */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {/* Пакет 1: Продающий лендинг */}
-            <div className={`bg-white border-2 border-red-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out delay-700 ${
+            <div className={`bg-white border-2 border-red-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
             }`}>
-              <div className={`absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-800 ${
+              <div className={`absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}>
-                Популярно
+                Best-seller
               </div>
-              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-900 ${
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Продающий лендинг</h3>
-              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1000 ${
+              }`}>Landing Page Vendeuse</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Одностраничный сайт для продаж</p>
+              }`}>Site one-page ultra-convertible</p>
               
-              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1100 ${
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Hero блок с CTA</span>
+                  <span className="text-sm text-gray-700">Section hero avec CTA percutant</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Блок услуг</span>
+                  <span className="text-sm text-gray-700">Présentation de vos services</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Отзывы клиентов</span>
+                  <span className="text-sm text-gray-700">Témoignages clients vérifiés</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Форма заявок</span>
+                  <span className="text-sm text-gray-700">Formulaire intelligent</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">SEO оптимизация</span>
+                  <span className="text-sm text-gray-700">Optimisation SEO complète</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Аналитика</span>
+                  <span className="text-sm text-gray-700">Analytics intégré</span>
                 </div>
               </div>
               
-              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1200 ${
+              <div className={`text-center mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <div className="text-2xl font-inter-black text-red-500 mb-1">15.000 ₽</div>
-                <div className="text-sm text-gray-500">вместо 25.000 ₽</div>
+                <div className="text-2xl font-inter-black text-red-500 mb-1">Seulement 329€ au lieu de 549€</div>
               </div>
               
               <button 
                 onClick={() => openPopup(
-                  'Заказать лендинг',
-                  `Здравствуйте! Хочу заказать лендинг за 15.000 ₽
-
-Включает:
-• Hero блок
-• Блок "О нас"
-• Блок услуг
-• Портфолио
-• Отзывы
-• Контакты
-• Аналитика
-
-Нужен качественный лендинг для привлечения клиентов.`
+                  'Commander Landing Page',
+                  `Bonjour, je souhaite :\n✔ Landing Page Pro à 329€\n\nInclut :\n• Design responsive\n• Formulaire intelligent\n• SEO de base\n• 1 mois support\n\n[✅ Confirmer ma commande]`
                 )}
-                className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1300 ${
+                className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Заказать лендинг
+                Commander
               </button>
             </div>
 
             {/* Пакет 2: Telegram бот */}
-            <div className={`bg-white border-2 border-black rounded-2xl p-6 shadow-xl transition-all duration-700 ease-out delay-800 ${
+            <div className={`bg-white border-2 border-black rounded-2xl p-6 shadow-xl transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
             }`}>
-              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-900 ${
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Telegram бот</h3>
-              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1000 ${
+              }`}>Bot Telegram Pro</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Автоматизация продаж в Telegram</p>
+              }`}>Automatisation 360° des ventes</p>
               
-              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1100 ${
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">Каталог товаров</span>
+                  <span className="text-sm text-gray-700">Catalogue produits dynamique</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">Корзина и заказы</span>
+                  <span className="text-sm text-gray-700">Panier & paiement sécurisé</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">Оплата в боте</span>
+                  <span className="text-sm text-gray-700">Assistant IA 24/7</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">ИИ-поддержка</span>
+                  <span className="text-sm text-gray-700">Campagnes push ciblées</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">Рассылки</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-black rounded-full"></div>
-                  <span className="text-sm text-gray-700">Аналитика</span>
+                  <span className="text-sm text-gray-700">Tracking performance</span>
                 </div>
               </div>
               
-              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1200 ${
+              <div className={`text-center mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <div className="text-2xl font-inter-black text-black mb-1">18.000 ₽</div>
-                <div className="text-sm text-gray-500">вместо 30.000 ₽</div>
+                <div className="text-2xl font-inter-black text-black mb-1">Seulement 395€ au lieu de 659€</div>
               </div>
               
               <button 
                 onClick={() => openPopup(
-                  'Заказать Telegram бота',
-                  `Здравствуйте! Хочу заказать Telegram бота за 18.000 ₽
-
-Включает:
-• Каталог товаров
-• Корзина и заказы
-• Оплата в боте
-• ИИ-поддержка
-• Рассылки
-• Аналитика
-
-Нужен бот для автоматизации продаж в Telegram.`
+                  'Commander Bot Telegram',
+                  `Bonjour, je souhaite un Bot Telegram Pro à 395€\n\nInclut :\n• Catalogue produits dynamique\n• Panier & paiement sécurisé\n• Assistant IA 24/7\n• Campagnes push ciblées\n• Tracking performance\n\n[🤖 Demander]`
                 )}
-                className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1300 ${
+                className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Заказать бота
+                Demander
               </button>
             </div>
 
             {/* Пакет 3: Mini App */}
-            <div className={`bg-white border-2 border-blue-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out delay-900 ${
+            <div className={`bg-white border-2 border-blue-500 rounded-2xl p-6 shadow-xl relative transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
             }`}>
-              <div className={`absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-1000 ${
+              <div className={`absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold transition-all duration-500 ease-out ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}>
-                Новинка
+                Nouveauté exclusive
               </div>
-              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-1100 ${
+              <h3 className={`text-xl font-inter-black mb-3 text-black transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Telegram Mini App</h3>
-              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out delay-1200 ${
+              }`}>Mini App Premium</h3>
+              <p className={`text-sm text-gray-600 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Приложение внутри Telegram</p>
+              }`}>Application native Telegram</p>
               
-              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out delay-1300 ${
+              <div className={`space-y-2 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Авторизация через Telegram</span>
+                  <span className="text-sm text-gray-700">Login instantané (via Telegram)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Каталог товаров</span>
+                  <span className="text-sm text-gray-700">Boutique complète</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Корзина и оплата</span>
+                  <span className="text-sm text-gray-700">Paiements cryptos (USDT/TON)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">ИИ-чат</span>
+                  <span className="text-sm text-gray-700">Chatbot intelligent</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Уведомления</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Админ-панель</span>
+                  <span className="text-sm text-gray-700">Dashboard admin</span>
                 </div>
               </div>
               
-              <div className={`text-center mb-4 transition-all duration-700 ease-out delay-1400 ${
+              <div className={`text-center mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                <div className="text-2xl font-inter-black text-blue-500 mb-1">25.000 ₽</div>
-                <div className="text-sm text-gray-500">вместо 40.000 ₽</div>
+                <div className="text-2xl font-inter-black text-blue-500 mb-1">Seulement 527€ au lieu de 879€</div>
               </div>
               
               <button 
                 onClick={() => openPopup(
-                  'Заказать Telegram Mini App',
-                  `Здравствуйте! Хочу заказать Telegram Mini App за 25.000 ₽
-
-Включает:
-• Авторизация через Telegram
-• Каталог товаров
-• Корзина и оплата
-• ИИ-чат
-• Уведомления
-• Админ-панель
-
-Нужно приложение внутри Telegram для продаж.`
+                  'Commander Mini App',
+                  `Bonjour, je souhaite une Mini App Premium à 527€\n\nInclut :\n• Application native Telegram\n• Login instantané\n• Boutique complète\n• Paiements cryptos\n• Chatbot intelligent\n• Dashboard admin\n\n[📱 Devis immédiat]`
                 )}
-                className={`w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out delay-1500 ${
+                className={`w-full bg-blue-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm cursor-pointer transition-all duration-700 ease-out ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                Заказать Mini App
+                Devis immédiat
               </button>
             </div>
           </div>
 
           {/* CTA блок */}
-          <div className={`bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-center text-white transition-all duration-700 ease-out delay-1600 ${
+          <div className={`bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-6 text-center text-white transition-all duration-700 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
-            <h3 className={`text-xl font-inter-black mb-2 transition-all duration-700 ease-out delay-1700 ${
+            <h3 className={`text-xl font-inter-black mb-2 transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>Нужен кастомный проект?</h3>
-            <p className={`text-sm mb-4 opacity-90 transition-all duration-700 ease-out delay-1800 ${
+            }`}>Solution sur-mesure ?</h3>
+            <p className={`text-sm mb-4 opacity-90 transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>Создадим индивидуальное решение под ваши задачи</p>
+            }`}>Nous concevons votre outil digital parfait</p>
             <button
               onClick={() => openPopup(
-                'Обсудить кастомный проект',
-                `Здравствуйте! Хочу обсудить кастомный проект.
-
-Расскажите, пожалуйста:
-• Какой проект планируете?
-• Какие функции нужны?
-• Есть ли примеры похожих проектов?
-• Какой бюджет?
-
-Готов обсудить детали и предложить решение.`
+                'Discutons de votre projet',
+                `Projet custom ?\nDécrivez-nous :\n• Votre concept\n• Fonctions clés\n• Budget estimé\n\n[💬 Expert en ligne]`
               )}
-              className={`bg-white text-red-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer transition-all duration-700 ease-out delay-1900 ${
+              className={`bg-white text-red-500 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
             >
-              Обсудить проект
+              ✉ Discutons-en
             </button>
           </div>
         </div>
       </div>
 
       {/* Десктопная версия - подбор проекта */}
-      <div className={`hidden xl:grid xl:grid-cols-4 gap-8 transition-all duration-1000 ease-out delay-600 ${
+      <div className={`hidden xl:grid xl:grid-cols-4 gap-8 transition-all duration-1000 ease-out ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
         {/* Левая колонка - Выбор продуктов */}
-        <div className={`xl:col-span-1 transition-all duration-700 ease-out delay-700 ${
+        <div className={`xl:col-span-1 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
         }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl">
-            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-800 ${
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Выберите продукты
+              Choisissez vos produits
             </h3>
             
-            <div className={`space-y-3 transition-all duration-700 ease-out delay-900 ${
+            <div className={`space-y-3 transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               {products.map((product, index) => (
                 <div
                   key={product.id}
                   onClick={() => handleProductToggle(product.id)}
-                  className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 transition-all duration-500 ease-out ${
+                  className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-300 ${
                     selectedProducts.includes(product.id)
                       ? 'border-red-500 bg-red-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
-                  style={{ transitionDelay: `${1000 + index * 100}ms` }}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-semibold text-black">{product.name}</h4>
-                    <span className="text-red-500 font-bold">{formatNumber(product.basePrice)} ₽</span>
+                    <span className="text-red-500 font-bold">{formatNumber(product.basePrice)} €</span>
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{product.description}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-gray-500">
-                      {getSelectedFeaturesByProduct(product.id).length} функций выбрано
+                      {getSelectedFeaturesByProduct(product.id).length} fonctionnalités sélectionnées
                     </span>
                     <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
                       selectedProducts.includes(product.id) 
@@ -594,26 +753,26 @@ export default function ProductConfigurator() {
         </div>
 
         {/* Центральная колонка - Функции (расширенная) */}
-        <div className={`xl:col-span-2 transition-all duration-700 ease-out delay-800 ${
+        <div className={`xl:col-span-2 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl">
-            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-900 ${
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Настройте функции
+              Configurez les fonctionnalités
             </h3>
             
             {selectedProducts.length === 0 ? (
-              <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out delay-1000 ${
+              <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                Сначала выберите продукты слева
+                Sélectionnez d'abord les produits à gauche
               </p>
             ) : (
               <div>
                 {/* Кнопки переключения между продуктами */}
-                <div className={`flex flex-wrap gap-2 mb-4 transition-all duration-700 ease-out delay-1000 ${
+                <div className={`flex flex-wrap gap-2 mb-4 transition-all duration-700 ease-out ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
                   {selectedProducts.map((productId, index) => {
@@ -629,7 +788,6 @@ export default function ProductConfigurator() {
                             ? 'bg-red-500 text-white'
                             : 'bg-gray-100 text-black hover:bg-gray-200'
                         }`}
-                        style={{ transitionDelay: `${1100 + index * 100}ms` }}
                       >
                         {product.name}
                       </button>
@@ -639,7 +797,7 @@ export default function ProductConfigurator() {
 
                 {/* Функции активного продукта */}
                 {activeProduct ? (
-                  <div className={`transition-all duration-700 ease-out delay-1100 ${
+                  <div className={`transition-all duration-700 ease-out ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}>
                     {(() => {
@@ -648,11 +806,11 @@ export default function ProductConfigurator() {
                       
                       return (
                         <div>
-                          <h4 className={`font-semibold text-black mb-3 transition-all duration-700 ease-out delay-1200 ${
+                          <h4 className={`font-semibold text-black mb-3 transition-all duration-700 ease-out ${
                             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                           }`}>{product.name}</h4>
                           
-                          <div className={`grid grid-cols-1 xl:grid-cols-3 gap-4 transition-all duration-700 ease-out delay-1300 ${
+                          <div className={`grid grid-cols-1 xl:grid-cols-3 gap-4 transition-all duration-700 ease-out ${
                             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                           }`}>
                             {product.features.map((feature, index) => (
@@ -664,12 +822,11 @@ export default function ProductConfigurator() {
                                     ? 'border-red-500 bg-red-50'
                                     : 'border-gray-200 hover:border-gray-300'
                                 }`}
-                                style={{ transitionDelay: `${1400 + index * 50}ms` }}
                               >
                                 {/* Заголовок с ценой */}
                                 <div className="flex justify-between items-start mb-2">
                                   <h5 className="font-medium text-sm text-black leading-tight pr-2 flex-1">{feature.name}</h5>
-                                  <span className="text-red-500 font-bold text-sm flex-shrink-0">{formatNumber(feature.price)} ₽</span>
+                                  <span className="text-red-500 font-bold text-sm flex-shrink-0">{formatNumber(feature.price)} €</span>
                                 </div>
                                 
                                 {/* Описание */}
@@ -682,7 +839,7 @@ export default function ProductConfigurator() {
                                       <span className="text-xs text-gray-600 font-bold">?</span>
                                     </div>
                                     <div className="absolute bottom-full right-0 mb-2 w-64 bg-black text-white text-xs rounded-lg p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                                      <div className="font-semibold mb-1">Преимущества для бизнеса:</div>
+                                      <div className="font-semibold mb-1">Avantages pour votre business:</div>
                                       {getBusinessBenefits(feature.id)}
                                       <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
                                     </div>
@@ -696,10 +853,10 @@ export default function ProductConfigurator() {
                     })()}
                   </div>
                 ) : (
-                  <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out delay-1200 ${
+                  <p className={`text-sm text-gray-500 text-center py-8 transition-all duration-700 ease-out ${
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}>
-                    Выберите продукт для настройки функций
+                    Choisissez un produit для configurer les fonctionnalités
                   </p>
                 )}
               </div>
@@ -708,24 +865,24 @@ export default function ProductConfigurator() {
         </div>
 
         {/* Правая колонка - Корзина */}
-        <div className={`xl:col-span-1 transition-all duration-700 ease-out delay-900 ${
+        <div className={`xl:col-span-1 transition-all duration-700 ease-out ${
           isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
         }`}>
           <div className="bg-white border-2 border-black rounded-3xl p-6 shadow-2xl sticky top-4">
-            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out delay-1000 ${
+            <h3 className={`text-xl font-inter-black mb-4 text-black transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Ваш проект
+              Votre projet
             </h3>
             
             {selectedProducts.length === 0 ? (
-              <p className={`text-sm text-gray-500 mb-4 transition-all duration-700 ease-out delay-1100 ${
+              <p className={`text-sm text-gray-500 mb-4 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                Выберите продукты и функции
+                Choisissez vos produits et fonctionnalités
               </p>
             ) : (
-              <div className={`space-y-4 mb-6 transition-all duration-700 ease-out delay-1100 ${
+              <div className={`space-y-4 mb-6 transition-all duration-700 ease-out ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 {selectedProducts.map((productId, index) => {
@@ -738,9 +895,9 @@ export default function ProductConfigurator() {
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-semibold text-sm text-black">{product.name}</p>
-                          <p className="text-xs text-gray-600">Базовая цена</p>
+                          <p className="text-xs text-gray-600">Prix de base</p>
                         </div>
-                        <span className="text-sm font-bold text-red-500">{formatNumber(product.basePrice)} ₽</span>
+                        <span className="text-sm font-bold text-red-500">{formatNumber(product.basePrice)} €</span>
                       </div>
                       
                       {selectedFeaturesForProduct.length > 0 && (
@@ -752,7 +909,7 @@ export default function ProductConfigurator() {
                             return (
                               <div key={featureId} className="flex justify-between items-start text-xs">
                                 <span className="text-gray-600">{feature.name}</span>
-                                <span className="font-bold text-red-500">{formatNumber(feature.price)} ₽</span>
+                                <span className="font-bold text-red-500">{formatNumber(feature.price)} €</span>
                               </div>
                             );
                           })}
@@ -764,17 +921,17 @@ export default function ProductConfigurator() {
               </div>
             )}
 
-            <div className={`border-t border-gray-200 pt-4 transition-all duration-700 ease-out delay-1200 ${
+            <div className={`border-t border-gray-200 pt-4 transition-all duration-700 ease-out ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <div className="flex justify-between items-center mb-4">
-                <span className="font-bold text-lg text-black">Итого:</span>
-                <span className="font-bold text-xl text-red-500">{formatNumber(getTotalPrice())} ₽</span>
+                <span className="font-bold text-lg text-black">Total:</span>
+                <span className="font-bold text-xl text-red-500">{formatNumber(getTotalPrice())} €</span>
               </div>
               
               <button
                 onClick={() => openPopup(
-                  'Заказать проект',
+                  'Commander votre projet',
                   getOrderMessage()
                 )}
                 disabled={selectedProducts.length === 0}
@@ -784,7 +941,7 @@ export default function ProductConfigurator() {
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed transform-none'
                 }`}
               >
-                Заказать проект
+                Commander votre projet
               </button>
             </div>
           </div>

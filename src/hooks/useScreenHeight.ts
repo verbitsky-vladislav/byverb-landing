@@ -56,6 +56,11 @@ export const useScrollLock = (isLocked: boolean) => {
       // Восстанавливаем скролл
       const scrollY = document.body.getAttribute('data-scroll-y');
       
+      // Удаляем CSS классы
+      document.documentElement.classList.remove('popup-open');
+      document.body.classList.remove('popup-open');
+      
+      // Восстанавливаем стили body
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
@@ -63,18 +68,30 @@ export const useScrollLock = (isLocked: boolean) => {
       document.body.style.touchAction = '';
       (document.body.style as WebkitOverflowStyle).webkitOverflowScrolling = '';
       
+      // Восстанавливаем стили html
       document.documentElement.style.overflow = '';
       document.documentElement.style.position = '';
       document.documentElement.style.top = '';
       document.documentElement.style.width = '';
       
-      // Удаляем CSS классы
-      document.documentElement.classList.remove('popup-open');
-      document.body.classList.remove('popup-open');
-      
-      // Восстанавливаем позицию скролла
+      // Восстанавливаем позицию скролла без принудительной прокрутки
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
+        // Используем setTimeout для плавного восстановления позиции
+        setTimeout(() => {
+          // Временно отключаем smooth scroll
+          const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = 'auto';
+          
+          window.scrollTo({
+            top: parseInt(scrollY),
+            behavior: 'instant' // Мгновенная прокрутка без анимации
+          });
+          
+          // Восстанавливаем smooth scroll
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
+          }, 100);
+        }, 0);
         document.body.removeAttribute('data-scroll-y');
       }
     }
@@ -83,6 +100,11 @@ export const useScrollLock = (isLocked: boolean) => {
     return () => {
       const scrollY = document.body.getAttribute('data-scroll-y');
       
+      // Удаляем CSS классы
+      document.documentElement.classList.remove('popup-open');
+      document.body.classList.remove('popup-open');
+      
+      // Восстанавливаем стили
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.top = '';
@@ -95,12 +117,23 @@ export const useScrollLock = (isLocked: boolean) => {
       document.documentElement.style.top = '';
       document.documentElement.style.width = '';
       
-      // Удаляем CSS классы
-      document.documentElement.classList.remove('popup-open');
-      document.body.classList.remove('popup-open');
-      
+      // Восстанавливаем позицию скролла
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
+        setTimeout(() => {
+          // Временно отключаем smooth scroll
+          const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = 'auto';
+          
+          window.scrollTo({
+            top: parseInt(scrollY),
+            behavior: 'instant'
+          });
+          
+          // Восстанавливаем smooth scroll
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = originalScrollBehavior;
+          }, 100);
+        }, 0);
         document.body.removeAttribute('data-scroll-y');
       }
     };

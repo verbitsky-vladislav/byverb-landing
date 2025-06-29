@@ -19,7 +19,7 @@ export default function ContactBlock() {
         }`}>
           <h3 className={`text-lg font-inter-black mb-4 text-white transition-all duration-1000 ease-out delay-200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>Контакты</h3>
+          }`}>Contact</h3>
           <div className="space-y-3">
             <div className={`flex items-center gap-3 transition-all duration-1000 ease-out delay-300 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -32,9 +32,9 @@ export default function ContactBlock() {
                 </svg>
               </div>
               <div>
-                <div className="text-xs text-gray-400">Телефон</div>
-                <a href="tel:+79856850115" className="text-sm font-semibold text-white hover:text-red-500 transition-colors">
-                  +7 (985) 685-01-15
+                <div className="text-xs text-gray-400">Téléphone</div>
+                <a href="tel:+33652037779" className="text-sm font-semibold text-white hover:text-red-500 transition-colors">
+                  +33 6 52 03 77 79
                 </a>
               </div>
             </div>
@@ -51,8 +51,8 @@ export default function ContactBlock() {
               </div>
               <div>
                 <div className="text-xs text-gray-400">WhatsApp</div>
-                <a href="https://wa.me/79856850115" className="text-sm font-semibold text-white hover:text-red-500 transition-colors">
-                  +7 (985) 685-01-15
+                <a href="https://wa.me/33652037779" className="text-sm font-semibold text-white hover:text-red-500 transition-colors">
+                  +33 6 52 03 77 79
                 </a>
               </div>
             </div>
@@ -74,25 +74,6 @@ export default function ContactBlock() {
                 </a>
               </div>
             </div>
-            
-            <div className={`flex items-center gap-3 transition-all duration-1000 ease-out delay-600 ${
-              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>
-              <div className={`w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-1000 ease-out delay-700 ${
-                isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
-              }`}>
-                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-xs text-gray-400">Адрес</div>
-                <div className="text-sm font-semibold text-white">
-                  Москва, ул. Примерная, 123
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -102,7 +83,7 @@ export default function ContactBlock() {
         }`}>
           <h3 className={`text-lg font-inter-black mb-4 text-white transition-all duration-1000 ease-out delay-800 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>Технологии</h3>
+          }`}>Technologies</h3>
           <div className="space-y-2">
             <div className={`text-xs text-gray-300 transition-all duration-1000 ease-out delay-900 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -119,7 +100,7 @@ export default function ContactBlock() {
             <div className={`text-xs text-gray-300 transition-all duration-1000 ease-out delay-1100 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              <div className="font-semibold text-white mb-1">Боты</div>
+              <div className="font-semibold text-white mb-1">Bots</div>
               Telegram, WhatsApp, Telegram mini-apps
             </div>
           </div>
@@ -131,20 +112,20 @@ export default function ContactBlock() {
         }`}>
           <h3 className={`text-lg font-inter-black mb-4 text-white transition-all duration-1000 ease-out delay-900 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>Реферальная программа</h3>
+          }`}>Programme de parrainage</h3>
           <div className="space-y-3">
             <div className={`bg-red-500 rounded-lg p-3 transition-all duration-1000 ease-out delay-1000 ${
               isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
             }`}>
               <div className="text-xl font-inter-black mb-1">10%</div>
-              <div className="text-xs opacity-90">вам за приведенный заказ</div>
+              <div className="text-xs opacity-90">pour chaque commande parrainée</div>
             </div>
             <div className={`space-y-1 text-xs text-gray-300 transition-all duration-1000 ease-out delay-1100 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              <div>• Приведите клиента — получите 10%</div>
-              <div>• Выплаты каждую неделю</div>
-              <div>• Без ограничений</div>
+              <div>• Parrainez un client - recevez 10%</div>
+              <div>• Paiements hebdomadaires</div>
+              <div>• Sans limites</div>
             </div>
             <a
               href="https://t.me/by_verb"
@@ -154,7 +135,7 @@ export default function ContactBlock() {
                 isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
               }`}
             >
-              Узнать подробности
+              En savoir plus
             </a>
           </div>
         </div>
@@ -169,13 +150,13 @@ export default function ContactBlock() {
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             <div className="text-sm text-gray-400 mb-1">© 2025 byverb_</div>
-            <div className="text-xs text-gray-500">Создаем сайты, которые продают</div>
+            <div className="text-xs text-gray-500">Nous créons des sites qui vendent</div>
           </div>
           
           <div className={`flex items-center gap-6 transition-all duration-1000 ease-out delay-1400 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            <div className="text-sm text-gray-400">Работаем по всему миру</div>
+            <div className="text-sm text-gray-400">Opérant mondialement</div>
             <div className="flex gap-4">
               <a href="https://t.me/by_verb" target="_blank" rel="noopener noreferrer" className={`text-gray-400 hover:text-white transition-colors transition-all duration-1000 ease-out delay-1500 ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
@@ -184,7 +165,7 @@ export default function ContactBlock() {
                   <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
               </a>
-              <a href="https://wa.me/79856850115" target="_blank" rel="noopener noreferrer" className={`text-gray-400 hover:text-white transition-colors transition-all duration-1000 ease-out delay-1600 ${
+              <a href="https://wa.me/33652037779" target="_blank" rel="noopener noreferrer" className={`text-gray-400 hover:text-white transition-colors transition-all duration-1000 ease-out delay-1600 ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
               }`}>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

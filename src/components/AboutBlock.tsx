@@ -28,12 +28,12 @@ export default function AboutBlock() {
         <h2 className={`text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-4 xs:mb-6 transition-all duration-1000 ease-out delay-200 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          О нас
+          À propos
         </h2>
         <p className={`text-sm xs:text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ease-out delay-400 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          Команда специалистов, которая создает сайты, приносящие прибыль
+          Une équipe d'experts qui crée des sites rentables
         </p>
       </div>
 
@@ -46,23 +46,23 @@ export default function AboutBlock() {
           <h3 className={`text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 xs:mb-4 text-black transition-all duration-1000 ease-out delay-700 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Создаем сайты, которые продают
+            Nous concevons des sites qui vendent
           </h3>
           <div className="space-y-2 xs:space-y-3 text-gray-700">
             <p className={`text-xs xs:text-sm sm:text-base leading-relaxed transition-all duration-1000 ease-out delay-800 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Мы не просто делаем красивые сайты. Мы создаем инструменты, которые приносят прибыль.
+              Nous ne faisons pas que des sites esthétiques. Nous bâtissons des outils générateurs de profits.
             </p>
             <p className={`text-xs xs:text-sm sm:text-base leading-relaxed transition-all duration-1000 ease-out delay-900 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Каждый проект — это воронка продаж, настроенная под вашу аудиторию и цели.
+              Chaque projet est un entonnoir de vente optimisé pour votre audience et vos objectifs.
             </p>
             <p className={`text-xs xs:text-sm sm:text-base leading-relaxed transition-all duration-1000 ease-out delay-1000 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Работаем быстро, качественно и всегда на результат.
+              Rapidité, qualité et résultats tangibles : notre engagement.
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function AboutBlock() {
             }`}>4</div>
             <div className={`text-xs lg:text-sm text-gray-300 transition-all duration-1000 ease-out delay-900 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>года опыта</div>
+            }`}>ans d'expérience</div>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function AboutBlock() {
             }`}>23%</div>
             <div className={`text-xs lg:text-sm text-gray-700 transition-all duration-1000 ease-out delay-1000 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>средняя конверсия</div>
+            }`}>taux de conversion moyen</div>
           </div>
         </div>
 
@@ -110,10 +110,10 @@ export default function AboutBlock() {
             <div>
               <h4 className={`text-sm xs:text-base font-semibold mb-1 text-white transition-all duration-1000 ease-out delay-1000 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Быстрый запуск</h4>
+              }`}>Déploiement rapide</h4>
               <p className={`text-gray-300 text-xs transition-all duration-1000 ease-out delay-1100 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Лендинг за 3-5 дней, бот за 5-7 дней</p>
+              }`}>Landing page en 3-5 jours, bot sous 5-7 jours</p>
             </div>
           </div>
         </div>
@@ -133,27 +133,27 @@ export default function AboutBlock() {
             <div>
               <h4 className={`text-sm xs:text-base font-semibold mb-1 text-black transition-all duration-1000 ease-out delay-1100 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Гарантия результата</h4>
+              }`}>Résultats garantis</h4>
               <p className={`text-gray-700 text-xs transition-all duration-1000 ease-out delay-1200 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}>Если не будет заявок — улучшаем бесплатно</p>
+              }`}>Pas de leads ? Nous optimisons gratuitement</p>
             </div>
           </div>
         </div>
 
-        {/* CTA блок */}
+        {/* CTA bloc */}
         <div className={`md:col-span-2 lg:col-span-3 bg-red-500 rounded-2xl xs:rounded-3xl p-4 xs:p-6 text-center transition-all duration-1000 ease-out delay-1100 ${
           isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
         }`}>
           <h3 className={`text-lg xs:text-xl sm:text-2xl font-inter-black mb-2 xs:mb-3 text-white transition-all duration-1000 ease-out delay-1200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Готовы к результату?
+            Prêt à booster vos ventes ?
           </h3>
           <p className={`text-xs xs:text-sm sm:text-base mb-4 xs:mb-6 text-white opacity-90 transition-all duration-1000 ease-out delay-1300 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Обсудим ваш проект и создадим решение, которое будет продавать
+            Discutons de votre projet pour créer une solution performante
           </p>
           <button
             onClick={openPopup}
@@ -161,7 +161,7 @@ export default function AboutBlock() {
               isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
             }`}
           >
-            Обсудить проект
+            Échanger sur mon projet
           </button>
         </div>
       </div>
@@ -170,17 +170,16 @@ export default function AboutBlock() {
       <OrderPopup
         isOpen={popupOpen}
         onClose={closePopup}
-        title="Обсудить проект"
-        message={`Здравствуйте! Хочу обсудить проект.
+        title="Étudier mon projet"
+        message={`Bonjour, je souhaite discuter d'un projet.
 
-Расскажите, пожалуйста:
-• Какой проект планируете?
-• Какие цели преследуете?
-• Есть ли примеры похожих проектов?
-• Какой бюджет?
-• Какие сроки?
+• Quel type de projet envisagez-vous ?
+• Quels sont vos objectifs principaux ?
+• Avez-vous des exemples de projets similaires ?
+• Quel budget prévoyez-vous ?
+• Quels sont vos délais ?
 
-Готов обсудить детали и предложить решение под ваши задачи.`}
+Je suis disponible pour échanger et proposer une solution sur-mesure.`}
       />
     </div>
   );

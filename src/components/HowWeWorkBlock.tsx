@@ -13,38 +13,38 @@ export default function HowWeWorkBlock() {
   const steps = [
     {
       number: '01',
-      title: 'Обсуждение',
-      description: 'Изучаем ваши задачи, цели и требования к проекту',
+      title: 'Consultation',
+      description: 'Analyse de vos besoins, objectifs et exigences techniques',
       icon: MessageSquare
     },
     {
       number: '02', 
-      title: 'Планирование',
-      description: 'Создаем техническое задание и план разработки',
+      title: 'Planification',
+      description: 'Rédaction du cahier des charges et plan de développement',
       icon: FileText
     },
     {
       number: '03',
-      title: 'Разработка',
-      description: 'Пишем код, создаем дизайн и интегрируем системы',
+      title: 'Développement',
+      description: 'Création du design, codage et intégration des systèmes',
       icon: Zap
     },
     {
       number: '04',
-      title: 'Тестирование',
-      description: 'Проверяем качество и исправляем недочеты',
+      title: 'Tests qualité',
+      description: 'Vérification approfondie et corrections des éventuels défauts',
       icon: Search
     },
     {
       number: '05',
-      title: 'Запуск',
-      description: 'Размещаем проект в интернете и настраиваем',
+      title: 'Mise en ligne',
+      description: 'Déploiement et configuration finale du projet',
       icon: Rocket
     },
     {
       number: '06',
-      title: 'Поддержка',
-      description: 'Помогаем с обновлениями и развитием проекта',
+      title: 'Accompagnement',
+      description: 'Maintenance, mises à jour et optimisation continue',
       icon: Wrench
     }
   ];
@@ -59,12 +59,12 @@ export default function HowWeWorkBlock() {
           <h2 className={`text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-1000 ease-out delay-200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Как мы работаем
+            Notre méthodologie
           </h2>
           <p className={`text-sm xs:text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-3xl mx-auto transition-all duration-1000 ease-out delay-400 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Четкий процесс от идеи до запуска проекта
+            Un processus clair de l'idée au lancement
           </p>
         </div>
 

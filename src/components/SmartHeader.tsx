@@ -115,7 +115,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 0 ? 'font-medium' : ''
                 }`}
               >
-                Главная
+                Accueil
               </a>
               <a 
                 href="#projects" 
@@ -123,7 +123,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 1 ? 'font-medium' : ''
                 }`}
               >
-                Проекты
+                Nos Réalisations
               </a>
               <a 
                 href="#quiz" 
@@ -131,7 +131,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 2 ? 'font-medium' : ''
                 }`}
               >
-                Квиз
+                Questionnaire
               </a>
               <a 
                 href="#products" 
@@ -139,7 +139,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 3 ? 'font-medium' : ''
                 }`}
               >
-                Продукты
+                Nos Solutions
               </a>
               <a 
                 href="#about" 
@@ -147,7 +147,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 4 ? 'font-medium' : ''
                 }`}
               >
-                О нас
+                Notre Agence
               </a>
               <a 
                 href="#how-we-work" 
@@ -155,7 +155,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 5 ? 'font-medium' : ''
                 }`}
               >
-                Как работаем
+                Notre Méthode
               </a>
               <a 
                 href="#faq" 
@@ -179,17 +179,17 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   currentSection === 7 ? 'font-medium' : ''
                 }`}
               >
-                Контакты
+                Contactez-nous
               </a>
             </nav>
 
             {/* Контакты */}
             <div className="hidden lg:flex items-center space-x-4">
               <a 
-                href="tel:+79856850115" 
+                href="tel:+33652037779" 
                 className="font-roboto-extra-light text-xs sm:text-sm hover:opacity-70 transition-opacity"
               >
-                +7 (985) 685-01-15
+                +33 6 52 03 77 79
               </a>
             </div>
 
@@ -201,7 +201,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                 style={{
                   color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff'
                 }}
-                aria-label="Открыть мобильное меню"
+                aria-label="Ouvrir le menu mobile"
               >
                 <svg 
                   className="w-5 h-5 xs:w-6 xs:h-6" 
@@ -256,7 +256,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                     finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
-                  aria-label="Закрыть мобильное меню"
+                  aria-label="Fermer le menu mobile"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -276,7 +276,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Главная
+                  Accueil
                 </a>
                 <a 
                   href="#projects" 
@@ -288,7 +288,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Проекты
+                  Nos Réalisations
                 </a>
                 <a 
                   href="#quiz" 
@@ -300,7 +300,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Квиз
+                  Questionnaire
                 </a>
                 <a 
                   href="#products" 
@@ -312,7 +312,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Продукты
+                  Nos Solutions
                 </a>
                 <a 
                   href="#about" 
@@ -324,7 +324,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  О нас
+                  Notre Agence
                 </a>
                 <a 
                   href="#how-we-work" 
@@ -336,7 +336,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Как работаем
+                  Notre Méthode
                 </a>
                 <a 
                   href="#faq" 
@@ -368,14 +368,14 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   }`}
                   style={{ color: finalIsWhiteSection || forceWhiteForFAQ ? '#000000' : '#ffffff' }}
                 >
-                  Контакты
+                  Contactez-nous
                 </a>
               </nav>
 
               {/* Контакты */}
               <div className="pt-6 border-t" style={{ borderColor: finalIsWhiteSection || forceWhiteForFAQ ? '#e5e7eb' : '#374151' }}>
                 <a 
-                  href="tel:+79856850115" 
+                  href="tel:+33652037779" 
                   className={`inline-flex items-center gap-3 py-3 px-4 rounded-xl font-roboto-extra-light text-base hover:bg-opacity-10 transition-all duration-300 ${
                     finalIsWhiteSection || forceWhiteForFAQ ? 'hover:bg-gray-200' : 'hover:bg-white'
                   }`}
@@ -384,7 +384,7 @@ export default function SmartHeader({ currentSection }: SmartHeaderProps) {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +7 (985) 685-01-15
+                  +33 6 52 03 77 79
                 </a>
               </div>
             </div>

@@ -34,39 +34,39 @@ type QuizResult = {
 const questions: QuizQuestion[] = [
     {
       id: 1,
-      question: "Чем вы занимаетесь или планируете заниматься?",
-      options: ["Продаю товары", "Оказываю услуги", "Делаю обучение/курсы", "Ещё не определился(ась)"],
-      message: "Супер, давайте разберёмся, чем помочь 🔍"
+      question: "Quel est votre domaine d'activité ?",
+      options: ["Vendez-vous des produits ?", "Proposez-vous des services ?", "Développez-vous des formations ?", "Vous hésitez encore ?"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     },
     {
       id: 2,
-      question: "Что у вас уже есть сейчас?",
-      options: ["Сайт", "Бот", "Продукт (товар/услуга)", "Пока ничего"],
-      message: "Посмотрим, с чего лучше начать или что улучшить 🧱"
+      question: "Où en êtes-vous actuellement ?",
+      options: ["Vous avez déjà un site web ?", "Un chatbot automatisé ?", "Un produit/service prêt à lancer ?", "Partez-vous de zéro ?"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     },
     {
       id: 3,
-      question: "Люди уже узнают о вас как-то?",
-      options: ["Да, через соцсети", "Да, по сарафану", "Пока нет", "Только начинаю"],
-      message: "Скоро станет понятнее, что вам подойдёт 📡"
+      question: "Votre visibilité actuelle :",
+      options: ["Réseaux sociaux actifs ?", "Bouche-à-oreille ?", "Pas encore de visibilité", "Tout juste lancé(e)"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     },
     {
       id: 4,
-      question: "Хотите, чтобы клиенты могли быстро связаться с вами?",
-      options: ["Да, это важно", "Пока не нужно", "Зависит от ситуации", "Не знаю, расскажите потом"],
-      message: "Уже почти на финише ✨"
+      question: "Contact client :",
+      options: ["Souhaitez-vous un système de contact rapide ?", "Pas prioritaire actuellement", "À voir selon développement", "Je préfère en discuter plus tard"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     },
     {
       id: 5,
-      question: "Планируете принимать заявки или заказы автоматически?",
-      options: ["Да, хочу упростить всё", "Нет, сам(а) справлюсь", "Зависит от объёма", "Пока не знаю"],
-      message: "Остался последний штрих ⚙️"
+      question: "Automatisation :",
+      options: ["Automatiser votre gestion de commandes ?", "Gestion manuelle pour l'instant", "Selon volume futur", "À étudier ultérieurement"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     },
     {
       id: 6,
-      question: "Как быстро хотите начать?",
-      options: ["Хоть завтра", "Через неделю", "Через месяц", "Пока просто изучаю"],
-      message: "Готово! Сейчас подберем лучшее решение 🚀"
+      question: "Urgence de mise en œuvre :",
+      options: ["Démarrage immédiat possible ?", "Sous 7 jours", "Planification mensuelle", "Phase de réflexion en cours"],
+      message: "Super ! Votre solution sur-mesure arrive..."
     }
 ];
   
@@ -76,30 +76,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
     // Сценарий 1: инфопродукт, новичок
     if (businessType === 2 && hasAudience >= 2 && hasSiteOrBot === 3) {
       return {
-        title: "Готовим запуск инфопродукта",
-        description: "Вы только начинаете — это отличное время для старта!",
-        recommendation: "Рекомендуем начать с простого лендинга — быстро, понятно и работает.",
+        title: "Préparons le lancement de votre formation",
+        description: "Vous débutez — c'est le moment idéal pour commencer !",
+        recommendation: "Nous recommandons de commencer par une landing page simple — rapide, claire et efficace.",
         option1: {
-          title: "Мини-лендинг для запуска курса",
-          price: 11000,
-          originalPrice: 18000,
-          description: "Простой способ запустить обучение без технической головной боли.",
+          title: "Mini-landing page pour lancer votre formation",
+          price: 244,
+          originalPrice: 400,
+          description: "Méthode simple pour lancer votre formation sans tracas techniques.",
           benefits: [
-            "Одностраничник под ключ",
-            "Форма сбора заявок",
-            "Адаптивность под мобильные",
-            "Готов за 5 дней"
+            "Page unique clé en main",
+            "Formulaire de collecte de leads",
+            "Adaptation mobile",
+            "Prêt en 5 jours"
           ]
         },
         option2: {
-          title: "Лендинг + бот + автосообщения",
-          price: 25000,
-          description: "Подходит для тех, кто готов вкладываться в масштаб.",
+          title: "Landing page + bot + messages automatiques",
+          price: 555,
+          description: "Idéal si vous êtes prêt à investir dans l'évolutivité.",
           benefits: [
-            "Telegram-бот + лендинг",
-            "Сбор, сегментация и рассылка",
-            "Поддержка 2 недели",
-            "Реализация за 10 дней"
+            "Bot Telegram + landing page",
+            "Collecte, segmentation et envoi",
+            "Support 2 semaines",
+            "Réalisation en 10 jours"
           ]
         }
       };
@@ -108,30 +108,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
     // Сценарий 2: товары, есть клиенты, нужен бот
     if (businessType === 0 && hasSiteOrBot === 0 && hasAudience === 0 && wantsAutomation === 0) {
       return {
-        title: "Автоматизируем продажи товаров",
-        description: "У вас уже есть клиенты — теперь нужно ускорить обработку.",
-        recommendation: "Бот в Telegram — лучший выбор для быстрого и удобного заказа.",
+        title: "Automatisons vos ventes de produits",
+        description: "Vous avez déjà des clients — maintenant, accélérons le traitement.",
+        recommendation: "Un bot Telegram — le meilleur choix pour des commandes rapides et pratiques.",
         option1: {
-          title: "Telegram-бот для заказов",
-          price: 14000,
-          originalPrice: 22000,
-          description: "Клиенты заказывают в пару кликов — вы получаете уведомление.",
+          title: "Bot Telegram pour les commandes",
+          price: 311,
+          originalPrice: 489,
+          description: "Les clients commandent en quelques clics — vous recevez une notification.",
           benefits: [
-            "Каталог в боте",
-            "Быстрое оформление заказа",
-            "Интеграция с Telegram и email",
-            "Скидка 35% при заказе сегодня"
+            "Catalogue dans le bot",
+            "Commande rapide",
+            "Intégration Telegram et email",
+            "Remise 35% si commande aujourd'hui"
           ]
         },
         option2: {
-          title: "Telegram Mini App + CRM",
-          price: 29000,
-          description: "Если нужен масштаб и мощная аналитика.",
+          title: "Mini App Telegram + CRM",
+          price: 644,
+          description: "Si vous avez besoin d'évolutivité et d'analyses puissantes.",
           benefits: [
-            "CRM внутри Telegram",
-            "Реферальная система",
-            "Поддержка и обучение",
-            "Интеграция с базой клиентов"
+            "CRM intégré à Telegram",
+            "Système de parrainage",
+            "Support et formation",
+            "Intégration base clients"
           ]
         }
       };
@@ -140,30 +140,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
     // Сценарий 3: услуги, есть аудитория, нужна воронка
     if (businessType === 1 && hasAudience <= 1 && wantsAutomation === 0 && urgency <= 1) {
       return {
-        title: "Настроим поток заявок на услуги",
-        description: "Автоматизация поможет вам сэкономить время и увеличить заявки.",
-        recommendation: "Рекомендуем связку: квиз-сайт + Telegram-бот.",
+        title: "Configurons votre flux de demandes de services",
+        description: "L'automatisation vous fera gagner du temps et augmentera vos demandes.",
+        recommendation: "Nous recommandons la combinaison : site-quiz + bot Telegram.",
         option1: {
-          title: "Квиз-сайт + бот-менеджер",
-          price: 18000,
-          originalPrice: 30000,
-          description: "Идеальное звено между клиентом и вашей услугой.",
+          title: "Site-quiz + bot gestionnaire",
+          price: 400,
+          originalPrice: 667,
+          description: "Le lien parfait entre le client et votre service.",
           benefits: [
-            "Одностраничный сайт с квизом",
-            "Telegram-бот с заявками",
-            "Уведомления + выгрузка в Excel",
-            "Готов за 7 дней"
+            "Site une page avec quiz",
+            "Bot Telegram avec demandes",
+            "Notifications + export Excel",
+            "Prêt en 7 jours"
           ]
         },
         option2: {
-          title: "Сайт + бот + реклама",
-          price: 39000,
-          description: "Полный цикл: от трафика до заявки.",
+          title: "Site + bot + publicité",
+          price: 866,
+          description: "Cycle complet : du trafic à la demande.",
           benefits: [
-            "Настройка рекламы",
-            "Бот с воронкой",
-            "Сегментация + аналитика",
-            "Тесты и улучшения"
+            "Configuration publicité",
+            "Bot avec entonnoir",
+            "Segmentation + analyses",
+            "Tests et améliorations"
           ]
         }
       };
@@ -172,30 +172,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
     // Сценарий 4: пользователь просто тестирует идею
     if (hasSiteOrBot === 3 && hasAudience >= 2 && urgency === 3) {
       return {
-        title: "Проверим вашу идею быстро",
-        description: "Без сайта, без бюджета, но с результатом.",
-        recommendation: "Можно обойтись лёгким квиз-ботом — проверим спрос.",
+        title: "Testons votre idée rapidement",
+        description: "Sans site, sans budget, mais avec des résultats.",
+        recommendation: "Un bot-quiz léger peut suffire — testons la demande.",
         option1: {
-          title: "Квиз-бот без сайта",
-          price: 7000,
-          originalPrice: 12000,
-          description: "Самый лёгкий способ собрать первые отклики.",
+          title: "Bot-quiz sans site",
+          price: 155,
+          originalPrice: 267,
+          description: "La façon la plus simple de recueillir les premiers retours.",
           benefits: [
-            "Квиз внутри Telegram",
-            "Автосбор ответов",
-            "Готов за 1–2 дня",
-            "Работает без сайта"
+            "Quiz dans Telegram",
+            "Collecte automatique des réponses",
+            "Prêt en 1-2 jours",
+            "Fonctionne sans site"
           ]
         },
         option2: {
-          title: "Квиз + сайт + аналитика",
-          price: 24000,
-          description: "Уже ближе к продукту — если решите идти дальше.",
+          title: "Quiz + site + analyses",
+          price: 533,
+          description: "Plus proche du produit — si vous décidez d'aller plus loin.",
           benefits: [
-            "Одностраничник",
-            "Подключение аналитики",
-            "Форма заявок + выгрузка",
-            "Поддержка 1 неделя"
+            "Page unique",
+            "Connexion analyses",
+            "Formulaire demandes + export",
+            "Support 1 semaine"
           ]
         }
       };
@@ -204,30 +204,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
     // Сценарий 5: услуги, аудитория есть, нужна связка + автоматизация
     if (businessType === 1 && hasAudience === 0 && wantsAutomation === 0 && urgency === 0) {
       return {
-        title: "Автоматизируем заявки и консультации",
-        description: "Чтобы клиенты приходили и записывались сами.",
-        recommendation: "Вам подойдёт Telegram-бот с автоответами.",
+        title: "Automatisons demandes et consultations",
+        description: "Pour que les clients viennent et s'inscrivent eux-mêmes.",
+        recommendation: "Un bot Telegram avec réponses automatiques vous conviendra.",
         option1: {
-          title: "Telegram-бот под услуги",
-          price: 16000,
-          originalPrice: 24000,
-          description: "Принимает заявки, отправляет напоминания и материалы.",
+          title: "Bot Telegram pour services",
+          price: 355,
+          originalPrice: 533,
+          description: "Reçoit les demandes, envoie rappels et documents.",
           benefits: [
-            "Бот с автосообщениями",
-            "Интеграция с таблицами",
-            "Уведомления и шаблоны",
-            "Скидка 33% при заказе сегодня"
+            "Bot avec messages automatiques",
+            "Intégration tableaux",
+            "Notifications et modèles",
+            "Remise 33% si commande aujourd'hui"
           ]
         },
         option2: {
-          title: "Сайт + бот + автоворонка",
-          price: 38000,
-          description: "Если хотите настроить всё как у экспертов.",
+          title: "Site + bot + entonnoir automatique",
+          price: 844,
+          description: "Si vous voulez tout configurer comme les experts.",
           benefits: [
-            "Лендинг под доверие",
-            "Бот с рассылкой и сегментами",
-            "Подключение платёжки",
-            "Техподдержка 2 недели"
+            "Landing page pour la confiance",
+            "Bot avec envoi et segments",
+            "Connexion paiement",
+            "Support technique 2 semaines"
           ]
         }
       };
@@ -235,30 +235,30 @@ export const getRecommendation = (answers: number[]): QuizResult => {
   
     // По умолчанию — универсальное предложение
     return {
-      title: "Стартовая точка для вашего проекта",
-      description: "Даже если пока не всё понятно — начнём с простого.",
-      recommendation: "Рекомендуем мини-лендинг или Telegram-бот, чтобы проверить интерес.",
+      title: "Point de départ pour votre projet",
+      description: "Même si tout n'est pas encore clair — commençons par du simple.",
+      recommendation: "Nous recommandons une mini-landing page ou un bot Telegram pour tester l'intérêt.",
       option1: {
-        title: "Лендинг + форма заявок",
-        price: 12000,
-        originalPrice: 18000,
-        description: "Простой одностраничник, который уже можно запускать.",
+        title: "Landing page + formulaire demandes",
+        price: 267,
+        originalPrice: 400,
+        description: "Page unique simple, prête à lancer.",
         benefits: [
-          "Краткий сайт с описанием",
-          "Форма заявок + уведомления",
-          "Быстрая реализация (3-5 дней)",
-          "Адаптация под Telegram"
+          "Site bref avec description",
+          "Formulaire demandes + notifications",
+          "Réalisation rapide (3-5 jours)",
+          "Adaptation Telegram"
         ]
       },
       option2: {
-        title: "Сайт + бот + автоворонка",
-        price: 32000,
-        description: "Решение с запасом — если планируете расти.",
+        title: "Site + bot + entonnoir automatique",
+        price: 711,
+        description: "Solution avec marge — si vous prévoyez de grandir.",
         benefits: [
-          "Сайт, бот и воронка",
-          "Сбор и сегментация лидов",
-          "Платежи, рассылки, аналитика",
-          "Поддержка на запуске"
+          "Site, bot et entonnoir",
+          "Collecte et segmentation leads",
+          "Paiements, envois, analyses",
+          "Support au lancement"
         ]
       }
     };
@@ -351,7 +351,7 @@ export default function QuizBlock() {
 
   // Функция для форматирования чисел без локали
   const formatNumber = (num: number): string => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
   };
 
   if (showResult && result) {
@@ -385,7 +385,7 @@ export default function QuizBlock() {
             <div className={`absolute -top-3 -left-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold transition-all duration-500 ease-out delay-900 ${
               isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
-              Рекомендуем
+              Recommandé
             </div>
             <h3 className={`text-lg xs:text-xl sm:text-2xl font-inter-black mb-3 text-black transition-all duration-700 ease-out delay-1000 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -403,10 +403,10 @@ export default function QuizBlock() {
             }`}>
               <div className="flex items-center justify-center gap-3 mb-2">
                 <span className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-red-500">
-                  {formatNumber(result.option1.price)} ₽
+                  {formatNumber(result.option1.price)}
                 </span>
                 <span className="text-base xs:text-lg sm:text-xl text-gray-400 line-through">
-                  {formatNumber(result.option1.originalPrice)} ₽
+                  {formatNumber(result.option1.originalPrice)}
                 </span>
               </div>
             </div>
@@ -422,23 +422,23 @@ export default function QuizBlock() {
               ))}
             </div>
             
-            <button className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
+            <button className={`w-full bg-red-500 text-white px-4 py-3 rounded-full font-semibold hover:bg-red-600 transition-all duration-150 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`} onClick={() => openPopup(
-              `Заказать ${result.option1.title}`,
-              `Здравствуйте! Хочу заказать ${result.option1.title}.
+              `Commander ${result.option1.title}`,
+              `Bonjour ! Je souhaite commander ${result.option1.title}.
 
-Детали заказа:
-• Название: ${result.option1.title}
-• Стоимость: ${formatNumber(result.option1.price)} ₽ (было ${formatNumber(result.option1.originalPrice)} ₽)
-• Описание: ${result.option1.description}
+Détails de la commande :
+• Nom : ${result.option1.title}
+• Coût : ${formatNumber(result.option1.price)} (était ${formatNumber(result.option1.originalPrice)})
+• Description : ${result.option1.description}
 
-Преимущества:
+Avantages :
 ${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
 
-Готов обсудить детали и начать работу.`
+Je suis prêt à discuter des détails et commencer le travail.`
             )}>
-              Выбрать базовый
+              Choisir l'option de base
             </button>
           </div>
 
@@ -461,7 +461,7 @@ ${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <div className="text-xl xs:text-2xl sm:text-3xl font-inter-black text-black">
-                {formatNumber(result.option2.price)} ₽
+                {formatNumber(result.option2.price)}
               </div>
             </div>
             
@@ -476,23 +476,23 @@ ${result.option1.benefits.map(benefit => `• ${benefit}`).join('\n')}
               ))}
             </div>
             
-            <button className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer transition-all duration-700 ease-out delay-1400 ${
+            <button className={`w-full bg-black text-white px-4 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-150 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base cursor-pointer ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`} onClick={() => openPopup(
-              `Заказать ${result.option2.title}`,
-              `Здравствуйте! Хочу заказать ${result.option2.title}.
+              `Commander ${result.option2.title}`,
+              `Bonjour ! Je souhaite commander ${result.option2.title}.
 
-Детали заказа:
-• Название: ${result.option2.title}
-• Стоимость: ${formatNumber(result.option2.price)} ₽
-• Описание: ${result.option2.description}
+Détails de la commande :
+• Nom : ${result.option2.title}
+• Coût : ${formatNumber(result.option2.price)}
+• Description : ${result.option2.description}
 
-Преимущества:
+Avantages :
 ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
 
-Готов обсудить детали и начать работу.`
+Je suis prêt à discuter des détails et commencer le travail.`
             )}>
-              Выбрать полный
+              Choisir l'option complète
             </button>
           </div>
         </div>
@@ -503,19 +503,19 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         }`}>
           <button 
             onClick={resetQuiz}
-            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-150 cursor-pointer flex items-center justify-center gap-2"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            <span className="text-sm">Заново</span>
+            <span className="text-sm">Recommencer</span>
           </button>
           
           <a 
             href="#products" 
-            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer text-sm"
+            className="w-full sm:w-auto bg-transparent border-2 border-black text-black px-4 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-150 cursor-pointer text-sm"
           >
-            Посмотреть варианты
+            Voir les options
           </a>
         </div>
       </div>
@@ -531,12 +531,12 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
           <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
-            Последний шаг
+            Dernière étape
           </h2>
           <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Укажите WhatsApp или Telegram — мы свяжемся с вами и обсудим подробнее
+            Indiquez WhatsApp ou Telegram — nous vous contacterons pour discuter en détail
           </p>
 
           {/* Прогресс бар */}
@@ -545,11 +545,11 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
           }`}>
             <div className="text-center mb-3">
               <p className="text-sm xs:text-base sm:text-lg text-gray-600 font-medium">
-                Последний шаг до волшебства
+                Dernière étape avant la magie
               </p>
             </div>
             <div className="flex justify-between text-xs xs:text-sm mb-2 text-gray-700">
-              <span>Шаг {questions.length + 1} из {questions.length + 1}</span>
+              <span>Étape {questions.length + 1} sur {questions.length + 1}</span>
               <span>100%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -567,7 +567,7 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             <h3 className={`text-base xs:text-lg sm:text-xl lg:text-2xl font-inter-black mb-4 xs:mb-6 text-black transition-all duration-700 ease-out delay-900 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Ваш контакт
+              Votre contact
             </h3>
             
             <div className={`space-y-3 transition-all duration-700 ease-out delay-1000 ${
@@ -577,16 +577,16 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
                 type="text"
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
-                placeholder="WhatsApp или Telegram (например: +7 999 123-45-67 или @username)"
+                placeholder="WhatsApp ou Telegram (ex: +33 6 12 34 56 78 ou @username)"
                 className="w-full px-4 xs:px-6 py-3 xs:py-4 border-2 border-gray-300 rounded-full font-medium text-black placeholder-gray-500 focus:border-black focus:outline-none transition-all duration-300 text-base sm:text-lg"
               />
               
               <button
                 onClick={handleContactSubmit}
                 disabled={!contact.trim()}
-                className="w-full bg-red-500 text-white px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base disabled:bg-gray-300 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
+                className="w-full bg-red-500 text-white px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-150 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm xs:text-base disabled:bg-gray-300 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
               >
-                Получить расчёт
+                Obtenir le devis
               </button>
             </div>
           </div>
@@ -606,12 +606,12 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
         <h2 className={`text-xl xs:text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-inter-black mb-3 xs:mb-4 sm:mb-6 text-black transition-all duration-700 ease-out delay-200 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          Рассчитаем стоимость
+          Calculons le coût
         </h2>
         <p className={`text-xs xs:text-sm sm:text-base lg:text-lg xl:text-xl mb-4 xs:mb-6 sm:mb-8 text-gray-700 transition-all duration-700 ease-out delay-400 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          Ответьте на 5 вопросов и получите точную стоимость проекта
+          Répondez à 6 questions et obtenez un devis précis
         </p>
 
         {/* Прогресс бар */}
@@ -624,7 +624,7 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
             </p>
           </div>
           <div className="flex justify-between text-xs xs:text-sm mb-2 text-gray-700">
-            <span>Вопрос {currentQuestion + 1} из {questions.length}</span>
+            <span>Question {currentQuestion + 1} sur {questions.length}</span>
             <span>{Math.round(progress)}%</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -652,10 +652,9 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
               <button
                 key={index}
                 onClick={() => handleAnswer(index)}
-                className={`w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-300 text-sm xs:text-base sm:text-lg cursor-pointer transition-all duration-500 ease-out ${
+                className={`w-full bg-transparent border-2 border-black text-black px-4 xs:px-6 py-3 xs:py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-all duration-150 text-sm xs:text-base sm:text-lg cursor-pointer ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
-                style={{ transitionDelay: `${1100 + index * 100}ms` }}
               >
                 {option}
               </button>
@@ -665,4 +664,4 @@ ${result.option2.benefits.map(benefit => `• ${benefit}`).join('\n')}
       </div>
     </div>
   );
-} 
+}

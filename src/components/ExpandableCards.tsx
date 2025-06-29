@@ -132,7 +132,7 @@ export default function ExpandableCards({
     <div className="my-4">
       {/* Подсказка для клика */}
       <div className="text-xs md:text-lg font-roboto-light text-gray-500 mb-3 text-center">
-        — покликай чтобы не упустить выгоду
+        — cliquez pour ne pas manquer cette opportunité
       </div>
 
       {/* Мобильная версия - очень маленькие телефоны и базовые смартфоны */}

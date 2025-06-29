@@ -12,28 +12,28 @@ interface FAQItem {
 const faqData: FAQItem[] = [
     {
       id: 1,
-      question: "Зачем нужен Telegram-бот, если есть сайт?",
-      answer: "Бот — это быстрый и привычный канал общения. Он может собирать заявки, принимать оплату, вести за руку. А главное — работает 24/7 без вашего участия."
+      question: "Pourquoi un bot Telegram si j'ai déjà un site ?",
+      answer: "Le bot est un canal de communication rapide et familier. Il collecte des leads, traite les paiements et guide vos clients 24h/24 sans votre intervention."
     },
     {
       id: 2,
-      question: "Почему у вас цены ниже, чем у студий?",
-      answer: "Я не раздуваю штат и не беру за аренду офиса. Работаю напрямую, без посредников. Это позволяет дать адекватную цену — с тем же результатом, что у дорогих агентств."
+      question: "Pourquoi vos tarifs sont-ils plus bas que les agences ?",
+      answer: "Pas de locaux coûteux ni d'effectifs pléthoriques. Je travaille en direct, ce qui permet des tarifs justes pour des résultats équivalents aux grosses agences."
     },
     {
       id: 3,
-      question: "Что если сайт не будет приносить заявки?",
-      answer: "Сайт — это инструмент. Мы заранее обсуждаем цели, делаем воронку и подбираем решение под ваш продукт. Если не будет результата — улучшаем. Я заинтересован в результате не меньше вас."
+      question: "Et si mon site ne génère pas de leads ?",
+      answer: "Un site est un outil. Nous concevons ensemble une stratégie sur mesure. Sans résultats ? Nous optimisons gratuitement - mon succès dépend du vôtre."
     },
     {
       id: 4,
-      question: "Реально ли запустить за 5–7 дней?",
-      answer: "Да, если у вас есть чёткое понимание, что нужно. Я делаю MVP быстро: лендинг за 3–5 дней, бота — за 5–7. Без воды, только с нужным."
+      question: "Un projet en 5-7 jours, vraiment ?",
+      answer: "Absolument ! Avec une vision claire, je livre un MVP performant : site en 3-5 jours, bot en 5-7. Seulement l'essentiel, rien de superflu."
     },
     {
       id: 5,
-      question: "Почему выбрать вас, а не фрилансера с биржи?",
-      answer: "Я не просто 'кодер', а партнёр в задачах. Думаю не только о технической части, но и о том, как это будет продавать. Работаю на результат и долго не пропадаю — в Telegram всегда на связи."
+      question: "Pourquoi vous plutôt qu'un freelance ?",
+      answer: "Je suis bien plus qu'un développeur : un partenaire stratégique. Je conçois des solutions qui vendent, avec un suivi personnalisé et une disponibilité permanente sur Telegram."
     }
 ];
   
@@ -80,7 +80,7 @@ export default function FAQBlock() {
         <p className={`text-sm xs:text-base sm:text-lg text-gray-600 max-w-2xl mx-auto transition-all duration-1000 ease-out delay-400 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          Ответы на главные вопросы о работе
+          Réponses à vos questions principales
         </p>
       </div>
 
@@ -159,26 +159,25 @@ export default function FAQBlock() {
           <h3 className={`text-xl xs:text-2xl sm:text-3xl font-inter-black mb-3 xs:mb-4 transition-all duration-1000 ease-out delay-1200 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Остались вопросы?
+            D'autres questions ?
           </h3>
           <p className={`text-sm xs:text-base sm:text-lg mb-6 xs:mb-8 text-gray-300 transition-all duration-1000 ease-out delay-1300 ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            Напишите в Telegram — отвечу быстро
+            Contactez-moi directement : réponse immédiate garantie !
           </p>
           <div className="flex flex-col sm:flex-row gap-3 xs:gap-4 justify-center">
             <button
               onClick={() => openPopup(
-                'Задать вопрос в WhatsApp',
-                `Здравствуйте! У меня есть вопрос по вашим услугам.
+                'Discutons sur WhatsApp',
+                `Bonjour ! J'ai une question concernant vos services.
 
-Хотел бы узнать:
-• Подробности о процессе разработки
-• Сроки выполнения
-• Гарантии и поддержку
-• Возможность доработок
+• Détails sur votre processus
+• Délais de réalisation
+• Garanties et support
+• Possibilités d'évolution
 
-Готов обсудить мой проект.`
+Je souhaite échanger sur mon projet.`
               )}
               className={`inline-flex items-center justify-center gap-2 xs:gap-3 bg-red-500 text-white px-6 xs:px-8 py-3 xs:py-4 rounded-full font-semibold hover:bg-red-600 transition-all duration-300 cursor-pointer text-sm xs:text-base transition-all duration-1000 ease-out delay-1400 ${
                 isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'
@@ -191,16 +190,15 @@ export default function FAQBlock() {
             </button>
             <button
               onClick={() => openPopup(
-                'Задать вопрос в Telegram',
-                `Здравствуйте! У меня есть вопрос по вашим услугам.
+                'Échanger sur Telegram',
+                `Bonjour ! J'ai une question concernant vos services.
 
-Хотел бы узнать:
-• Подробности о процессе разработки
-• Сроки выполнения
-• Гарантии и поддержку
-• Возможность доработок
+• Détails sur votre processus
+• Délais de réalisation
+• Garanties et support
+• Possibilités d'évolution
 
-Готов обсудить мой проект.`
+Je souhaite échanger sur mon projet.`
               )}
               className={`inline-flex items-center justify-center gap-2 xs:gap-3 bg-white text-black px-6 xs:px-8 py-3 xs:py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 border-2 border-white cursor-pointer text-sm xs:text-base transition-all duration-1000 ease-out delay-1500 ${
                 isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'

@@ -16,43 +16,43 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "To The Sun - DAO комьюнити криптоинвесторов",
-    description: "Создали современный сайт для DAO комьюнити. Реализовали систему смарт-контрактов и реферальную систему с блокчейн-функционалом.",
+    title: "To The Sun - Communauté DAO d'investisseurs crypto",
+    description: "Nous avons créé un site moderne pour une communauté DAO. Mise en place de contrats intelligents et d'un système de parrainage avec fonctionnalités blockchain.",
     image: "/images/portfolio/to-the-sun.png",
     url: "https://tothesun.io/",
-    results: ["Привлечено более 80k$ за первую неделю", "2000+ активных участников"]
+    results: ["→ +80 000$ levés dès la 1ère semaine", "→ 2 000+ membres actifs"]
   },
   {
     id: 2,
-    title: "Лендинг для фитнес-программы от TATWOLE",
-    description: "Лендинг для известного спортивного блогера TATWOLE. Создали простую страницу с одной целью — чтобы пользователи покупали программу тренировок.",
+    title: "Landing page pour un programme fitness par TATWOLE",
+    description: "Page d'atterrissage pour l'influenceur sportif TATWOLE. Design minimaliste axé sur les conversions pour les programmes d'entraînement.",
     image: "/images/portfolio/tatwole-mode.png",
     url: "https://krabik6-tatwole-78e6.twc1.net/",
-    results: ["Конверсия 62%", "3000 переходов в ПЕРВЫЙ день"]
+    results: ["→ Taux de conversion : 62%", "→ 3 000 visites dès le 1er jour"]
   },
   {
     id: 3,
-    title: "Сайт кофейни «Какао'Мама»",
-    description: "Масштабный ребрендинг старого сайта кофейни. Улучшили дизайн и добавили удобную связь прямо на сайте. Подключили рекламу в Яндекс.Картах с геотаргетингом по Тольятти.",
+    title: "Site web pour la cafétéria « Kakao'Mama »",
+    description: "Refonte complète du site existant avec nouveau design et système de prise de rendez-vous en ligne. Campagne publicitaire ciblée géographiquement sur Yandex.",
     image: "/images/portfolio/kakaomama.png",
     url: "https://krabik6-kakaomama-b81e.twc1.net/",
-    results: ["+62 посетителя в неделю"]
+    results: ["→ +62 clients hebdomadaires"]
   },
   {
     id: 4,
-    title: "Лендинг Telegram-бота Reflecty",
-    description: "Запустили контекстную и таргетированную рекламу в Яндекс. Создали лендинг-атлант для максимального прогрева посетителя. Благодаря качественному прогреву 80% заявок конвертировались в платежи.",
+    title: "Landing page pour le bot Telegram Reflecty",
+    description: "Campagne publicitaire ciblée sur Yandex + landing page hautement optimisée pour maximiser les conversions.",
     image: "/images/portfolio/reflecty.png",
     url: "https://reflecty.ru/",
-    results: ["80% заявок → платежи", "4 000+ посетителей за 2 месяца"]
+    results: ["→ 80% des leads convertis en ventes", "→ 4 000+ visiteurs en 2 mois"]
   },
   {
     id: 5,
-    title: "Сайт мастера по ремонту техники в Тольятти",
-    description: "Подключили продвижение в Рекламной сети Яндекс. Заявки пошли так активно, что мастер не успевал их все выполнять. Одностраничный сайт с упором на доверие.",
+    title: "Site pour un réparateur d'électronique à Togliatti",
+    description: "Site one-page axé sur la confiance + publicité Yandex. Résultats exceptionnels :",
     image: "/images/portfolio/tech-repair.png",
     url: "https://krabik6-tech-repair-landing-80ae.twc1.net/",
-    results: ["200+ заявок в месяц (было 40)"]
+    results: ["→ 200+ demandes/mois (contre 40 auparavant)"]
   },
 ];
 
@@ -96,71 +96,71 @@ export default function ProjectsSlider() {
 
   const getProjectMessage = (project: Project) => {
     const messages = {
-      1: `Здравствуйте! Хочу заказать проект похожий на "To The Sun - DAO комьюнити криптоинвесторов".
+      1: `Bonjour ! Je souhaite commander un projet similaire à "To The Sun - Communauté DAO d'investisseurs crypto".
 
-Мне нужен:
-• Современный сайт для DAO комьюнити
-• Система смарт-контрактов
-• Реферальная система с блокчейн-функционалом
-• Интеграция с криптокошельками
+J'ai besoin de :
+• Un site moderne pour une communauté DAO
+• Des contrats intelligents
+• Un système de parrainage avec fonctionnalités blockchain
+• Intégration avec les portefeuilles crypto
 
-Результаты проекта впечатляют: 80k$ за первую неделю и 2000+ участников.
+Les résultats du projet sont impressionnants : 80 000$ levés dès la 1ère semaine et 2 000+ membres actifs.
 
-Готов обсудить детали и бюджет.`
+Je suis prêt à discuter des détails et du budget.`
     ,
-      2: `Здравствуйте! Хочу заказать лендинг похожий на проект TATWOLE.
+      2: `Bonjour ! Je souhaite commander une landing page similaire au projet TATWOLE.
 
-Мне нужен:
-• Лендинг для продажи программы тренировок
-• Простая страница с одной целью - конверсия
-• Оптимизация под мобильные устройства
-• Интеграция с платежными системами
+J'ai besoin de :
+• Une landing page pour vendre un programme d'entraînement
+• Une page simple axée sur la conversion
+• Optimisation mobile
+• Intégration avec les systèmes de paiement
 
-Результаты проекта отличные: конверсия 62% и 3000 переходов в первый день.
+Les résultats du projet sont excellents : taux de conversion de 62% et 3 000 visites dès le 1er jour.
 
-Готов обсудить детали и бюджет.`
+Je suis prêt à discuter des détails et du budget.`
     ,
-      3: `Здравствуйте! Хочу заказать сайт похожий на кофейню "Какао'Мама".
+      3: `Bonjour ! Je souhaite commander un site similaire à la cafétéria "Kakao'Mama".
 
-Мне нужен:
-• Масштабный ребрендинг сайта
-• Современный дизайн
-• Удобная связь прямо на сайте
-• Интеграция с Яндекс.Картами
-• Геотаргетинг по городу
+J'ai besoin de :
+• Refonte complète du site existant
+• Design moderne
+• Système de prise de rendez-vous en ligne
+• Intégration avec Yandex Maps
+• Géolocalisation ciblée
 
-Результаты: +62 посетителя в неделю.
+Résultats : +62 clients hebdomadaires.
 
-Готов обсудить детали и бюджет.`
+Je suis prêt à discuter des détails et du budget.`
     ,
-      4: `Здравствуйте! Хочу заказать лендинг похожий на Reflecty.
+      4: `Bonjour ! Je souhaite commander une landing page similaire à Reflecty.
 
-Мне нужен:
-• Лендинг-атлант для максимального прогрева
-• Интеграция с Telegram-ботом
-• Настройка контекстной и таргетированной рекламы
-• Система прогрева посетителей
+J'ai besoin de :
+• Landing page hautement optimisée pour maximiser les conversions
+• Intégration avec un bot Telegram
+• Configuration de publicité ciblée
+• Système de préchauffage des visiteurs
 
-Результаты впечатляют: 80% заявок конвертировались в платежи, 4000+ посетителей за 2 месяца.
+Les résultats sont impressionnants : 80% des leads convertis en ventes, 4 000+ visiteurs en 2 mois.
 
-Готов обсудить детали и бюджет.`
+Je suis prêt à discuter des détails et du budget.`
     ,
-      5: `Здравствуйте! Хочу заказать сайт похожий на мастера по ремонту техники.
+      5: `Bonjour ! Je souhaite commander un site similaire au réparateur d'électronique.
 
-Мне нужен:
-• Одностраничный сайт с упором на доверие
-• Продвижение в Рекламной сети Яндекс
-• Система заявок
-• Оптимизация под локальные запросы
+J'ai besoin de :
+• Site one-page axé sur la confiance
+• Publicité dans le réseau Yandex
+• Système de demandes
+• Optimisation pour les requêtes locales
 
-Результаты: 200+ заявок в месяц (было 40).
+Résultats : 200+ demandes/mois (contre 40 auparavant).
 
-Готов обсудить детали и бюджет.`
+Je suis prêt à discuter des détails et du budget.`
     };
     
-    return messages[project.id as keyof typeof messages] || `Здравствуйте! Хочу заказать проект похожий на этот.
+    return messages[project.id as keyof typeof messages] || `Bonjour ! Je souhaite commander un projet similaire à celui-ci.
 
-Готов обсудить детали и бюджет.`;
+Je suis prêt à discuter des détails et du budget.`;
   };
 
   const currentProjectData = projects[currentProject];
@@ -174,7 +174,7 @@ export default function ProjectsSlider() {
         <p className={`text-lg md:text-xl text-gray-300 max-w-2xl mx-auto transition-all duration-700 ease-out delay-200 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          РЕАЛЬНЫЕ КЕЙСЫ. РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ.
+          CAS CLIENTS RÉELS. RÉSULTATS MESURABLES.
         </p>
       </div>
 
@@ -208,7 +208,7 @@ export default function ProjectsSlider() {
                 rel="noopener noreferrer" 
                 className="bg-white/95 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2 cursor-pointer"
               >
-                <span>Перейти на сайт</span>
+                <span>Visiter le site</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>
@@ -244,19 +244,19 @@ export default function ProjectsSlider() {
                 rel="noopener noreferrer" 
                 className="inline-flex items-center justify-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer font-medium px-3 py-2 border border-gray-600 rounded-lg hover:border-gray-400"
               >
-                <span>Посмотреть проект</span>
+                <span>Visiter le site</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>
               </a>
               <button 
                 onClick={() => openPopup(
-                  `Заказать проект похожий на "${currentProjectData.title}"`,
+                  `Commander un projet similaire à "${currentProjectData.title}"`,
                   getProjectMessage(currentProjectData)
                 )}
                 className="w-full bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer"
               >
-                Хочу такой же
+                Je veux le même
               </button>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function ProjectsSlider() {
             style={{
               boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             }}
-            aria-label="Предыдущий проект"
+            aria-label="Projet précédent"
           >
             <svg className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
@@ -286,7 +286,7 @@ export default function ProjectsSlider() {
               className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                 index === currentProject ? 'bg-white w-8' : 'bg-gray-600 hover:bg-gray-500'
               }`}
-              aria-label={`Перейти к проекту ${index + 1}`}
+              aria-label={`Aller au projet ${index + 1}`}
             />
           ))}
           
@@ -296,7 +296,7 @@ export default function ProjectsSlider() {
             style={{
               boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             }}
-            aria-label="Следующий проект"
+            aria-label="Projet suivant"
           >
             <svg className="w-4 h-4 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
@@ -318,7 +318,7 @@ export default function ProjectsSlider() {
           style={{
             boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
-          aria-label="Предыдущий проект"
+          aria-label="Projet précédent"
         >
           <svg className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
@@ -332,7 +332,7 @@ export default function ProjectsSlider() {
           style={{
             boxShadow: '0 8px 16px -4px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
-          aria-label="Следующий проект"
+          aria-label="Projet suivant"
         >
           <svg className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
@@ -382,19 +382,19 @@ export default function ProjectsSlider() {
                       rel="noopener noreferrer" 
                       className="inline-flex items-center justify-center gap-2 text-gray-300 hover:text-white transition-colors cursor-pointer font-medium px-4 py-2 border border-gray-600 rounded-lg hover:border-gray-400"
                     >
-                      <span>Посмотреть проект</span>
+                      <span>Visiter le site</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
                     </a>
                     <button 
                       onClick={() => openPopup(
-                        `Заказать проект похожий на "${currentProjectData.title}"`,
+                        `Commander un projet similaire à "${currentProjectData.title}"`,
                         getProjectMessage(currentProjectData)
                       )}
                       className="bg-transparent border-2 border-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 cursor-pointer"
                     >
-                      Хочу такой же
+                      Je veux le même
                     </button>
                   </div>
                 </div>
@@ -425,7 +425,7 @@ export default function ProjectsSlider() {
                       rel="noopener noreferrer" 
                       className="bg-white/95 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full font-medium shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2 cursor-pointer"
                     >
-                      <span>Перейти на сайт</span>
+                      <span>Visiter le site</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                       </svg>
@@ -448,7 +448,7 @@ export default function ProjectsSlider() {
               className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                 index === currentProject ? 'bg-white w-8' : 'bg-gray-600 hover:bg-gray-500'
               }`}
-              aria-label={`Перейти к проекту ${index + 1}`}
+              aria-label={`Aller au projet ${index + 1}`}
             />
           ))}
         </div>

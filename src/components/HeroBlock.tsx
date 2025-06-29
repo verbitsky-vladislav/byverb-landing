@@ -22,34 +22,34 @@ export default function HeroBlock() {
     {
       id: 'telegram',
       title: 'Telegram',
-      description: 'Бот, который продаёт, когда ты спишь',
-      offer: 'Автоматизирую заявки, оплату и отправку PDF/доступов. Бот под ключ — без шаблонов. Запуск за 48 часов. Скидка 20% до конца месяца.',
-      price: '9.990 ₽',
+      description: 'Un bot qui vend pendant que vous dormez',
+      offer: 'Automatisation des demandes, paiements et envoi de PDF/accès. Bot clé en main – sans templates. Lancement en 48h. -20% jusqu\'à la fin du mois.',
+      price: '219 €',
       highlights: [
-        { text: 'Запуск за 48 часов.' },
-        { text: 'Скидка 20% до конца месяца.' }
+        { text: 'Lancement en 48h.' },
+        { text: '-20% jusqu\'à la fin du mois.' }
       ]
     },
     {
       id: 'web3',
       title: 'Web3',
-      description: 'Принимай крипту без геморроя',
-      offer: 'Интеграция USDT, TON, ETH — за 1 день. Прямо на сайте или в Telegram. Без KYC, без посредников. Бесплатно до пятницы.',
-      price: '14.490 ₽',
+      description: 'Acceptez les crypto sans galère',
+      offer: 'Intégration USDT, TON, ETH – en 1 jour. Directement sur votre site ou dans Telegram. Sans KYC, sans intermédiaires. Gratuit jusqu\'à vendredi.',
+      price: '319 €',
       highlights: [
-        { text: 'за 1 день.' },
-        { text: 'Бесплатно до пятницы.' }
+        { text: 'En 1 jour.' },
+        { text: 'Gratuit jusqu\'à vendredi.' }
       ]
     },
     {
       id: 'ai',
-      title: 'AI',
-      description: 'Чат-бот с ИИ, который отвечает за тебя',
-      offer: 'Сделаю чат-бота на базе ChatGPT, который отвечает клиентам 24/7, записывает на услугу и помогает продавать. Запуск за 7 дней. 1 месяц поддержки бесплатно.',
-      price: '8.990 ₽',
+      title: 'IA',
+      description: 'Un chatbot IA qui répond à votre place',
+      offer: 'Je crée un chatbot basé sur ChatGPT qui répond aux clients 24/7, prend des rendez-vous et aide à vendre. Lancement en 7 jours. 1 mois de support offert.',
+      price: '199 €',
       highlights: [
-        { text: 'Запуск за 7 дней.' },
-        { text: '1 месяц поддержки бесплатно.' }
+        { text: 'Lancement en 7 jours.' },
+        { text: '1 mois de support offert.' }
       ]
     }
   ];
@@ -69,16 +69,16 @@ export default function HeroBlock() {
               <div className={`text-sm xs:text-base md:text-xl font-inter-black text-gray-700 transition-all duration-700 ease-out delay-200 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
-                нужен сайт, который продает?
+                Vous avez besoin d'un site qui vend?
               </div>
               <div className={`text-xl xs:text-2xl md:text-4xl font-inter-black leading-tight tracking-tight transition-all duration-700 ease-out delay-400 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}>
                 <span className="text-black">
-                  <span className="xl:block">САЙТ →</span>
-                  <span className="xl:block">ЗАЯВКА →</span>
-                  <span className="xl:block">БОТ →</span>
-                  <span className="xl:block">КЛИЕНТ!</span>
+                  <span className="xl:block">SITE →</span>
+                  <span className="xl:block">DEMANDE →</span>
+                  <span className="xl:block">BOT →</span>
+                  <span className="xl:block">CLIENT!</span>
                 </span>
               </div>
             </div>
@@ -91,14 +91,14 @@ export default function HeroBlock() {
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}>
                 <div className="text-xs lg:text-lg font-inter-black text-black">
-                  9.900 ₽
+                  219 €
                 </div>
               </div>
               <div className={`bg-gray-50 p-2 rounded-lg text-center transition-all duration-500 ease-out delay-800 ${
                 isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}>
                 <div className="text-xs lg:text-lg font-inter-black text-black">
-                  7 дней
+                  7 jours
                 </div>
               </div>
               <div className={`bg-gray-50 p-2 rounded-lg text-center transition-all duration-500 ease-out delay-900 ${
@@ -118,12 +118,12 @@ export default function HeroBlock() {
                 <div className={`bg-gray-50 px-2 py-1 rounded text-center transition-all duration-500 ease-out delay-700 ${
                   isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                 }`}>
-                  <div className="text-xs font-inter-black text-black">9.900₽</div>
+                  <div className="text-xs font-inter-black text-black">219€</div>
                 </div>
                 <div className={`bg-gray-50 px-2 py-1 rounded text-center transition-all duration-500 ease-out delay-800 ${
                   isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                 }`}>
-                  <div className="text-xs font-inter-black text-black">7д</div>
+                  <div className="text-xs font-inter-black text-black">7j</div>
                 </div>
                 <div className={`bg-gray-50 px-2 py-1 rounded text-center transition-all duration-500 ease-out delay-900 ${
                   isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
@@ -148,19 +148,24 @@ export default function HeroBlock() {
             <div className={`text-sm xs:text-base md:text-xl font-inter-black text-black text-center transition-all duration-700 ease-out delay-1100 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Рассчитайте стоимость за 2 минуты
+              Devis instantané en 2 min
             </div>
             <div className={`px-8 py-4 h-16 xs:h-20 md:h-24 flex items-center transition-all duration-700 ease-out delay-1200 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <a href="#quiz" className="group relative w-full inline-flex items-center justify-center px-4 xs:px-6 md:px-12 py-3 xs:py-4 md:py-6 bg-[#E53E3E] text-white font-inter-black text-sm xs:text-base md:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden rounded-full">
-                <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                <span className="relative z-10">OBTENIR UN DEVIS GRATUIT</span>
               </a>
             </div>
             <div className={`text-xs xs:text-sm md:text-base text-gray-600 font-roboto-light text-center transition-all duration-700 ease-out delay-1300 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
-              Сайт + бот + настройка • 7 дней • Гарантия
+              Site web + bot clé en main • Livré en 1 semaine • Garantie satisfait ou remboursé
+            </div>
+            <div className={`text-xs xs:text-sm text-gray-500 font-roboto-light text-center transition-all duration-700 ease-out delay-1400 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
+              Ne laissez pas cette chance vous échapper
             </div>
           </div>
         </div>
@@ -180,16 +185,16 @@ export default function HeroBlock() {
                 <div className={`text-xl xl:text-2xl font-inter-black text-gray-700 mb-2 transition-all duration-700 ease-out delay-200 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  нужен сайт, который продает?
+                  Vous avez besoin d'un site qui vend?
                 </div>
                 <div className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-inter-black leading-none tracking-tight mb-4 transition-all duration-700 ease-out delay-400 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}>
                   <span className="text-black">
-                    <span className="xl:block">САЙТ →</span>
-                    <span className="xl:block">ЗАЯВКА →</span>
-                    <span className="xl:block">БОТ →</span>
-                    <span className="xl:block">КЛИЕНТ!</span>
+                    <span className="xl:block">SITE →</span>
+                    <span className="xl:block">DEMANDE →</span>
+                    <span className="xl:block">BOT →</span>
+                    <span className="xl:block">CLIENT!</span>
                   </span>
                 </div>
               </div>
@@ -201,13 +206,13 @@ export default function HeroBlock() {
                 <div className={`text-base font-inter-black text-black transition-all duration-700 ease-out delay-1100 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  Рассчитайте стоимость за 2 минуты
+                  Devis instantané en 2 min
                 </div>
                 <div className={`h-20 flex items-center transition-all duration-700 ease-out delay-1200 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
                   <a href="#quiz" className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#E53E3E] text-white font-inter-black text-lg sm:text-xl tracking-wider transition-all duration-500 transform hover:scale-[1.03] cursor-pointer border-4 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden rounded-full">
-                    <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                    <span className="relative z-10">OBTENIR UN DEVIS GRATUIT</span>
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
                     <div className="absolute -inset-1 border-2 border-white opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
                   </a>
@@ -215,7 +220,12 @@ export default function HeroBlock() {
                 <div className={`text-sm text-gray-600 font-roboto-light max-w-md whitespace-nowrap transition-all duration-700 ease-out delay-1300 ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}>
-                  Сайт + бот + настройка • 7 дней • Гарантия
+                  Site web + bot clé en main • Livré en 1 semaine • Garantie satisfait ou remboursé
+                </div>
+                <div className={`text-xs text-gray-500 font-roboto-light max-w-md whitespace-nowrap transition-all duration-700 ease-out delay-1400 ${
+                  isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}>
+                  Ne laissez pas cette chance vous échapper
                 </div>
               </div>
             </div>
@@ -233,10 +243,10 @@ export default function HeroBlock() {
                     isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}>
                     <div className="text-xl sm:text-2xl font-inter-black text-black mb-2">
-                      Прибыль растет в 3 раза
+                      Multipliez vos profits par 3
                     </div>
                     <div className="text-base font-inter-black text-gray-700">
-                      Средний результат наших проектов
+                      Résultat moyen de nos clients
                     </div>
                   </div>
                   
@@ -247,20 +257,20 @@ export default function HeroBlock() {
                       isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                     }`}>
                       <div className="text-base sm:text-lg lg:text-xl font-inter-black text-black mb-1">
-                        9.900 ₽
+                        219 €
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
-                        стартовая цена
+                        Tarif de base
                       </div>
                     </div>
                     <div className={`text-center transition-all duration-500 ease-out delay-900 ${
                       isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                     }`}>
                       <div className="text-base sm:text-lg lg:text-xl font-inter-black text-black mb-1">
-                        7 дней
+                        7 jours
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
-                        до запуска
+                        Avant le lancement
                       </div>
                     </div>
                     <div className={`text-center transition-all duration-500 ease-out delay-1000 ${
@@ -270,7 +280,7 @@ export default function HeroBlock() {
                         23%
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 font-roboto-light">
-                        средняя конверсия
+                        Taux de conversion moyen
                       </div>
                     </div>
                   </div>
@@ -281,13 +291,13 @@ export default function HeroBlock() {
                     <div className="flex flex-wrap gap-3 text-xs text-gray-600 font-roboto-light">
                       <span className={`bg-gray-50 px-2 py-1 rounded-full transition-all duration-500 ease-out delay-1200 ${
                         isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}>Гарантия результата</span>
+                      }`}>Résultats garantis ou remboursé</span>
                       <span className={`bg-gray-50 px-2 py-1 rounded-full transition-all duration-500 ease-out delay-1300 ${
                         isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}>Деньги назад</span>
+                      }`}>100% remboursé si insatisfait</span>
                       <span className={`bg-gray-50 px-2 py-1 rounded-full transition-all duration-500 ease-out delay-1400 ${
                         isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}>По маркетинговым принципам</span>
+                      }`}>Basé sur les principes du marketing scientifiquement prouvés</span>
                     </div>
                   </div>
                 </div>
@@ -317,11 +327,11 @@ export default function HeroBlock() {
               <h2 
                 className="font-inter-black text-black leading-none tracking-tight whitespace-nowrap"
                 style={{
-                  fontSize: 'clamp(3rem, 6vw, 7rem)',
+                  fontSize: 'clamp(2.5rem, 5vw, 6rem)',
                   lineHeight: '0.9'
                 }}
               >
-                ПРИБЫЛЬ РАСТЕТ
+                VOS PROFITS EXPLOSENT
               </h2>
             </div>
             
@@ -330,12 +340,12 @@ export default function HeroBlock() {
               isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}>
               <a 
-                href="tel:+79856850115" 
+                href="tel:+33652037779" 
                 className={`font-inter-black text-sm sm:text-base lg:text-lg text-black hover:text-gray-600 transition-all duration-300 hover:scale-110 transform cursor-pointer ${
                   isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                +7 (985) 685-01-15
+                +33 6 52 03 77 79
               </a>
               <a 
                 href="mailto:vladislav.verbitsky.bis@gmail.com"
@@ -360,7 +370,7 @@ export default function HeroBlock() {
               <div className="bg-white border-2 border-[#E53E3E] rounded-lg shadow-xl p-4 overflow-x-hidden">
                 <div className="flex items-center justify-between mb-4">
                   <div className="text-sm font-inter-black text-black">
-                    Рассчитайте стоимость за 2 минуты
+                    Devis instantané en 2 min
                   </div>
                   <button 
                     onClick={() => setIsFloatingButtonExpanded(false)}
@@ -370,10 +380,13 @@ export default function HeroBlock() {
                   </button>
                 </div>
                 <button className="group relative w-full inline-flex items-center justify-center px-6 py-4 bg-[#E53E3E] text-white font-inter-black text-base tracking-wider transition-all duration-500 ease-in-out transform hover:scale-[1.02] cursor-pointer border-2 border-[#E53E3E] button-pulse hover:bg-white hover:text-[#E53E3E] hover:border-[#E53E3E] overflow-hidden">
-                  <span className="relative z-10">РАССЧИТАТЬ СТОИМОСТЬ</span>
+                  <span className="relative z-10">OBTENIR UN DEVIS GRATUIT</span>
                 </button>
                 <div className="text-xs text-gray-600 font-roboto-light text-center mt-3">
-                  Сайт + бот + настройка • 7 дней • Гарантия
+                  Site web + bot clé en main • Livré en 1 semaine • Garantie satisfait ou remboursé
+                </div>
+                <div className="text-xs text-gray-500 font-roboto-light text-center mt-2">
+                  Ne laissez pas cette chance vous échapper
                 </div>
               </div>
             </div>
