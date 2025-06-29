@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Gift } from 'lucide-react';
 import ExpandableCards from './ExpandableCards';
 
 export default function HeroBlock() {
@@ -129,6 +130,27 @@ export default function HeroBlock() {
                   isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                 }`}>
                   <div className="text-xs font-inter-black text-black">23%</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Блок скидки 30% для новых клиентов - только на мобильных */}
+            <div className={`xl:hidden mb-4 transition-all duration-700 ease-out delay-650 ${
+              isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-95'
+            }`}>
+              <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-4 shadow-lg border-2 border-red-400">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="text-white font-inter-black text-sm xs:text-base md:text-lg mb-1">
+                      СКИДКА 30%
+                    </div>
+                    <div className="text-red-100 font-roboto-light text-xs xs:text-sm">
+                      для новых клиентов на создание сайта
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center w-12 h-12 xs:w-14 xs:h-14 md:w-16 md:h-16 bg-white rounded-full">
+                    <Gift className="text-red-500 w-6 h-6 xs:w-7 xs:h-7 md:w-8 md:h-8 animate-bounce" />
+                  </div>
                 </div>
               </div>
             </div>
